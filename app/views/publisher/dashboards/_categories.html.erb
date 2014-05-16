@@ -1,0 +1,16 @@
+<% if @categories.count > 0 %>
+  <div id="categories">
+    <ul>
+      <li><% if @current_category == :all %>
+          <%= link_to t('publisher.dashboard.category_all'), publisher_filter_category_path(0), :class => 'active' %></li>
+        <% else %>
+          <%= link_to t('publisher.dashboard.category_all'), publisher_filter_category_path(0) %></li>
+        <% end %>
+      <% @categories.each do |category| %>
+      	<% if category.active? %>
+        	<li><%= set_link_active @current_category, category, current_publisher %></li>
+      	<% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

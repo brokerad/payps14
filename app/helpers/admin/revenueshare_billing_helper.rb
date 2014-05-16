@@ -1,0 +1,2 @@
+module Admin::RevenueshareBillingHelper
+end

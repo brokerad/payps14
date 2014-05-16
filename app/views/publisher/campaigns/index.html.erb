@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h2><%= t("activerecord.models.campaign") %></h2>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th width="30%"><%= t("common.name") %></th>
+      <th width="10%"><%= t("activerecord.attributes.campaign.active") %></th>
+      <th width="10%"><%= t("activerecord.attributes.campaign.clicks") %></th>
+      <th width="10%"><%= t("common.posts") %></th>
+      <th width="15%"><%= t("publisher.amount.pending") %></th>
+      <th width="15%"><%= t("publisher.amount.earned") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= link_to campaign.name, publisher_campaign_reports_path(campaign) %></td>
+        <td><%= t("commons.active.#{campaign.active?}") %></td>
+        <td><%= current_publisher.unique_clicks_by_campaign(campaign) %></td>
+        <td><%= current_publisher.posts_qty_per_campaign(campaign) %></td>
+        <td><span class="btn success"><%= currency_format(current_publisher.pending_amount_per_campaign(campaign)) %></span></td>
+        <td><span class="btn success"><%= currency_format(current_publisher.earned_amount_per_campaign(campaign)) %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

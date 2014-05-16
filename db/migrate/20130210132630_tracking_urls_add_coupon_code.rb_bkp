@@ -1,0 +1,11 @@
+# => NOTE: this migration adds a rollback helper column;
+# => it should be removed later, when everything will be tested and confirmed
+class TrackingUrlsAddCouponCode < ActiveRecord::Migration
+  def self.up
+    add_column :tracking_urls, :coupon_code, :string
+  end
+
+  def self.down
+    remove_column :tracking_urls, :coupon_code
+  end
+end

@@ -1,0 +1,16 @@
+<div class="topbar" data-dropdown="dropdown">
+  <div class="fill" style="min-width: 1050px;">
+    <%= render "layouts/publisher/logo" %>
+    <% if current_user && current_user.role?(User::PUBLISHER) %>
+      <% if controller.class.to_s != "Publisher::PrereqsController" %>
+        <%= render "layouts/publisher/menu" %>
+        <%= render "publisher/dashboards/search" %>
+      <% else %>
+        <h2>The best way you can make money on Facebook</h2>
+      <% end %>
+    <% else %>
+      <p class="pull-right">You are not logged in</p>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div>

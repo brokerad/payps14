@@ -1,0 +1,63 @@
+<% context = "Publisher" %>
+<%
+  reports = [
+    context + "::CampaignsController",
+    context + "::CampaignReportsController",
+  ]
+%>
+
+<ul class="nav">
+	<li class="dropdown">
+    <a class="dropdown-toggle"><%= t('commons.campaigns') %></a>
+    <ul class="dropdown-menu">
+    	<li class="<%= "active" if params[:controller] == 'publisher/application' and params[:action] == "my_ad" %>">
+        <%= link_to t('commons.my_ad'), publisher_my_ad_path %></li>
+      <li class="<%= "active" if params[:controller] == 'publisher/application' and params[:action] == "newest_ad" %>">
+        <%= link_to t('commons.newest_ad'), publisher_newest_ad_path %>
+      <li class="divider"></li>
+    	<li><% if @current_category == :all %>
+          <%= link_to t('publisher.dashboard.category_all'), publisher_filter_category_path(0), :class => 'active' %></li>
+        <% else %>
+          <%= link_to t('publisher.dashboard.category_all'), publisher_filter_category_path(0) %></li>
+          <% end %>
+			<% @categories.each do |category| %>
+      	<% if category.active? %>
+        	<li><%= set_link_active @current_category, category, current_publisher %></li>
+      	<% end %>
+      <% end %>
+    </ul>
+	</li>
+	<li class="<%= "active" if controller.class.to_s == context + "::InfoController" %>">
+    <%= link_to t("menu.publisher.info"), publisher_info_index_path(current_publisher) %></li>
+  <li class="<%= "active" if controller.class.to_s == context + "::PublishersController" %>">
+    <%= link_to t("menu.publisher.profile"), publisher_publisher_path(current_publisher) %></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle">My Reports</a>
+    <ul class="dropdown-menu">
+  		<li class="<%= "active" if reports.include?( controller.class.to_s ) %>">
+    		<%= link_to t("menu.publisher.report.campaign"), publisher_campaigns_path %></li>
+    	<% if isPPSuser(current_publisher) %>
+    	<li class="<%= "active" if controller.class.to_s == context + "::RankingController" %>">
+    		<%= link_to t("menu.publisher.report.ranking"), publisher_ranking_path %></li>
+    	<% end %>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle">Billing</a>
+    <ul class="dropdown-menu">
+      <% if current_publisher.billable? %>
+        <li class="<%= "active" if controller.class.to_s == context + "::RequestPaymentsController" %>">
+        <%= link_to t("menu.request_payments"), publisher_billing_request_payment_path %></li>
+      <% end %>
+        <li class="<%= "active" if controller.class.to_s == context + "::CheckingAccountController" %>">
+        <%= link_to t("menu.publisher.checking_account"), publisher_billing_checking_account_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::WithdrawalController" %>">
+        <%= link_to t("menu.publisher.withdrawal"), publisher_billing_withdrawal_path %></li>
+    </ul>
+  </li>
+</ul>
+
+<p class="pull-right" style="margin-right: 10px;">
+  <%= link_to current_user.email, publisher_publisher_dashboard_path %> 
+    [<%= link_to t("commons.logout"), publisher_publisher_signout_path %>] 
+</p>

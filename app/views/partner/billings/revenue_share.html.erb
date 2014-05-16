@@ -1,0 +1,73 @@
+<div class="page-header">
+    <h1>Revenue Share Billing</h1>
+</div>
+
+<div class="clear"></div><br/>
+
+<table class="partner_billing">
+    <tr>
+        <td class="td_title">Total Commission Matured</td>
+        <td><span class="label warning amount"><%= currency_format @matured_amount %></span></td>
+        <td>Minimum for Pay</td>
+        <td><span class="label important amount"><%= currency_format @min_amount_for_pay %></span></td>
+        <td style="width: auto;"></td>
+    </tr>
+    <tr>
+        <td>Total Commission Requested</td>
+        <td><span class="label amount"><%= currency_format @requested_amount.abs %></span></td>
+        <td></td>
+        <td></td>
+        <td style="width: auto;"></td>
+    </tr>
+    <tr>
+        <td>Total Commission Payed</td>
+        <td><span class="label success amount"><%= currency_format @payed_amount.abs %></span></td>
+        <td></td>
+        <td style="width: 140px;"><%= link_to 'Request Payment', partner_request_payment_path, :class => 'btn success amount_request' if can_request_amount? %></td>
+        <td style="width: auto;"></td>
+    </tr>
+</table>
+
+<div class="clear"></div>
+<br/>
+<table class="zebra-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Transaction ID</th>
+            <th>Transaction Description</th>
+            <th>Requested Amount</th>
+            <th>Payed Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @requested_transactions_active.each do |trans| %>
+        <tr>
+            <td><%= l(trans.created_at, :format => date_only_format) %></td>
+            <td><%= trans.id %></td>
+            <td><%= "Requested withdrawal" %></td>
+            <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+            <td></td>
+        </tr>
+        <% end %>
+        <% @requested_transactions_done.each do |trans| %>
+        <tr>
+            <td><%= l(trans.created_at, :format => date_only_format) %></td>
+            <td><%= trans.id %></td>
+            <td><%= "Requested withdrawal" %></td>
+            <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+            <td></td>
+        </tr>
+        <% end %>
+        <% @payed_transactions.each do |trans| %>
+        <tr>
+            <td><%= l(trans.created_at, :format => date_only_format) %></td>
+            <td><%= trans.id %></td>
+            <td><%= trans.description %></td>
+            <td></td>
+            <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+        </tr>
+        <% end %>
+        
+    </tbody>
+</table>

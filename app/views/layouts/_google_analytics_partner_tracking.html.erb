@@ -1,0 +1,28 @@
+<% unless cookies[:ptc].to_s.blank? %>
+   <script type="text/javascript">
+       _gaq.push(['_trackEvent', '<%=cookies[:ptc]%>', 'Page-view', '']);
+   </script>
+<% end %>
+
+<% unless cookies[:ptc_showed_terms].to_s.blank? %>
+   <script type="text/javascript">
+       _gaq.push(['_trackEvent', '<%=cookies[:ptc_showed_terms]%>', 'Showed-the-terms', '']);
+   </script>
+   <% cookies[:ptc_showed_terms] = nil %>
+<% end %>
+
+<% unless cookies[:ptc_accepted_terms].to_s.blank? %>
+   <script type="text/javascript">
+   _gaq.push(['_trackEvent', '<%=cookies[:ptc_accepted_terms]%>', 'Accepted-the-terms', '']);
+   </script>
+   <% cookies[:ptc_accepted_terms] = nil %>
+   <% cookies[:ptc] = nil %>
+<% end %>
+
+<% if current_publisher && current_publisher.inform_partner? %>
+ $(document).ready(function(){
+   $("body").append('<img src="<%= current_publisher.partner.trackback_url(current_publisher) %>" width="0" height="0">');
+ });
+ <% current_publisher.set_partner_as_informed %>
+ <% logger.debug("DEBUG:: publihser: #{current_publisher.id}; inform partner with TC: #{current_publisher.partner.partner_tracking_code} and lead_url: #{current_publisher.partner.lead_url}" ) %>
+<% end %>

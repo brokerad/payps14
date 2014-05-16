@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Languages</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th># Publishers</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.code %></td>
+        <td><%= language.name %></td>
+        <td><%= language.publishers.count %></td>
+        <td><%= link_to 'Edit', edit_admin_language_path(language) %></td>
+        <td><%= link_to 'Destroy', [:admin, language], :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+

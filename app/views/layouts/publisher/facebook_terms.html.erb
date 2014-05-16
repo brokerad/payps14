@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/head' %>
+  <%= render "layouts/google_analytics_partner_tracking" %>
+  <script>
+    if(top == self) { window.top.location.href = "<%=ENV["FACEBOOK_APP_URL"]%>"; }
+  </script>
+</head>
+<body>
+  <div class="pps_container" style="margin-left: 0px;">
+
+    <div class="content" style="padding-top: 0px; min-width: 950px;">
+        <div class="air">
+          <%= raw show_messages_flash %>
+          <%= yield %>
+        </div>
+      <%= render "layouts/footer" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

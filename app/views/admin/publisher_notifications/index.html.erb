@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Publisher Notification <small><%= link_to 'New', new_admin_publisher_notification_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Details</th>
+      <th>Sent on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+         <td><%= notification.title %></td>
+         <td><%= notification.notification_text.truncate(80) %></td>
+         <td><%= notification.details %></td>
+         <td><%= l(notification.created_at, :format => :long) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

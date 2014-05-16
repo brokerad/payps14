@@ -1,0 +1,98 @@
+<% context = "Admin" %>
+<ul class="nav">
+	<li class="dropdown">
+    <a class="dropdown-toggle">Publisher</a>
+    <ul class="dropdown-menu">
+    	<li class="<%= "active" if controller.class.to_s == context + "::PublishersController" %>">
+        <%= link_to t("menu.admin.publishers"), admin_publishers_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PublisherTypesController" %>">
+        <%= link_to t("menu.admin.publisher_types"), admin_publisher_types_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::PublisherPendingAmountController" %>">
+        <%= link_to t("menu.admin.publisher_pending_amount"), admin_publisher_pending_amount_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PublisherPendingWithdrawalsController" %>">
+        <%= link_to t("menu.admin.pub_pending_withdrawals"), admin_publisher_pending_withdrawals_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PublisherWithdrawalsController" %>">
+        <%= link_to t("menu.admin.pub_withdrawals"), admin_publisher_withdrawals_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PublisherNotificationsController" %>">
+        <%= link_to t("menu.admin.publisher_notifications"), admin_publisher_notifications_path %></li>
+   	</ul>
+	</li>
+	<li class="dropdown">
+    <a class="dropdown-toggle">Advertiser</a>
+    <ul class="dropdown-menu">
+    	<li class="<%= "active" if controller.class.to_s == context + "::AdvertisersController" %>">
+        <%= link_to t("menu.admin.advertisers"), admin_advertisers_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::AdvertiserReportsController" %>">
+        <%= link_to t("menu.commons.advertiser_reports"), admin_advertiser_reports_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::AdsController" %>">
+      <%= link_to t("menu.commons.ads_validation"), admin_ads_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::AdsReportsController" %>">
+        <%= link_to t("menu.admin.ads_reports"), admin_ads_reports_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::CampaignClicksController" %>">
+        <%= link_to t("menu.admin.campaigns_clicks"), admin_campaign_clicks_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PrepaidPackagesController" %>">
+        <%= link_to t("menu.admin.prepaid_packages"), admin_prepaid_packages_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::TransactionsController" %>">
+        <%= link_to t("menu.admin.adv_transactions"), admin_transactions_path %></li>
+   	</ul>
+	</li>
+	<li class="dropdown">
+    <a class="dropdown-toggle">Partner</a>
+    <ul class="dropdown-menu">
+    	<li class="<%= "active" if controller.class.to_s == context + "::PartnersController" %>">
+        <%= link_to t("menu.admin.partners"), admin_partners_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::TrackingUrlsController" %>">
+        <%= link_to t("menu.admin.tracking_urls"), admin_tracking_urls_path %></li>
+       <li class="<%= "active" if controller.class.to_s == context + "::CouponsController" %>">
+        <%= link_to t("menu.admin.coupons"), admin_coupons_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::RevenueSharesController" %>">
+        <%= link_to t("menu.admin.conditions"), admin_revenue_shares_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::RevenueshareReportsController" %>">
+        <%= link_to t("menu.admin.revenueshare-reports"), admin_revenueshare_reports_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::RevenueshareTrafficController" %>">
+        <%= link_to t("menu.admin.revenueshare-traffic"), admin_revenueshare_traffic_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::RevenueshareBillingController" %>">
+        <%= link_to t("menu.admin.revenueshare-billing"), admin_revenueshare_billing_path %></li>
+    	<li class="<%= "active" if controller.class.to_s == context + "::PartnerReportsController" %>">
+        <%= link_to t("menu.admin.partner_reports"), admin_partner_reports_path %></li>
+   	</ul>
+	</li>
+	<li class="dropdown">
+    <a class="dropdown-toggle">Admin</a>
+    <ul class="dropdown-menu">
+      <li class="<%= "active" if controller.class.to_s == context + "::CategoriesController" %>">
+    		<%= link_to t("menu.admin.categories"), admin_categories_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::LanguagesController" %>">
+        <%= link_to t("menu.admin.languages"), admin_languages_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::BannersController" %>">
+        <%= link_to t("menu.admin.banners"), admin_banners_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::MarketsController" %>">
+        <%= link_to t("menu.admin.markets"), admin_markets_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::TermsController" %>">
+        <%= link_to t("menu.admin.terms"), admin_terms_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::BotUserAgentsController" %>">
+        <%= link_to t("menu.admin.bot_user_agents"), admin_bot_user_agents_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::UsersController" %>">
+        <%= link_to t("menu.admin.users"), admin_users_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::TrafficManagersController" %>">
+        <%= link_to t("menu.admin.traffic_managers"), admin_traffic_managers_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::TrafficReportsController" %>">
+        <%= link_to t("menu.admin.traffic_reports"), admin_traffic_reports_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PaymentsController" %>">
+      <%= link_to t("menu.commons.bank_account"), admin_payments_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::VariablesController" %>">
+      <%= link_to t("menu.commons.variables"), admin_variables_path %></li>
+   	</ul>
+	</li>
+  <li class="dropdown">
+    <a class="dropdown-toggle">Auto Publishing</a>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to t("menu.commons.ap.campaigns"), admin_ap_campaigns_path %></li>
+      <li>
+        <%= link_to t("menu.commons.ap.ads"), admin_ap_ads_path %></li>
+      <li>
+        <%= link_to t("menu.commons.ap.publishers"), admin_ap_publishers_path %></li>
+    </ul>
+  </li>
+</ul>

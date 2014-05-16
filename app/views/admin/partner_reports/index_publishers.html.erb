@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h1>Listing publishers by partner <%= @partner.name %></h1>
+</div>
+
+<%= render "admin/partner_reports/list_publishers" %>
+<div><%= link_to "Export CSV", :format => :csv %></div>

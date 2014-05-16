@@ -1,0 +1,56 @@
+<div class="page-header">
+  <h1>Partner Tracking Urls <small><%= link_to 'New Tracking Url', new_admin_tracking_url_path %></small></h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+	<form class="pull-left" action="<%= admin_tracking_search_partners_path %>">
+	    <div class="page-header"><h2>Search by Partner</h2></div>
+    	<%= select_tag "search", 
+    	   options_from_collection_for_select(@partners, "id", "name", { :selected => params[:search] }),
+    	   :include_blank => 'All' %>
+    	<button class="btn success">Filter</button>
+	</form>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Tracking Code</th>
+      <th>Partner Name (id)</th>
+      <th>Coupons</th>
+      <th class="text_center">RS</th>
+      <th class="text_center">Active</th>
+      <th class="text_center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @tracking_urls.each do |tracking_url| %>
+      <tr>
+        <td><%= tracking_url.id %></td>
+        <td class="text_in_line"><%= tracking_url.name %></td>
+        <td class="text_in_line"><%= tracking_url.tracking_code %></td>
+        <td class="text_in_line"><%= "#{tracking_url.partner.name} (#{tracking_url.partner.id})" %></td>
+        <td>
+            <% tracking_url.coupons.each do |c| %>
+                <%= c.name %><%= ";" if tracking_url.coupons.index(c) < tracking_url.coupons.size - 1  %>
+            <% end %>
+        </td>
+
+        <td class="text_center"><%= disabled_checkbox(tracking_url.revenue_share) %></td>
+        <td class="text_center"><%= disabled_checkbox(tracking_url.active) %></td>
+        <td class="text_in_line text_center">
+            <%= link_to 'Edit', edit_admin_tracking_url_path(tracking_url), :class => "btn" %>
+            <%= link_to 'Destroy', [:admin, tracking_url], :confirm => 'Are you sure?', :method => :delete, :class => "btn danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />

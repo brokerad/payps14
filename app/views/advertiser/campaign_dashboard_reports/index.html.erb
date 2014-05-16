@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1><%= t("campaign.reports.dashboard") %></h1>
+</div>
+
+<ul class="breadcrumb">
+  <li><%= link_to t("menu.commons.campaign_reports"), advertiser_campaign_reports_path %> <span class="divider">/</span></li>
+  <li><%= @campaign.name %></li>
+</ul>
+
+<div class="row">
+  <div class="span8">
+    <%= render "application/campaign_detail" %>
+  </div>
+
+  <div class="span8">
+    <%= render "advertiser/campaign_dashboard_reports/balance" %>
+  </div>
+</div>
+
+<div class="page-header"><h2>Ads</h2></div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Ad Title</th>
+      <th>Publishers</th>
+      <th>Clicks</th>
+      <th>Likes</th>
+      <th>Comments</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.link_name %></td>
+        <td align="right"><%= link_to ad.publishers.count, advertiser_campaign_post_reports_path(@campaign, ad) %></td>
+        <td align="right"><%= clicks = ad.clicks_count %></td>
+        <td align="right"><%= ad.likes %></td>
+        <td align="right"><%= ad.comments %></td>
+        <td><span class="btn success"><%= currency_format(@campaign.click_value * clicks) %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render "application/campaign_progress_chart" %>
+

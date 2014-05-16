@@ -1,0 +1,19 @@
+<div class="price pull-left">
+    <% if current_publisher.engaged? %>
+        <%= link_to currency_format(ad.campaign.net_click_value(current_publisher)) + "/click", 
+        "/publisher/posts/#{ad.id}?app_data=facebook_dashboard", :class => "btn info dashboard_click_btn fb_share_btn_click" %>
+    <% else %>
+        <span class="btn fb_engage_btn dashboard_click_btn"><%= currency_format(ad.campaign.net_click_value(current_publisher)) + "/click" %></span>
+    <% end %>
+</div>
+
+<% if current_publisher.engaged? %>
+    <%= link_to t("post.publish_it"), "/publisher/posts/#{ad.id}?app_data=facebook_dashboard", 
+        :class => "btn success pull-left dashboard_share_btn fb_share_btn_click" %>
+<% else %>
+    <span class="btn pull-left fb_engage_btn dashboard_share_btn"><%= t("post.publish_it") %></span>
+<% end %>
+
+<% if current_publisher.published?(@ads_available, ad) %>
+    <span class="pull-left justposted"><%= t("post.just_posted") %> <i class="icon-ok"></i></span>
+<% end %>

@@ -1,0 +1,51 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebrastriped").tablesorter();
+  });
+</script>
+
+<div class="page-header">
+  <h1>Revenue Share Conditions <small><%= link_to t("commons.new"), new_admin_revenue_share_path %></small></h1>
+</div>
+
+<div>
+  <form class="pull-left" action="<%= admin_revenue_shares_path %>">
+    Filter Partner
+    <%= select_tag "partner", options_from_collection_for_select(@partners, 'id', 'name', params[:partner]), :include_blank => true %>
+    <button class="btn success">Filter</button>
+  </form>
+</div>
+
+<table class="zebrastriped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Partner (id)</th>
+      <th>Tracking url name (id)</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Duration in days</th>
+      <th>Revenue</th>
+      <th class="text_center">Active</th>
+      <th class="text_center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+       <% @revenue_shares.each do |condition| %>
+       <tr>
+           <td><%= condition.id %></td>
+           <td><%= "#{condition.tracking_url.partner.name} (#{condition.tracking_url.partner.id})" %></td>
+           <td><%= "#{condition.tracking_url.name} (#{condition.tracking_url.id})" %></td>
+           <td><%= l condition.start_date, :format => default_time_format %></td>
+           <td><%= l condition.end_date, :format => default_time_format %></td>
+           <td><%= condition.duration %></td>
+           <td><%= condition.revenue %>%</td>
+           <td class="text_center"><%= disabled_checkbox(condition.active) %></td>
+        <td class="text_center">
+          <%= link_to 'Edit', edit_admin_revenue_share_path(condition), :class => "btn" %>
+          <%= link_to 'Destroy', [:admin, condition], :confirm => 'Are you sure?', :method => :delete, :class => "btn danger" %>
+        </td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>

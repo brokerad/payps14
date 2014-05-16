@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/head'%>
+</head>
+
+<body>
+  <%= render "layouts/admin/topbar" %>
+  <div class="container-fluid">
+    <div class="content">
+      <%= raw show_messages_flash %>
+      <%= yield %>
+      <%# controller.to_s %>
+    </div>
+    <%= render "layouts/footer" %>
+  </div>
+</body>
+</html>

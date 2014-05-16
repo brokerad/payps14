@@ -1,0 +1,7 @@
+<div class="page-header"><h2>Summary Campaign Balance</h2></div>
+<table class="zebra-striped">
+  <tr><td>Clicks:</td><td><%= current_publisher.unique_clicks_by_campaign @campaign %></td></tr>
+  <tr><td>Click Value:</td><td><span class="btn info"><%= currency_format(@campaign.net_click_value(current_publisher)) %></span></td></tr>
+  <tr><td>Pending Amount:</td><td><span class="btn success"><%= currency_format(current_publisher.pending_amount_per_campaign(@campaign)) %></span></td></tr>
+  <tr><td>Earned Amount:</td><td><span class="btn success"><%= currency_format(current_publisher.earned_amount_per_campaign(@campaign)) %></span></td></tr>
+</table>

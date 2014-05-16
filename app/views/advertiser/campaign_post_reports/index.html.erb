@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Publisher reports</h1>
+</div>
+<ul class="breadcrumb">
+  <li><%= link_to t("menu.commons.campaign_reports"), advertiser_campaign_reports_path %> <span class="divider">/</span></li>
+  <li><%= link_to @campaign.name, advertiser_campaign_dashboard_reports_path(@campaign) %> <span class="divider">/</span></li>
+  <!-- <li><%= link_to @campaign.name, advertiser_campaign_reports_path(@campaign) %> <span class="divider">/</span></li>-->
+  <li><%= @ad.message %></li>
+</ul>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th width="40"></th>
+      <th>Publisher name</th>
+      <th>Clicks</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ad.posts_with_payable_clicks.each do |post| %>
+      <tr>
+        <td><%= image_tag post.publisher.publisher_facebooks.first.image, :width => 40 %></td>
+        <td><%= post.publisher.name %></td>
+        <td><%= post["qty"] %></td>
+        <td><span class="btn success"><%= currency_format(@campaign.click_value * post["qty"].to_i) %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

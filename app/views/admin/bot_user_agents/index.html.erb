@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= t("bot_user_agents.list") %> <small><%= link_to t("commons.new"), new_admin_bot_user_agent_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>User Agent</th>
+      <th>Active</th>
+      <th>Last Update</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_agents.each do |ua| %>
+      <tr>
+        <td><%= ua.user_agent %></td>
+        <td><%= disabled_checkbox(ua.active) %></td>
+        <td><%= l(ua.updated_at.to_date, :format => :long) %></td>
+        <td>
+          <%= link_to t("commons.edit"), edit_admin_bot_user_agent_path(ua), :class => 'btn' %>
+          <%= link_to t("commons.destroy"), [:admin, ua], :method => :delete, :confirm =>'Are you sure?', :class => 'btn danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

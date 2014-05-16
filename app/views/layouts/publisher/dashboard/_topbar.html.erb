@@ -1,0 +1,16 @@
+<div class="topbar" data-dropdown="dropdown">
+  <div class="topbar-inner">
+    <div class="container-fluid">
+      <%= render "layouts/logo" %>
+      <% if current_user && current_user.role?(User::PUBLISHER) %>
+        <%= render "layouts/publisher/dashboard/menu" %>
+        <p class="pull-right">
+          Logged in as <%= link_to current_user.email, publisher_publisher_dashboard_path %> 
+            [<%= link_to t("commons.exit"), publisher_publisher_signout_path %>]
+        </p>
+      <% else %>
+        <p class="pull-right">You are not logged in</p>
+      <% end %>
+    </div>
+  </div>
+</div>

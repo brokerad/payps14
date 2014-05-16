@@ -1,0 +1,43 @@
+<div class="ads_dashboard2">
+  <% @ads_available.each do |ad| %>
+  <article>
+    <div class="image">
+      <%= image_tag ad.picture_link, :width => 240, :height => 135 %>
+    </div>
+    <div class="bottom"></div>
+    <div class="txt">
+      <div class="info">
+        <div class="price btn info">
+          <%= currency_format ad.campaign.net_click_value( current_publisher ) %>/click
+        </div>
+        <div class="link_title">
+          <%= link_to ad.link_name, ad.link, :target => "_blank" %>
+        </div>
+        <div class="clear"></div>
+        <div class="message">
+          <%= ad.message %>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <% if current_publisher.published?(@ads_available, ad) %>
+          <%= link_to t("post.publish_it_again"), "/publisher/posts/#{ad.id}", :class => "btn success" %>
+        <%= link_to t("commons.report"), publisher_campaign_reports_path(ad.campaign), :class => "btn" %>
+        <% else %>
+          <%= link_to t("post.publish_it"), "/publisher/posts/#{ad.id}", :class => "btn success" %>
+        <% end %>
+      </div>
+    </div>
+    <% if current_publisher.published?(@ads_available, ad) %>
+    <div class="posted">
+      <span class="btn"><i class="icon-ok"></i></span>
+    </div>
+    <% end %>
+    <div class="price">
+      <span class="btn info">
+        <%= currency_format ad.campaign.net_click_value( current_publisher ) %>
+      </span>
+    </div>
+  </article>
+  <% end %>
+</div>

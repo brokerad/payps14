@@ -1,0 +1,18 @@
+<script>
+  $(document).ready(function(){
+    $(".buy_it").click(function(){
+      alert("Not implemented yet. Ha!");
+    });
+  });
+</script>
+
+<div class="page-header">
+  <h2>Our bank account</h2>
+</div>
+<p>
+  <%= @bank_account.description unless @bank_account.nil? %>
+</p>
+<div>
+  <a href="javascript:window.print();" class="btn">Print</a> |
+  <%= link_to "Confirm and Buy", advertiser_buy_prepaid_package_path(@prepaid_package), :method => :post, :class => "btn success" %>
+</div>

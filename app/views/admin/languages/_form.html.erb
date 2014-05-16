@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @language], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :code %>
+    <%= f.input :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

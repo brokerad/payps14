@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1><%= t("revenue_share.traffic") %></h1>
+</div>
+
+<div class="row">
+    <form class="pull-left" action="<%= admin_revenueshare_traffic_path %>">
+        <div class="page-header"><h3>Search by Partner and/or Tracking Url</h3></div>
+<!--         Year
+        <%= select_year(Date.today, :start_year => 2009, :end_year => Date.today.year, :prompt => 'All') %>
+        Month
+        <%= select_month(Date.today, :prompt => 'All') %> -->
+        Partner
+        <%= select_tag "partner", 
+            options_from_collection_for_select(@partners, "id", "name", { :selected => params[:partner] }),
+            :include_blank => 'All' %>
+        Tracking Url
+        <%= select_tag "tracking_url", 
+            options_from_collection_for_select(@tracking_urls, "id", "name", { :selected => params[:tracking_url] }),
+            :include_blank => 'All' %>
+    <button class="btn success">Filter</button>
+    </form>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Partner</th>
+      <th>Tracking Url</th>
+      <th>Publisher</th>
+      <th>Campaign (id)</th>
+      <th>Campaign Processed</th>
+      <th>Publisher Earn</th>
+      <th>Partner Commission</th>
+      <th>Requested</th>
+      <th>Payed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @revenue_shares.each do |revenue_share| %>
+        <% revenue_share.checking_account_entries.credited.each do |entry| %>
+            <% publisher_entry = revenue_share.publisher_entry(entry) %>
+            <% campaign = Campaign.find(entry.transaction.description.split(' ')[2]) %>
+          <tr>
+            <td><%= revenue_share.id %></td>
+            <td class="text_in_line"><%= revenue_share.partner.name %></td>
+            <td class="text_in_line"><%= revenue_share.tracking_url.name %></td>
+            <td class="text_in_line"><%= Publisher.find(publisher_entry.account.name.to_i).name %></td>
+            <td class="text_in_line"><%= "#{campaign.name} (#{campaign.id})" %></td>
+            <td class="text_in_line"><%= l(entry.created_at, :format => default_time_format) %></td>
+            <td><%= publisher_entry.amount %></td>
+            <td><%= entry.amount %></td>
+            <td class="text_center"><%= disabled_checkbox(entry.reconciled) %></td>
+            <td>#TODO</td>
+          </tr>
+        <% end%>
+    <% end %>
+  </tbody>
+</table>

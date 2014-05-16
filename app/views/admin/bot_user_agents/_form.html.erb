@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, @user_agent], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <%= f.input :user_agent %>
+  <%= f.input :active %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

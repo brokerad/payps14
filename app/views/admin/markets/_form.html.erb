@@ -1,0 +1,18 @@
+<%= render "layouts/tinymce" %>
+
+<%= simple_form_for([:admin, @market], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :iso_code  %>
+    <p>    
+    <%= " NB: Insert ISO ALPHA-2 CODE from "%><%= link_to "Country Codes List", "http://www.nationsonline.org/oneworld/country_code_list.htm", :target => "_blank" %> 
+    </p>
+    <%= f.input :description %>   
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

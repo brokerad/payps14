@@ -1,0 +1,16 @@
+<%= render "layouts/tinymce" %>
+
+<%= simple_form_for([:admin, @term], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :title %>
+    <%= f.input :eng %>
+    <%= f.input :ita %>
+    <%= f.input :por %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

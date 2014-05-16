@@ -1,0 +1,44 @@
+<div class="campaigns_available">
+  <div class="page-header">
+    <h2><%= t("publisher.available_campaigns") %></h2>
+  </div>
+  <% @campaigns_available.each do |campaign| %>
+    <article>
+        <h3><%= campaign.name %><a class="btn info pull-right"><%= currency_format campaign.net_click_value( current_publisher ) %>/click</a></h3>
+        <div class="infos">
+          <table>
+            <tr>
+              <td>From</td>
+              <td><%=l campaign.start_date, :format => t("date.formats.default") %></td>
+              <td>To</td>
+              <td><%=l campaign.end_date, :format => t("date.formats.default") %></td>
+            </tr>
+          </table>
+          <p>
+            <%= campaign.description %>
+          </p>
+          <section class="list_of_ads">
+            <% campaign.ads.each do |ad| %>
+            <article>
+              <div class="message"><%= ad.message %></div>
+              <div class="image"><%= image_tag ad.picture_link, :width => 90 %></div>
+              <div class="txt">
+                <div class="link_title"><%= link_to ad.link_name, ad.link, :target => "_blank" %></div>
+                <div class="link caption"><%= ad.link_caption %></div>
+                <div class="link description"><%= ad.link_description %></div>
+                <% post = find_or_initialize_post(campaign, ad, current_publisher)%>
+                <%= simple_form_for([:publisher, campaign, post]) do |f| %>
+                <%= render 'commons/error_notification', :f => f %>
+                <%= f.input :ad_id, :as => :hidden %>
+                <%= f.input :publisher_id, :as => :hidden %>
+                <input class="btn success pull-right" id="post_submit" name="commit" type="submit" value="<%= t("post.publish_it") %>"/>
+                <% end %>
+              </div>
+              <div class="clear"></div>
+            </article>
+            <% end %>
+          </section>
+        </div>
+    </article>
+  <% end %>
+</div>

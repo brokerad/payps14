@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Revenue Share Conditions</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Tracking URL Name</th>
+      <th>Tracking URL Code</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Duration (days)</th>
+      <th>Revenue (%)</th>
+      <th class="text_center">Active</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @revenue_shares.each do |condition| %>
+      <tr>
+        <td><%= condition.id %></td>
+        <td><%= condition.tracking_url.name %></td>
+        <td><%= condition.tracking_url.tracking_code %></td>
+        <td class="text_in_line"><%= l condition.start_date, :format => default_time_format %></td>
+        <td class="text_in_line"><%= l condition.end_date, :format => default_time_format %></td>
+        <td><%= condition.duration %></td>
+        <td><%= condition.revenue %></td>
+        <td class="text_center"><%= disabled_checkbox(condition.active) %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

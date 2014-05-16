@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= t("term.detail") %></h1>
+</div>
+
+<div>
+  <%= @term.title%>
+</div>
+
+<div>
+  <h3>ENG</h3>
+  <%=simple_format @term.eng %>
+</div>
+
+<div>
+  <h3>ITA</h3>
+  <%=simple_format @term.ita %>
+</div>
+
+<div>
+  <h3>POR</h3>
+  <%=simple_format @term.por %>
+</div>
+
+<div class="actions">
+  <%= link_to t("commons.edit"), edit_admin_term_path(@term), :class => "btn info" %> or <%= link_to t("common.back"), admin_terms_path, :class => "btn" %>
+</div>
+
+

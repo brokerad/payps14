@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h2>Transactions</h2>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Credit</th>
+      <th>Debit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @account.entries.sort_by { |k| k["created_at"] }.each do |entry| %>
+      <tr>
+        <td><%= entry.transaction.id %></td>
+        <td><%= entry.transaction.description %></td>
+        <td><%= entry.created_at %></td>
+        <td><%= currency_format(entry.credit_amount) %></td>
+        <td><%= currency_format(entry.debit_amount) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

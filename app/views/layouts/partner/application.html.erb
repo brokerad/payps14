@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= render 'layouts/head' %>
+</head>
+<body>
+  <%= render "layouts/partner/topbar" %>
+  <div class="container-fluid">
+    <div class="content">
+      <%= raw show_messages_flash %>
+      <%= yield %>
+    </div>
+    <%= render "layouts/footer" %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<h6><%= t("publisher.support.title") %></h6>
+<% if current_publisher.send_newsletters %>
+<table>
+	<thead>
+	   <tr>
+	       <th><%= t("publisher.support.newsletter_title") %> 
+		      <% if current_publisher.send_newsletters %><span class="on">ON<%else%><span class="off">OFF<%end%></span>
+		    </th>
+	   </tr>
+	</thead>
+	<tbody>
+	<tbody>
+		<tr>
+        	<td><%= t("publisher.support.email") %>:
+				<% if current_publisher.news_use_facebook_email %>
+					<%= current_publisher.email %>
+				<% else %>
+					<%= current_publisher.news_alternative_email %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= link_to t("publisher.support.sent_email_title"), t("publisher.support.sent_email"), 
+					:class => "btn info dashboard_left_menu_btn", :target => "_blank" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= link_to t("publisher.support.facebook_page_title"), t("publisher.support.facebook_page"),
+					:class => "btn info dashboard_left_menu_btn", :target => "_blank" %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<% end %>

@@ -1,0 +1,62 @@
+<div class="page-header">
+  <h1><%= t("revenue_share.billing") %></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th rowspan="2">Partner name (id)</th>
+      <th colspan="3">Transaction</th>
+      <th colspan="2">Amount</th>
+      <th rowspan="2">Actions</th>
+    </tr>
+    <tr>
+      <th style="border-left: 1px solid #DDD;">ID</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Requested</th>
+      <th>Payed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grouped_withd_trans_reqested_active.each do |trans| %>
+      <% revenue_share = RevenueShare.find(trans['name'].to_i) %>
+      <tr>
+          <td><%= "#{revenue_share.partner.name} (#{revenue_share.partner.id})" %></td>
+          <td><%= trans.id %></td>
+          <td><%= l(trans.created_at, :format => default_time_format) %></td>
+          <td><%= trans.description %></td>
+          <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+          <td></td>
+          <td>
+              <%= link_to 'Pay', admin_pay_withdrawal_path(trans.id), :confirm =>'Are you sure?', :class => 'btn success' %>
+          </td>
+      </tr>
+    <% end %>
+    <% @grouped_withd_trans_reqested_done.each do |trans| %>
+      <% revenue_share = RevenueShare.find(trans['name'].to_i) %>
+      <tr>
+          <td><%= "#{revenue_share.partner.name} (#{revenue_share.partner.id})" %></td>
+          <td><%= trans.id %></td>
+          <td><%= l(trans.created_at, :format => default_time_format) %></td>
+          <td><%= trans.description %></td>
+          <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+          <td></td>
+          <td></td>
+      </tr>
+    <% end %>
+    <% @grouped_withd_trans_payed.each do |trans| %>
+      <% revenue_share = RevenueShare.find(trans['name'].to_i) %>
+      <tr>
+          <td><%= "#{revenue_share.partner.name} (#{revenue_share.partner.id})" %></td>
+          <td><%= trans.id %></td>
+          <td><%= l(trans.created_at, :format => default_time_format) %></td>
+          <td><%= trans.description %></td>
+          <td></td>
+          <td><%= currency_format(trans['sum'].to_f.abs) %></td>
+          <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

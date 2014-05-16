@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag :all, :media => "screen,print" %>
+  <%= javascript_include_tag "jquery.min", "jquery_ujs", "bootstrap-alerts", "application" %>
+  <%= csrf_meta_tag %>
+  <%= render "layouts/google_analytics"%>
+  <%= favicon_link_tag %>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="content">
+      <%= raw show_messages_flash %>
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

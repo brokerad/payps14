@@ -1,0 +1,14 @@
+<div id="fb_engage_info_popup" class="popup_engage gray_border" style="display: none;r">
+    <div class="popup_engage_interior gray_border">
+        <p><%= t("publisher.support.facebook_engage_msg") %></p>
+        <%= link_to t("commons.next"), "/auth/facebook_post?app_data=#{app_data_param}", 
+            :id => 'fb_engage_btn', :class => 'btn success dashboard_left_menu_btn',
+            :style => "float: right;" %>
+    </div>
+</div>
+
+<script>
+    $('span.fb_engage_btn').bind('click', function() {
+        $('div#fb_engage_info_popup').bPopup();
+    })
+</script>

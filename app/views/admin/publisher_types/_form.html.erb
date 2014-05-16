@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1><%= action_type %></h1>
+</div>
+
+<%= simple_form_for([:admin, @publisher_type], :wrapper => "inline") do |f| %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :commission %>
+    <%= f.input :minimal_payment %>
+    <%= f.input :payment_delay %>
+    <%= f.input :is_default %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to t("commons.back"), admin_publisher_types_path %>

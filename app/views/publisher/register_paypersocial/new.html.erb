@@ -1,0 +1,40 @@
+<div id="sign_up_pps_baner"><%= banner_for_page Banner::SIGN_UP %></div>
+
+<div id="sign_up_pps_form">
+<%= simple_form_for  @publisher, :url => publisher_create_new_path, :wrapper => "inline" do |f| %>
+   <h2 class="form_title">SignUp Now!</h2>
+    <%= render 'commons/error_notification', :f => f %>
+
+    <%= f.fields_for :user do |fu| %>
+        <div class="clearfix"><%= fu.input :email, :label => t('commons.email') %></div>
+        <div class="clearfix">
+            <%= fu.input :password, :label => t('commons.password'), :input_html => {:autocomplete => 'off'} %>
+        </div>
+        <div class="clearfix">
+            <%= fu.input :password_confirmation, :label => "#{t('commons.password_confirmation')} *", :input_html => {:autocomplete => 'off'} %>
+        </div>
+    <% end %>
+  <div class="actions">
+    <%= f.button :submit, t("commons.create"), :class => "info" %> |
+    <%= link_to t("commons.back"), publisher_publisher_login_path %>
+  </div>
+<% end %>
+</div>
+
+<div id="sign_up_pps_social">
+    <h2 class="form_title" style="font-size: 22px;">SignUp with your Social</h2>
+    <div class="social_btn">
+
+        <%= link_to "/auth/facebook", :target => "_top", :style => "text-decoration: none; color: white;" do %>
+
+            <span class="btn primary social_btn">FACEBOOK</span>
+        <% end %>
+    </div>
+    <div style="padding: 17px;">
+        <%= link_to "#", :style => "text-decoration: none; color: black;" do %>
+            <span class="btn social_btn">TWITTER</span>
+        <% end %>
+    </div>
+</div>
+
+<div class="clearfloats"></div>

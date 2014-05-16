@@ -1,0 +1,385 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+pt-BR:
+  hello: "Olá Mundo"
+    
+  commons:
+    or: "ou"
+    back: "Voltar"
+    cancel: "Cancelar"
+    buttons:
+      login: "Login"
+    destroy: "Apagar"
+    edit: "Editar"
+    new: "Novo"
+    show: "Exibir"
+    enable: "Habilitar"
+    disable: "Desabilitar"
+    are_you_sure: "Você confirma?"
+    hello: "Ola"
+    active:
+      "true": "Sim"
+      "false": "Não"
+    reports: "Relatórios"
+    campaign: "Campanha"
+    campaigns: "Campanhas"
+    bank_information: "Dados bancários"
+    search: "Pesquisa"
+    detail: "Detalhe"
+    details: "Detalhes"
+    amount: "Valor"
+    proudly: "Produzido por "
+    my_ad: "Meus anúncios"
+    newest_ad: "Últimos anúncios"
+    model:
+      name: "Nome"
+      description: "Descrição"
+      type: "Tipo"
+    bug:
+      calculation: "Estamos cientes do bug no cálculo do valor pendente. Pedimos desculpas pelo inconveniente. O problema será consertado em alguns dias. Obrigado pela sua paciência."
+
+  access:
+    not_authorized: "Acesso não autorizado"
+    must_be_logged_in: "Login obrigatório"
+
+  menu:
+    commons:
+      campaign_reports: "Detalhes da Campanha"
+      advertiser_reports: "Detalhes do Anunciante"
+    admin:
+      users: "Todos Usuários"
+      advertisers: "Anunciantes"
+      publishers: "Publicadores"
+      campaigns: "Campanhas"
+      campaign_clicks: "Cliques da Campanha"
+      prepaid_packages: "Pacotes Pré-Pagos"
+      publisher_billing_config: "Configuração do Recibo"
+      languages: "Linguagens"
+      coupons: "Cupons"
+    advertiser:
+      ads: "Anúncios"
+      campaigns: "Campanhas"
+      prepaid_packages: "Pacotes Pré-Pagos"
+    publisher:
+      ads: "Anúncios"
+      profile: "Meu Perfil"
+      profile_title: "Perfil"
+      request_payment: "Requisição de Pagamento"
+      checking_account: "Conta Corrente"
+      withdrawal: "Requisição de Saque"
+      info: "Como funciona"
+    create:
+      publisher: "Criar um Publicador"
+      advertiser: "Criar um Anunciante"
+    dashboard:
+      publisher: "Painel do Publicador"
+      advertiser: "Painel do Anunciante"
+    admin: "Administração do Paypersocial"
+
+
+  login:
+    login: "Login"
+    remember_me: "Lembrar meu login"
+    successful: "Autenticado com sucesso"
+    failed: "Autenticação falhou"
+  user_session:
+    logout:
+      successful: "Sessão encerrada com sucesso"
+
+  advertiser:
+    created:
+      success: "Anunciante criado com sucesso"
+    updated:
+      success: "Anunciante atualizado com sucesso"
+    creation:
+      error: "Erros na criação do perfil do anunciante"
+
+  ad:
+    new: "Novo Anúncio"
+    edit: "Editar Anúncio"
+    list: "Anúncios"
+    created:
+      success: "Anúncio criado com sucesso"
+    updated:
+      success: "Anúncio atualizado com sucesso"
+    deleted:
+      success: "Anúncio apagado com sucesso"
+    search:
+      report_html: "Procurado <b>%{search_term}</b> encontrado <b>%{results_count} resultados</b>"
+    validate:
+      end_date_before_start_date: "Data final tem que ser depois da data de início"
+      start_date_invalid_range: "Data inicial tem que entre a data inicial da campanha (%{start_date}) e data final da campanha (%{end_date})"
+      end_date_invalid_range: "Data final tem que entre a data inicial da campanha (%{start_date}) e data final da campanha (%{end_date})"
+
+  publisher:
+    support:
+      title: "Support"
+      newsletter_title: "Newsletter"
+      facebook_page: "http://www.facebook.com/paypersocial"
+      facebook_page_title: "Facebook Page"
+      sent_email: "http://www.paypersocial.com/index.php/en/paypersocial-facebook-publisher-english/nl"
+      sent_email_title: "Newsletter Sent List"
+      email: "Email"
+    created:
+      success: "Publicador criado com sucesso"
+    updated:
+      success: "Publicador atualizado com sucesso"
+    listing:
+      title: "Lista de Publicadores"
+    editing:
+      title: "Editar Publicador"
+    dashboard:
+      claim: "A melhor maneira de ganhar dinheiro no Facebook"
+      fill_data: "Complete o seu cadastro e escolha o seu mercado"
+      your_balance: "Seu Saldo"
+    amount:
+      pending: "Valor Pendente"
+      earned: "Valor"
+      processing: "Valor sendo processado"
+      cashed: "Valor pago"
+    info_mandatory_data: "Linguagem, Fuso Horário e Mercado são mandatórios"
+    fill_your_mandatory_data: "Por favor, preencha os dados obrigatórios"
+    available_campaigns: "Campanhas Disponíveis"
+    your_campaigns: "Suas Campanhas"
+    engagement:
+      term:
+        accept: "Aceito os Termos e Condições"
+    profile:
+      profile: "Seu Perfil"
+      application:
+        title: "Aplicação"
+        allowed_places: "Páginas Autorizadas"
+        allowed_places_txt: "Selecione suas páginas"
+      billing: "Cobrança"
+      save: "Atualize o seu perfil"
+      newsletter: "Newsletter"
+    coupon:
+      not_valid: "Cupom %{coupon} não é válido"
+      not_active: "Cupom %{coupon} inativo"
+      expired: "Cupom %{coupon} expirado"
+      unavailable: "Cupom %{coupon} indisponível"
+      engagement:
+        title: "Parabéns"
+        content: "Você ganhou %{value} com esse cupom"
+    home:
+      slide1: Bem vindo ao PayPerSocial, o sistema de afiliados que vai te pagar por pelos cliques dos seus amigos fizerem nas suas postagens sobre as nossas campanhas.
+      slide2: Selecione as suas campanhas preferidas e as publique no seu mural clicando em "Publicar"
+
+  campaign:
+    dashboard: "Painel da Campanha"
+    new: "Nova Campanha"
+    edit: "Editar Campanha"
+    list: "Listar Campanhas Disponíveis"
+    created:
+      success: "A campanha foi criada com sucesso"
+      no_budget: "O orçamento da campanha é maior que o seu saldo. Orçamento: %{budget}, Saldo: %{balance}"
+    updated:
+      success: "Anunciante atualizado com sucesso"
+    validate:
+      start_date:
+        future: "A Data de Início tem que ser no future"
+      end_date:
+        after_start: "A Data Final não pode maior que a Data Inicial"
+      end_date_before_start_date: "A Data Final deve ser maior que a Data Inicial"
+      markets_missing: "Você tem que escolher pelo menos um mercado"
+      post_times_missing: "Você tem que escolher pelo menos um horário de postagem"
+    reports:
+      dashboard: "Painel dos Relatórios"
+    click_value_disabled: "Você não pode mudar o valor do clique"
+
+  coupon:
+    list: "Cupons"
+    new: "Novo Cupom"
+    edit: "Editar Cupom"
+    created:
+      success: "Cupom criado com sucesso"
+    updated:
+      success: "Cupom atualizado com sucesso"
+    deleted:
+      success: "Cupom apagado com sucesso"
+
+  bot_user_agents:
+    list: "Robôs"
+    updated:
+      success: "Robô atualizado com sucesso"
+
+  prepaid_package:
+    new: "Novo Pacote Pré-Pago"
+    edit: "Editar Pacote Pré-Pago"
+    list: "Listar Pacote Pré-Pago"
+    created:
+      success: "Pacote Pré-Pago criado com sucesso"
+    updated:
+      success: "Pacote Pré-Pago atualizado com sucesso"
+    validate:
+      start_date:
+        future: "Data Final deve ser no futuro"
+      end_date:
+        after_start: "Data Final deve ser maior que a Data Inicial"
+      finished_status: "Pacote Pré-Pago não pode ser editado depois que foi completado"
+      create_status: "Pacote Pré-Pago deve começar no futuro"
+      active_status: "Data Inicial não pode ser alterada depois que o Pacote Pré-Pago já começou"
+      past_start_date: "Data Inicial não pode ser no passado"
+      end_date_before_start_date: "Data Final deve ser maior que a Data Inicial"
+
+  post:
+    created:
+      success: "Postagem criada com sucesso"
+      failure: "Erro na Postagem"
+    published: "Postagem feita com sucesso"
+    publish_it: "Publicar"
+    publish_it_again: "Publicar!"
+    just_posted: "Publicado"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      default_time: "%d/%m/%Y %H:%M:%S"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+      sortable_time: "%b %d, %Y %I:%M %P"
+
+  infopage:
+    intro:
+      title: "Quem somos nós"
+      content: "Paypersocial é a primeira plataforma pensada para deixar os usuários do Facebook ganharem dinheiro publicando e compartilhando anúncios e campanhas na sua timeline, mural ou facebook pages."
+    block1:
+      title: "Como ganhar dinheiro"
+      content: "Simplesmente, você ganha dinheiro cada vez que os seus fãs e amigos interagirem com as campanhas você publicar no seu mural ou páginas."
+    block2:
+      title: "Como usar PayPerSocial"
+      content:
+        li1: "Selecione as campanhas do seu interesses;"
+        li2: "Clique em “Publish” e em poucos segundos o anúncio será publicado na sua timeline, mural ou page;"
+        li3: "Use os <b>Relatórios</b> para acompanhar o status das campanhas; use <b>Cobrança</b> para verificar os valores que você tem a receber."
+    block3:
+      title: "Descrição do Processo"
+      content:
+        li1: "Cada clique seus amigos e seguidores fizerem deve ser aprovado. Por quê? Não é o seu caso mas você deve estar ciente que há fraudes na internet... Por isso nós precisamos verificar a qualidade dos cliques e deixar os anunciantes, que nos pagam para podermos pagar vocês aprove a lista de cliques (ou outras ações sociais). Isso é o porquê do valor mostrado em Valor Pendente;"
+        li2: "Após o tráfego ser aprovado, os cliques confirmados (ou outras ações sociais) são adicionados no campo <b>Valor</b>. Esse processo fecha no dia 10 do mês seguinte ao mês contado;"
+        li3: "Assim que o limite mínimo de <b>$100</b> (em dólares) for alcançado você poderá requisitar o pagamento. O valor será mostrado no campo <b>valor</b> sendo processado;"
+        li4: "O campo <v>Valor Pago</b> é o valor acumulado que você ganhou (e pago) pelo PayPerSocial;"
+        li5: "<b>Observe!</b> Se você recebeu um cupom, o valor será pago somente que atingir o <b>limit</b> mínimo de <b>$100,00</b> de tráfego gerado."
+    block4:
+      title: "Pagamento"
+      content:
+        li1: "Revise e complete as suas informações em 'Perfil', focando em particula em 'Conta Paypal'. Este é o endereço de email associado com a sua conta no Paypal;"
+        li2: "Pagamento será feito em 30 dias após a data da requisição."
+    block5:
+      title: "Como aumentar os seus ganhos"
+      content:
+        intro: "Pode ser útil compartilhar algumas dicas úteis de como aumentar os seus ganhos com PayPerSocial:"
+        li1: "<b>Acesse</b> o Paypersocial todo dia, selecione as campanhas baseadas nos interesses dos seus amigos e fãs;"
+        li2: "<b>Selecione<b/> em qual página ou mural (ou timeline) você quer publicar cada anúncio;"
+        li3: "Visite os <b>Relatórios</b> e veja quais anúncios geram mais tráfego, publique novamente de acordo com a sua análise, mas não spam ou exagere na publicação. Anúncios precisam de um pouco de 'descanso'. Respeite os interesses dos seus amigos;"
+        li4: "Crie <b>comentários positivos</b> e 'curtir' para cada uma das suas postagens, a sua experiência pessoal com a informação que você compartilha. Estimule comentários e likes dos seus amigos nos anúncios que você compartilha;"
+        li5: "<b>Estimule</b> seus amigos a clicar nas campanhas que você acredita e demonstre o seu interesse;"
+        li6: "Seja <b>criterioso</b> e adote um tom profissional nos seus comentários ou incentivos que você faz aos seus amigos para clicar nos seus compartilhamentos. Apenas incentive os seus amigos nos anúncios que você acredita e endossa. Estimule os seus amigos a compartilhar as suas postagens (você pode criar <b>uma campanha viral</b> que aumentará dramaticamente os cliques em seus posts!)"
+
+  activerecord:
+    models:
+      account: "Conta"
+      ad: "Anúncio"
+      advertiser: "Anunciante"
+      campaign: "Campanha"
+      entry: "Entrada"
+      language: "Linguagem"
+      market: "Mercado"
+      partner: "Parceiro"
+      payment: "Pagamento"
+      place: "Página"
+      post: "Postagem"
+      prepaid_package: "Pacote Pré-Pago"
+      publisher_facebook: "Publicador Facebook"
+      publisher_billing_config: "Configuração do Pagamento"
+      publisher_type: "Tipo de Publicador"
+      publisher: "Publicador"
+      session: "Sessão"
+      term: "Termos e Condições"
+      tracking_code: "Código de Acompanhamento"
+      tracking_request: "Requisição"
+      transaction: "Transação"
+      user: "Usuário"
+    attributes:
+      advertiser:
+        company_name: "Nome da Companhia"
+        address: "Endereço"
+        city: "Cidade"
+        country: "País"
+        zip_code: "CEP"
+        phone: "Telefone"
+        fax: "Fax"
+        site: "Website"
+        created_at: "Data de criação"
+        updated_at: "Data de autalização"
+      publisher:
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        address: "Endereço"
+        zip_code: "CEP"
+        city: "Cidade"
+        state: "Estado"
+        country: "País"
+        email: "Email"
+        phone: "Telefone"
+        paypal: "Conta no Paypal"
+        autopublishing: "Auto-Publishing"
+        time_zone: "Fuso Horário"
+        language_id: "Linguagem"
+        markets: "Mercados"
+        places: "Páginas"
+        document_number: "Número do Documento"
+      ad:
+        message: "Mensagem"
+        link: "Link"
+        picture_link: "Imagem do Link"
+        link_name: "Nome do Link"
+        link_caption: "Legenda do Link"
+        link_description: "Descrição do Link"
+        clicks: "Clicks"
+        picture: "Imagem"
+        start_date: "Data Inicial"
+        end_date: "Data Final"
+      campaign:
+        description: "Descrição"
+        start_date: "Data Inicial"
+        end_date: "Data Final"
+        click_value: "Valor do Click"
+        status: "Status"
+        budget: "Orçamento"
+        active: "Ativo"
+        clicks: "Clicks"
+        autopublishing: "Auto-Publishing"
+      entry:
+        amount: "Valor"
+        reconciled: t.boolean  "Reconciliado"
+      language:
+        code: "Code"
+      partner:
+        lead_url: "Lead URL"
+        partner_tracking_code: "Tracking Code"
+      payment:
+        payment_type: "Tipo"
+      place:
+        place_type: "Tipo"
+        friends: "Amigos"
+        fans: "Fãs"
+        placeable_type: "Publishing Place"
+      prepaid_package:
+        package_code: "Código"
+        start_date: "Data Inicial"
+        end_date: "Data Final"
+        price: "Preço"
+        discount: "Desconto"
+        budget: "Orçamento"
+      publisher_billing_config:
+        commission: "Comissão"
+        minimal_payment: "Limite mínimo de pagamento"
+        payment_delay: "Prazo de Pagamento"
+      term:
+        title: "Título"
+        content: "Conteúdo"
+
+  errors:
+    unbalanced_transaction_error: "A transação não está balanceada. A diferença é de: %{difference}"

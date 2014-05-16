@@ -1,0 +1,12 @@
+<%= render "publisher/request_payments/receipt" %>
+
+<div class="row">
+  <div class="pull-right">
+    <%= link_to "Request money",
+                publisher_billing_request_payment_path,
+                :method => :put,
+                :class => "btn large success",
+                :onclick => "javascript: return confirm('Are you sure?');" %>
+  </div>
+</div>
+

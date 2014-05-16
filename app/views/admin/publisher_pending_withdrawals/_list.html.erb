@@ -1,0 +1,25 @@
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th width="30"></th>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @publishers.each do |publisher| %>
+    <tr>
+      <td><img src="http://placehold.it/30x30" /></td>
+      <td><%= link_to publisher.name, admin_publisher_pending_withdrawal_path(publisher) %></td>
+      <td><%= currency_format publisher.processing_amount_val %></td>
+      <td><%= l publisher.request_payment_date_val, :format => default_time_format if publisher.request_payment_date_val %></td>
+      
+      <td>        		
+      	<%= link_to(t("publisher.transactions"), 
+      		admin_publisher_pending_withdrawals_transactions_path(publisher.id), :class => "btn info") %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

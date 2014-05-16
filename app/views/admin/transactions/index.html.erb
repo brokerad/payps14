@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1>Transactions</h1>
+</div>
+<div class="page-header">
+  <div class="row">
+		<form  action="<%= admin_transaction_advertiser_filter_path %>">
+      <div class="span8">
+        <h2>Select Advertiser</h2>
+        <%= select_tag "filter_advertiser", options_from_collection_for_select(@advertisers, 'id', 'company_name', params[:filter_advertiser]), :include_blank => true %>
+      </div>
+
+      <div class="span8">
+        <h2>Select Transaction Type</h2>
+        <%= select_tag "filter_transaction_type", options_for_select(["Requested", "Confirmed", "Rejected"], params[:filter_transaction_type]), :include_blank => true %>
+        <button class="btn success">Filter</button>
+      </div>
+  	</form>
+  </div>
+</div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Advertiser ID</th>
+      <th>Description</th>
+      <th>Credit</th>
+      <th>Debit</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.account.name %></td>
+        <td><%= entry.transaction.description %></td>
+        <td><%= entry.credit_amount %></td>
+        <td><%= entry.debit_amount %></td>
+        <td>
+        <% if entry.reconciled? %>
+          Confirmed
+        <% else %>
+          <%= link_to "Confirm", admin_confirm_transaction_path(entry.transaction), :method => :post, :class => "btn success" %>
+          <%= link_to "Reject", admin_reject_transaction_path(entry.transaction), :method => :post, :class => "btn error" %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

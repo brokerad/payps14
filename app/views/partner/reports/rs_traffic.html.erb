@@ -1,0 +1,55 @@
+<div class="page-header">
+    <h1>Revenue Share Traffic</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+    <thead>
+        <tr>
+            <th rowspan="2">id</th>
+            <th class="text_center" colspan="3">Publisher</th>
+            <th class="text_center" colspan="5">Campaign</th>
+            <th class="text_center" rowspan="2">Publisher Earn</th>
+            <th class="text_center" rowspan="2">Partner Commission</th>
+        </tr>
+        <tr>
+            <th style="border-left: 1px solid #DDD;">id</th>
+            <th>Name</th>
+            <th>Created at</th>
+            <th>Name</th>
+            <th>Closed at</th>
+            <th>Total clicks</th>
+            <th>Not valid clicks</th>
+            <th>Valid clicks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @revenue_shares.each do |revenue_share| %>
+            <% revenue_share.checking_account_entries.each do |entry| %>
+                <% publisher_entry = revenue_share.publisher_entry(entry) %>
+                <% next unless publisher_entry %>
+                <% campaign = Campaign.find(entry.transaction.description.split(' ')[2]) %>
+                <% publisher = Publisher.find(publisher_entry.account.name.to_i) %>
+                <% campaign_total_clicks = campaign.total_clicks %>
+                <% campaign_valid_cliks = campaign.clicks %>
+                <% campaign_invalid_cliks = campaign_total_clicks - campaign_valid_cliks %>
+                <tr>
+                    <td><%= revenue_share.id %></td>
+                    <td><%= publisher.id %></td>
+                    <td class="text_in_line"><%= publisher.name %></td>
+                    <td class="text_in_line"><%= l(publisher.created_at, :format => default_time_format) %></td>
+                    <td class="text_in_line"><%= campaign.name %></td>
+                    <td class="text_in_line"><%= l(entry.created_at, :format => default_time_format) %></td>
+
+                    <td><%= campaign_total_clicks %></td>
+                    <td><%= campaign_invalid_cliks %></td>
+                    <td><%= campaign_valid_cliks %></td>
+
+                    <td><%= publisher_entry.amount %></td>
+                    <td><%= entry.amount %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>

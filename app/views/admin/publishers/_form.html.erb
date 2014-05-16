@@ -1,0 +1,27 @@
+<%= simple_form_for([:admin, @publisher], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.association :publisher_type %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :address %>
+    <%= f.input :zip_code %>
+    <%= f.input :state %>
+    <%= f.input :city %>
+    <%= f.input :country %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
+    <%= f.input :paypal %>
+    <%= f.input :document_number %>
+    <%= f.input :personality, :collection => [Publisher::PERSON, Publisher::COMPANY], :label_method => lambda {|t| t("commons.publisher.personality." + t)}, :as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+    <%= f.input :tax_number %>
+    <%= f.input :billing_name %>
+    <%= f.input :billing_address %>
+    <%= f.association :admin, :label_method => :email, :label => t('commons.traffic_manager') %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

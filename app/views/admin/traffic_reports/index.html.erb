@@ -1,0 +1,37 @@
+<h2>This Month</h2>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Time</th>      
+      <th>Clicks</th>
+      <th>Payable Clicks</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= l(@data.first[:from_date], :format => :long) %> &mdash; <%= l(@data.first[:to_date], :format => :long) %></td>
+        <td><%= @data.first[:total_clicks] %></td>
+        <td><%= @data.first[:payable_clicks] %></td>
+      </tr>
+  </tbody>
+</table>
+
+<h2>Last Months</h2>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Time</th>      
+      <th>Clicks</th>
+      <th>Payable Clicks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @data[1..-1].each do |data| %>
+      <tr>
+        <td><%= l(data[:from_date], :format => :long) %> &mdash; <%= l(data[:to_date], :format => :long) %></td>
+        <td><%= data[:total_clicks] %></td>
+        <td><%= data[:payable_clicks] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

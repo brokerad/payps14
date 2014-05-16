@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h2>Balance</h2>
+</div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <td>Total Debit</td>
+      <td>Total Credit</td>
+      <td>Balance</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= currency_format(@account.total_debit) %></td>
+      <td><%= currency_format(@account.total_credit) %></td>
+      <td><span class="btn success"><%= currency_format(@account.balance) %></span></td>
+    </tr>
+  </tbody>
+</table>

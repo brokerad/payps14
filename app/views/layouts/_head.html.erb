@@ -1,0 +1,18 @@
+<title>Paypersocial, Social Affiliation Network</title>
+<% if Rails.env.development? %>
+    <%= stylesheet_link_tag "lib/bootstrap.publisher.less", :rel => "stylesheet/less", :media => "screen,print" %>
+    <%= javascript_include_tag "less-1.1.3.min" %>
+    <%= stylesheet_link_tag "slytrade", :media => "screen,print" %>
+<% else %>
+    <%= stylesheet_link_tag "bootstrap.publisher.css", "slytrade", :media => "screen,print" %>
+<% end%>
+
+<%= javascript_include_tag "jquery.min", "jquery_ujs", "bootstrap-alerts",
+                           "bootstrap-dropdown", "bootstrap-twipsy", "bootstrap-popover", "bootstrap-modal",
+                           "application", "jquery.tablesorter.min", "jcycle.all", "jeasing" %>
+    
+<%= csrf_meta_tag %>
+<meta name="description" content="Earn with your social networks, Facebook and Twitter, post Paypersocial's contents and earn for friends actions" />
+<meta name="keywords" content="paypersocial, facebook, twitter, earn, affiliation">
+<%= render "layouts/google_analytics"%>
+<%= favicon_link_tag %>

@@ -1,0 +1,28 @@
+<%= simple_form_for([:admin, @partner], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+    <%= f.input :name %>
+
+
+  <div class="inputs">
+    <%= f.input :name, :label => 'Company/Partner Name' %>
+    <%= f.input :address %>
+    <%= f.input :zip %>
+    <%= f.input :city %>
+    <%= f.input :country %>
+    <%= f.input :contact_im %>
+    <%= f.input :tax_code, :label => 'TVA/Tax Code' %>
+    <%= f.input :paypal_account %>
+    <%= f.fields_for :user, :wrapper => "inline" do |fu| %>
+        <%= fu.input :enabled, :label => 'Active' %>
+        <%= fu.input :email, :label => t('commons.email') %>
+        <%= fu.input :is_email_confirmed, :label => t('activerecord.attributes.user.is_email_confirmed') %>
+        <%= fu.input :password, :label => t('commons.password'), :input_html => {:autocomplete => 'off'} %>
+        <%= fu.input :password_confirmation, :label => "#{t('commons.password_confirmation')}", :input_html => {:autocomplete => 'off'} %>
+    <% end %>
+   <%= f.association :admin, :label_method => :email, :label => t('commons.traffic_manager') %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

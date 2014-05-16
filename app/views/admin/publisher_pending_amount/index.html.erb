@@ -1,0 +1,67 @@
+<% unless @publishers.empty? %>
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[1,1]]
+    });
+  });
+</script>
+<% end %>
+<div class="page-header">
+  <h1>Publishers Pending Amount</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+	<div class="span8">
+		<div class="page-header"><h2>Search Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_publisher_pending_amount_search_path %>">
+	  		<input type="text" name="search" placeholder="<%= t('commons.search') %>" />
+	  		<button class="btn success"><%= t('commons.search') %></button>
+			</form>
+	</div>
+	<div class="">
+		<div class="page-header"><h2>Filter Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_publisher_pending_amount_filter_path %>">
+  		  <%= select_tag "filter", options_for_select([[t('commons.greater_than'),:greater_than],[t('commons.less_than'),:less_than],[t('commons.equal_to'),:equal_to]]) %>
+  		  <input type="text" name="amount" placeholder="<%= t('commons.amount') %>" />
+	  		<button class="btn success"><%= t('commons.filter') %></button>
+			</form>
+	</div>	
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Pending amount</th>
+      <th>Earned amount</th>
+      <th>Ad Published</th>
+      <th>Clicks</th>
+      <th>Posts</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @publishers.each do |publisher| %>
+    <tr>
+      <td><%= publisher.id %></td>
+      <td><%= link_to publisher["first_name"] + " " + publisher["last_name"], admin_publisher_path(publisher["id"]) %></td>
+      <td><%= currency_format publisher.pending_amount %></td>
+      <td><%= currency_format publisher.earned_amount %></td>
+      <td><%= publisher.ads_published_count %></td>
+      <td><%= publisher.clicks_count %></td>
+      <td><%= publisher.posts_count %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<div><%= link_to "Export CSV", params.merge({:format => :csv}) %></div>
+
+<div class="kaminari_paginator">
+	<%= paginate @publishers %>
+</div>

@@ -1,0 +1,28 @@
+<div class="account">
+	<h6>Account</h6>
+	<table>
+		<tr>
+			<td class="attribute">Type</td>
+			<td class="value"><%= current_publisher.publisher_type.name %></td>
+		</tr>
+		<tr>
+			<td class="attribute">Payment delay</td>
+			<td class="value"><%= current_publisher.publisher_type.payment_delay %> days</td>
+		</tr>
+		<tr>
+			<td class="attribute">Payment commision</td>
+			<td class="value"><%= 100-current_publisher.publisher_type.commission %>%</td>
+		</tr>
+		<tr>
+			<td class="attribute">Minimum payment</td>
+			<td class="value"><%= number_to_currency current_publisher.publisher_type.minimal_payment %></td>
+		</tr>
+		<tr>
+			<td class="attribute">Markets</td>
+			<td class="value">
+				<%= current_publisher.market.name %><br />
+			</td>
+		</tr>
+	</table>
+  	<%= render "publisher/dashboards/places" %>
+</div>

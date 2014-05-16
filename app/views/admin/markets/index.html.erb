@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Markets</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Country Code</th>
+      <th>Count</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @markets.each do |market| %>
+      <tr>
+        <td><%= market.name %></td>
+        <td><%= market.description %></td>
+        <td><%= market.iso_code %></td>
+        <td><%= market.publishers.count %></td>
+        <td><%= link_to 'Edit', edit_admin_market_path(market) %> <%= link_to 'Destroy', [:admin, market], :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+

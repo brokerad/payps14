@@ -1,0 +1,100 @@
+<%= javascript_include_tag "bootstrap-tabs" %>
+
+<ul class="tabs">
+  <li class="active"><a href="#profile"><%= t("publisher.profile.profile") %></a></li>
+  <li><a href="#application"><%= t("publisher.profile.application.title") %></a></li>
+  <!--
+  <li><a href="#autopublishing"><%= t("publisher.profile.autopublishing.title") %></a></li>
+  -->
+  <li><a href="#billing"><%= t("publisher.profile.billing") %></a></li>
+  <li><a href="#newsletter"><%= t("publisher.profile.newsletter") %></a></li>
+</ul>
+
+<div class="form-stacked">
+  <%= simple_form_for([:publisher, current_publisher], :wrapper => "prepend") do |f| %>
+
+  <div class="pill-content">
+    <div class="active" id="profile">
+      <div class="row">
+        <div class="span7">
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :email, :as => :hidden %>
+          <%= f.input :phone %>
+          <%= f.input :language_id, :collection => @languages %>
+          <div class="clearfix select optional">
+            <label><%= t("activerecord.attributes.publisher.time_zone") %></label>
+            <%= time_zone_select( "publisher", "time_zone", nil, :include_blank => true) %>
+          </div>
+
+        </div>
+        <div class="span7">
+          <%= f.input :address %>
+          <%= f.input :zip_code %>
+          <%= f.input :state %>
+          <%= f.input :city %>
+          <%= f.input :country %>
+        </div>
+      </div>
+    </div>
+
+    <div id="application">
+      <div class="row">
+        <div class="span4">
+        	<%= f.input :market_id, :collection => markets_hash, :as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+        </div>
+        <div class="span10">
+          <h3><%= t("publisher.profile.application.allowed_places") %></h3>
+          <p><%= t("publisher.profile.application.allowed_places_txt") %></p>
+          <div class="clearfix check_boxes optional">
+            <label class="check_boxes optional" for="publisher_place_ids"><%= t("activerecord.attributes.publisher.places") %></label>
+            <div class="input">
+              <ul class="inputs-list check-boxes">
+
+                <% current_publisher.places.each do |place| %>
+                  <li>
+                    <%= check_box_tag 'places[]', place.id, place.enabled? %> <%= place.name %>
+                    (<%= place.place_type == "Account" ? place.friends : place.fans %>)
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="billing">
+      <%= f.input :paypal %>
+      <%= f.input :document_number %>
+      <%= f.input :personality, :collection => [Publisher::PERSON, Publisher::COMPANY], :label_method => lambda {|t| t("commons.publisher.personality." + t)}, :as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+      <%= f.input :tax_number %>
+      <%= f.input :billing_name %>
+      <%= f.input :billing_address %>
+    </div>
+    <div id="newsletter">
+      <%= f.check_box :send_newsletters %>
+      <%= f.label :send_newsletters, 'I would like to receive newsletters', :style => 'display: inline;' %><br/>
+      <div id="newsletter_decision" style="padding-left: 25px;">
+		<%= f.input :news_use_facebook_email, :collection => [true, false],
+			:label_method =>
+			lambda {|t| t ? t("publisher.newsletter.send_to", :email => @publisher.email) : t("publisher.newsletter.send_to_alternative_email")},
+			:as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li", :label => false %>
+      	<%= f.input :news_alternative_email, :label => t("publisher.newsletter.alternative_email") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :value => t("publisher.profile.save"), :class => "info" %> <%= t("commons.or") %> <%= link_to t("commons.cancel"), publisher_root_path %></a>
+  </div>
+<% end %>
+</div>
+
+<script>
+  $(function () {
+    $('.tabs').tabs()
+  })
+</script>

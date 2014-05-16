@@ -1,0 +1,50 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[5,1]]
+    });
+
+    $('th:last').popover({ placement: 'left'});
+  $('th').popover({ placement: 'right'});
+  });
+</script>
+
+<div class="page-header">
+  <h1>Campaigns</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>State</th>
+      <th rel="popover" data-content="content" data-original-title="title">Posts</th>
+    <th>places</th>
+    <th>clicks</th>
+    <th>CTR</th>
+    <th>rating</th>
+    <th>remain budget</th>
+    <th>click value</th>
+    <th>remain days</th>
+    <th>posts needed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= link_to campaign.name, admin_campaign_ads_path(campaign)%></td>
+        <td><%= campaign.state %></td>
+        <td><%= campaign.posts_count %></td>
+        <td><%= campaign.places_count %></td>
+        <td><%= campaign.clicks_count %></td>
+        <td><%= campaign.click_through %></td>
+        <td><%= campaign.rating %></td>
+        <td><%= currency_format(campaign.remain_budget) %></td>
+        <td><%= currency_format(campaign.click_value) %></td>
+        <td><%= campaign.remain_days.to_i %></td>
+        <td><%= campaign.posts_needed %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

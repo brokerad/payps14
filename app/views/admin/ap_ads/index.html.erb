@@ -1,0 +1,39 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[5,1]]
+    });
+
+  $('th:last').popover({ placement: 'left'});
+  $('th').popover({ placement: 'right'});
+  });
+</script>
+
+<div class="page-header">
+  <h1>Ads</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+        <th rel="popover" data-content="content" data-original-title="title">Name</th>
+    <th>posts</th>
+    <th>places</th>
+    <th>clicks</th>
+    <th>CTR</th>
+    <th rel="popover" data-content="content" data-original-title="title">rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.link_name %></td>
+        <td><%= ad.posts_count %></td>
+        <td><%= ad.places_count %></td>
+        <td><%= ad.clicks_count %></td>
+        <td><%= ad.click_through %></td>
+        <td><%= ad.rating %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

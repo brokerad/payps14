@@ -1,0 +1,12 @@
+<%= simple_form_for(@admin_variable, :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :key, :disabled => !@editable %>
+    <%= f.input :value %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

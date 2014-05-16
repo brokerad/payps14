@@ -1,0 +1,28 @@
+<div class="zebra-striped">
+  <h1>Publisher reports</h1>
+</div>
+<ul class="breadcrumb">
+  <li><%= link_to t("menu.commons.advertiser_reports"), admin_advertiser_reports_path %> <span class="divider">/</span></li>
+  <li><%= link_to @advertiser.company_name, admin_advertiser_campaign_reports_path(@advertiser) %> <span class="divider">/</span></li>
+  <li><%= link_to @campaign.name, admin_advertiser_campaign_ad_reports_path(@advertiser, @campaign) %> <span class="divider">/</span></li>
+  <li><%= @ad.message %></li>
+</ul>
+
+<table class="zebra-striped sortable_table">
+  <thead>
+    <tr>
+      <th>Publisher name</th>
+      <th>Posts</th>
+      <th>Clicks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= publisher.name %></td>
+        <td><%= publisher.posts_qty_per_ad @ad %></td>
+        <td><%= publisher.unique_clicks_by_ad @ad %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

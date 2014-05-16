@@ -1,0 +1,29 @@
+<%= simple_form_for([:admin, @ad], :html => { :multipart => true }, :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <%= f.input :message, :label => "Introduction", :input_html => { :value => '.', :readonly => true} %>
+  <%= f.input :link, :label => "URL Destination", :as => :string, :input_html => { :placeholder => 'http(s)://....' } %>
+  <%= f.input :link_name, :label => "Title" %>
+  <%= f.input :link_caption, :label => "Subtitle" %>
+  <%= f.input :link_description, :label => "Description" %>
+  <%= f.input :picture_link, :label => "Image Link", :as => :string, :input_html => { :placeholder => 'http(s)://....' } %>
+  <%= f.association :campaign, :collection => @campaigns %>
+
+  <%= f.association :categories, :collection => @categories, :as => :check_boxes, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+
+  <%= f.input :visibilityrating, :collection => [Ad::G, Ad::PG] %>
+  <div style="float: left;">
+  	<%= f.input :start_date %>
+  </div>
+  <div class="utc_word_format">UTC</div>
+  <div class="clearfloats"></div>
+  <div style="float: left;">
+	<%= f.input :end_date %>
+  </div>
+  <div class="utc_word_format">UTC</div>
+  <div class="clearfloats"></div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

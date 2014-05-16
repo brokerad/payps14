@@ -1,0 +1,16 @@
+<%= simple_form_for([:admin, @coupon], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+  <%= f.input :active %>
+  <%= f.input :name %>
+  <%= render 'tracking_urls' unless @coupon.new_record? %>
+  <%= f.association :partner, :readonly => !@coupon.new_record?, :disabled => !@coupon.new_record? %>
+  <%= f.input :code %>
+  <%= f.input :total, :label => 'Activable coupons' %>
+  <%= f.input :amount, :label => 'Coupon value amount'  %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

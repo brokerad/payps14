@@ -1,0 +1,75 @@
+# => NOTE: used SQL instead of classed, 
+# => because during migration code can be inconsistent with database columns
+
+class TrackingUrlsMigrateCoupons < ActiveRecord::Migration
+  def self.up
+    ActiveRecord::Base.transaction do
+      # => migrate data into tracking_urls table from coupons table
+      ActiveRecord::Base.connection.execute("
+        insert into tracking_urls(name, partner_id, lead_url, tracking_code, active, coupon_code, created_at)
+        select coupons.name, coupons.partner_id, partners.lead_url, partners.partner_tracking_code, true, coupons.code, LOCALTIMESTAMP
+        from coupons
+        inner join partners on coupons.partner_id = partners.id
+        and not exists (select 1 from tracking_urls tu where tu.coupon_code = coupons.code)")
+        
+      # => update coupons table with tracking_url_id
+      ActiveRecord::Base.connection.execute("
+        update coupons
+        set tracking_url_id = tracking_urls.id,
+        active = true
+        from tracking_urls where tracking_urls.coupon_code = coupons.code")
+      
+      # => update publishers table with tracking_url_id of existing coupons
+      ActiveRecord::Base.connection.execute("
+        update publishers
+        set tracking_url_id = tracking_urls.id 
+        from tracking_urls
+        inner join coupons on coupons.tracking_url_id = tracking_urls.id
+        where publishers.coupon_id = coupons.id")
+        
+      # => migrate some data from partners into tracking_urls tables
+      ActiveRecord::Base.connection.execute("
+        insert into tracking_urls(name, partner_id, lead_url, tracking_code, active, created_at)
+        select partners.name, partners.id, partners.lead_url, partners.partner_tracking_code, true, LOCALTIMESTAMP 
+        from partners
+        inner join publishers on partners.id = publishers.partner_id
+        where publishers.coupon_id is null
+        group by partners.id")
+        
+      # => update publishers table with tracking_urls_id of existing partners that have (but without coupons)
+      ActiveRecord::Base.connection.execute("
+        update publishers
+        set tracking_url_id = tracking_urls.id 
+        from tracking_urls
+        where tracking_urls.partner_id = publishers.partner_id
+        and publishers.coupon_id is null")
+  
+      # => insert the rest of partners' tracking urls
+      ActiveRecord::Base.connection.execute("
+        insert into tracking_urls(name, partner_id, lead_url, tracking_code, active, created_at)
+        select partners.name, partners.id, partners.lead_url, partners.partner_tracking_code, true, LOCALTIMESTAMP 
+        from partners
+        where not exists (select 1 from publishers
+          inner join tracking_urls on publishers.tracking_url_id = tracking_urls.id
+          where partners.id = publishers.partner_id
+        group by partners.id)
+        and not exists (select 1 from tracking_urls where tracking_urls.partner_id = partners.id)")
+    end
+  end
+
+  def self.down
+    ActiveRecord::Base.connection.execute("
+      update coupons
+      set name = tracking_urls.name,
+      partner_id = tracking_urls.partner_id
+      from tracking_urls where tracking_urls.coupon_code = coupons.code")
+    
+    ActiveRecord::Base.connection.execute("
+      update partners
+      set lead_url = tracking_urls.lead_url,
+      partner_tracking_code = tracking_urls.tracking_code
+      from tracking_urls where tracking_urls.partner_id = partners.id")
+      
+    ActiveRecord::Base.connection.execute("truncate table tracking_urls")
+  end
+end

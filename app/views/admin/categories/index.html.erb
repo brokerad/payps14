@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Categories <small><%= link_to 'New', new_admin_category_path %></small></h1>
+</div>
+
+<table>
+  <tr>
+    <th>Italian name</th>
+    <th>English name</th>
+    <th>Brasilian name</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+<% @category.each do |category| %>
+  <tr>
+    <td><%= category.name_it %></td>
+    <td><%= category.name_en %></td>
+    <td><%= category.name_pt_BR %></td>
+    <td><%= category_activate_button(category) %></td>
+    <td><%= link_to t("commons.edit"), edit_admin_category_path(category), :class => "btn" %></td>
+  </tr>
+<% end %>
+</table>

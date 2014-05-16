@@ -1,0 +1,59 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[1,0], [4,1]]
+    });
+
+  //$('th:last').popover({ placement: 'left'});
+  //$('th').popover({ placement: 'right'});
+  });
+</script>
+
+<div class="page-header">
+  <h1>Ads</h1>
+</div>
+
+<div class="row">
+	<div class="span8">
+    <div class="page-header"><h2>Filter Traffic Manager</h2></div>
+		<form class="pull-left" action="<%= admin_ads_reports_filter_manager_path %>">
+  		<%= select_tag "filter_traffic_manager", options_from_collection_for_select(@traffic_managers, 'id', 'email', @current_traffic_manager.nil? ? '' : @current_traffic_manager.id), :include_blank => true %>
+	  	<button class="btn success">Filter</button>
+	 </form>
+	</div>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Campaign ID</th>
+      <th>Campaign Name</th>      
+      <th rel="popover" data-content="content" data-original-title="title">Ad Name</th>
+      <th>Campaign Status</th>
+      <th>Click value</th>
+	    <th>Posts</th>
+	    <th>Clicks</th>
+	    <th>CR</th>
+	    <th>Publishers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.campaign.id %></td>
+        <td><%= ad.campaign.name %></td>
+        <td><%= ad.link_name %></td>
+        <td><%= ad.campaign.status %></td>
+        <td><%= ad.campaign.click_value %></td>
+        <td><%= posts_count = get_qty_if_exists(@pubs_and_posts_count, ad.id, 1) %></td>
+        <td><%= clicks_count = @pb_clicks[ad.id] %></td>
+        <td><%= posts_count.to_i.zero? ? 0 : (clicks_count.to_i*100)/posts_count.to_i %></td>
+        <td><%= link_to get_qty_if_exists(@pubs_and_posts_count, ad.id, 0), admin_ads_publishers_reports_path(ad.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="kaminari_paginator">
+    <%= paginate @ads %>
+</div>

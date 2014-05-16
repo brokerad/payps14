@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1><%= t("revenue_share.list") %></h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+	   <form class="pull-left" action="<%= admin_revenueshare_reports_path %>">
+		 <div class="page-header"><h3>Search by Partner</h3></div>
+            <%= select_tag "partner",
+                options_from_collection_for_select(@partners, "id", "name", { :selected => params[:partner] }),
+                :include_blank => 'All' %>
+	  	    <button class="btn success">Filter</button>
+	   </form>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Partner</th>
+      <th>Tracking Url</th>
+      <th>Publishers</th>
+      <th>Closed Campaigns</th>
+      <th>Revenue Matured</th>
+      <th>Revenue Requested</th>
+      <th>Revenue Payed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @revenue_shares.each do |revenue_share| %>
+      <tr>
+        <td><%= revenue_share.id %></td>
+        <td><%= revenue_share.partner.name %></td>
+        <td><%= revenue_share.tracking_url.name %></td>
+        <td><%= link_to revenue_share.publishers.count, "#{admin_publishers_filter_path}?filter_rs=#{revenue_share.id}" %></td>
+        <td><%= revenue_share.closed_campaigns %></td>
+        <td><%= currency_format(revenue_share.matured) %></td>
+        <td><%= currency_format(revenue_share.requested) %></td>
+        <td><%= currency_format(revenue_share.payed) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

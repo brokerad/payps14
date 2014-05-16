@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Dashboard of Slytrade <small>List of scenario and functions</small></h1>
+</div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th width=5%>ID</th>
+      <th width=25%>Scenario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><%= link_to t("menu.create.advertiser"), new_admin_advertiser_path %></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><%= link_to t("menu.dashboard.advertiser"), advertiser_root_path %></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><%= link_to t("menu.dashboard.partner"), partner_root_path %></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><%= link_to t("menu.dashboard.publisher"), publisher_root_path %></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><%= link_to t("menu.admin.admin"), admin_root_path %></td>
+    </tr>
+  </tbody>
+</table>

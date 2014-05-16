@@ -1,0 +1,14 @@
+<hr style="margin: 5px 0px 10px 0px;"/>
+<div style="margin-left: 150px; margin-bottom: 10px;">
+    Check Coupons
+</div>
+<% @coupons.each do |coupon|%>
+<div style="margin-bottom: 10px;">
+    <%= label_tag coupon.id, coupon.name, :style => "padding-top: 0px" %>
+    <div class="input">
+        <%= check_box_tag "tracking_url[coupon_ids][]", coupon.id,
+        @tracking_url.coupons.include?(coupon), :id => coupon.id %>
+    </div>
+</div>
+<% end %>
+<hr style="margin: 5px 0px 10px 0px;"/>

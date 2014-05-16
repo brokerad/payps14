@@ -1,0 +1,59 @@
+/*!
+ * Bootstrap @VERSION
+ *
+ * Copyright 2011 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Date: @DATE
+ */
+
+// CSS Reset
+@import "reset.less";
+
+// Core variables and mixins
+@import "variables.admin.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins.less";
+
+// Grid system and page structure
+@import "scaffolding.less";
+
+// Styled patterns and elements
+@import "type.less";
+@import "forms.less";
+@import "tables.less";
+@import "patterns.less";
+
+.container-fluid > .content {
+  margin-left: 0px;
+}
+
+.clicks_campaing{
+  .SKIPPED_BY_SESSION, .SKIPPED_BY_IP,.REPEATED_SESSION, .REPEATED_IP{
+    opacity: 0.4;
+  }
+  .SKIPPED_BY_ACTION, SKIPPED_BY_BUDGET, .SKIPPED_BY_DATE
+  {
+    opacity: 0.7;
+  }
+  a{
+    visibility: hidden;
+  }
+  tr:hover a{
+  	visibility: visible;
+  }
+}
+.overlay_pps{
+  position: fixed;
+  opacity: 0.5;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  background-image: url(/images/ajax-loader.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color : #ffffff;
+}

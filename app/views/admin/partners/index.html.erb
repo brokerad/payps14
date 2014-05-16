@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1>Partners <small><%= link_to 'New', new_admin_partner_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Country</th>
+      <th class="text_center">Active</th>
+      <th>Tracking Urls</th>
+      <th>Coupon</th>
+      <th>Revenue Share</th>
+      <th colspan="2" class="text_center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @partners.each do |partner| %>
+      <tr>
+        <td><%= partner.id %></td>
+        <td><%= partner.name %></td>
+        <td><%= partner.country %></td>
+        <td class="text_center"><%= disabled_checkbox(partner.user.enabled) %></td>
+        <td><%= partner.tracking_urls.size%></td>
+        <td><%= partner.coupons.size%></td>
+        <td><%= partner.revenue_shares.size%></td>
+        <td class="text_in_line text_center">
+          <%= link_to 'Edit', edit_admin_partner_path(partner), :class => 'btn' %>
+            <% if partner.user.enabled %>
+                <%= link_to(t("commons.buttons.login"), admin_partner_login_as_partner_path(partner),
+                    :confirm => 'Are you sure?',:class => "btn info") %>
+            <% else %>
+                <span class="btn"><%= t("commons.buttons.login") %></span>
+          <% end %>
+          <%= link_to 'Destroy', [:admin, partner], :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+

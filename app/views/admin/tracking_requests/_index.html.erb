@@ -1,0 +1,50 @@
+<div class="page-header"><h2>Clicks</h2></div>
+<table class="zebra-striped sortable_table">
+  <thead>
+    <tr>
+      <td width="2%"><input type="checkbox" id="selectAllCheckboxes"></td>
+      <th class="header" width="5%">Date</th>
+      <th class="header" width="10%">Publisher</th>
+      <th class="header" width="10%">IP</th>
+      <th class="header" width="5%">Status</th>
+      <th class="header" width="10%">Referer</th>
+      <th class="header" width="10%">User Agent</th>
+      <th class="header" width="40%">HTTP Headers</th>
+      <th width="120"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracking_requests_all.each do |tracking| %>
+    <tr class="<%= tracking.status %>">
+      <td><input type="checkbox" class="check_all_element" value="<%=tracking.id%>" <%= "checked=\"checked\"" if @tracking_requests_selected.to_a.include? tracking%>/></td>
+      <td><%= l tracking.created_at, :format => t("date.formats.sortable_time") %></td>
+      <td><%= "#{tracking['p_first']} #{tracking['p_last']}" %></td>
+      <td><%= tracking.ip %></td>
+      <td><%= tracking.status %></td>
+      <td class="word_wrap_200"><%= tracking.referer %></td>
+      <td class="word_wrap_200"><%= tracking.header "HTTP_USER_AGENT" %></td>
+      <% if tracking.http_headers == "unknown" %>
+      	<td><%= tracking.http_headers %></td>
+      <% else %>
+      	<td class="data_json"><%= tracking.http_headers %></td>
+      <% end %>
+      <td>
+      	<%= form_tag admin_campaign_detailed_clicks_update_path do %>
+
+          <div class="inputs">
+            <%= hidden_field_tag :status, @status %>
+            <%= hidden_field_tag :campaign_id, @campaign.id %>
+            <%= hidden_field_tag :tracking_requests, tracking.id %>
+            <%= hidden_field_tag :page, @page %>
+          </div>
+
+          <div class="actions">
+            <%= actions(tracking, @campaign.processed?) %>
+          </div>
+
+      	<% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,527 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello World"
+
+  commons:
+    or: "or"
+    back: "Back"
+    create: "Create"
+    create_account: "Create Account"
+    cancel: "Cancel"
+    next: "Next"
+    exit: "Exit"
+    logout: "LogOut"
+    actions: "Actions"
+    buttons:
+      login: "Login"
+      send: "Send"
+      submit: "Submit"
+      please_wait: "Please wait..."
+    destroy: "Destroy"
+    edit: "Edit"
+    new: "New"
+    show: "Show"
+    enable: "Enable"
+    disable: "Disable"
+    pause: "Pause"
+    unpause: "Active"
+    are_you_sure: "Are you sure?"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Password Confirmation"
+    hello: "Hello"
+    active:
+      "true": "Yes"
+      "false": "No"
+    reports: "Reports"
+    campaign: "Campaign"
+    campaigns: "Campaigns"
+    bank_information: "Bank Details"
+    search: "Search"
+    filter: "Filter"
+    detail: "Detail"
+    details: "Details"
+    amount: "Amount"
+    proudly: "Proudly by "
+    my_ad: "My Ads"
+    newest_ad: "Latest Ads"
+    model:
+      name: "Name"
+      description: "Description"
+      type: "Type"
+    bug:
+      calculation: "We are aware of the bug in the calculation of the Pending Amount. We apologize. We will fix it in a few days. Thank you for your patience."
+    publisher:
+      personality:
+        Person: "Person"
+        Company: "Compaany"
+    network: "Network"
+    connections: "Connections"
+    facebook: "Facebook"
+    twitter: "Twitter"
+    equal_to: "Equal to"
+    greater_than: "Grater than"
+    less_than: "Less than"
+    default: "Default"
+    traffic_manager: "Traffice Manager"
+
+  access:
+    not_authorized: "Access is not authorized"
+    must_be_logged_in: "You must be logged in"
+
+  menu:
+    commons:
+      campaign_reports: "Campaign Details"
+      advertiser_reports: "Advertiser Details"
+    admin:
+      admin: "Paypersocial Administration"
+      users: "All Users"
+      advertisers: "Advertisers"
+      publishers: "Publishers"
+      publisher_types: "Publishers Type"
+      campaigns: "Campaigns"
+      campaign_clicks: "Campaign Clicks"
+      prepaid_packages: "Prepaid Packages"
+      publisher_type: "Invoice Setup"
+      languages: "Languages"
+      coupons: "Coupons"
+      conditions: "Revenue Share"
+      tracking_urls: "Tracking Urls"
+      revenueshare-reports: "Reports"
+      revenueshare-traffic: "Traffic"
+      revenueshare-billing: "Billing"
+      partner_reports: "Partner Reports"
+      ads: "Ads"
+      ads_validation: "Ads Validation"
+      variables: "Variables"
+
+    advertiser:
+      ads: "Advertisements"
+      campaigns: "Campaigns"
+      prepaid_packages: "Prepaid Packages"
+    publisher:
+      ads: "Advertisements"
+      profile: "My Profile"
+      profile_title: "Profile"
+      request_payment: "Payment Request"
+      checking_account: "Checking Account"
+      withdrawal: "Withdrawal Request"
+      info: "How it works"
+    partner:
+      conditions: "Revenue Share"
+      tracking_urls: "Tracking Urls"
+    create:
+      publisher: "Create a Publisher"
+      advertiser: "Create an Advertiser"
+    dashboard:
+      publisher: "Publisher's Dashboard"
+      advertiser: "Advertiser's Dashboard"
+      partner: "Partners's Dashboard"
+
+  login:
+    login: "Login"
+    remember_me: "Remember me"
+    successful: "Login successful"
+    failed: "Login failed"
+  user_session:
+    logout:
+      successful: "Logout successful"
+
+  advertiser:
+    created:
+      success: "Advertiser was successfully created"
+    updated:
+      success: "Advertiser was successfully updated"
+    creation:
+      error: "There were some errors creating the Advertiser's profile"
+    destroy:
+      success: "Advertiser deleted with success"
+      with_campaigns: "Cannot delete Advertiser that has campaigns"
+    billing:
+      entry_reconciled: "Cannot accept, entry is reconciled"
+
+  partner:
+    engage_fb: "Engage from FB:"
+    engage_web: "Engage from WEB:"
+
+  publisher_type:
+    create: New Publisher Type
+    edit: Update Publisher Type
+    created:
+      success: "Publisher Type was successfully created"
+      error: "There were some errors creating the Publisher Type"
+    updated:
+      success: "Publisher Type was successfully updated"
+      error: "There were some errors updating the Publisher Type"
+    destroy:
+      success: "Publisher Type deleted with success"
+      with_publishers: "Cannot delete Publisher Type that has publishers"
+
+  ad:
+    new: "New Advertisement"
+    edit: "Edit Advertisement"
+    list: "Advertisements"
+    impressions: "Impressions"
+    clicks: "Clicks"
+    created:
+      success: "Advertisement successfully created"
+    updated:
+      success: "Advertisement successfully updated"
+    deleted:
+      success: "Advertisement successfully updated"
+    search:
+      report_html: "Searching <b>%{search_term}</b> founded <b>%{results_count} results</b>"
+    validate:
+      end_date_before_start_date: "End Date must be set greater than Start Date"
+      start_date_invalid_range: "Start Date must be between Campaign start date (%{start_date}) and Campaign end date (%{end_date})"
+      end_date_invalid_range: "End Date must be between Campaign start date (%{start_date}) and Campaign end date (%{end_date})"
+      url: "invalid url or url does not point to any site"
+
+  publisher:
+    disabled: "Your Account has beed disabled"
+    support:
+      title: "Support"
+      newsletter_title: "Newsletter"
+      facebook_page: "http://www.facebook.com/paypersocial"
+      facebook_page_title: "Facebook Page"
+      sent_email: "http://www.paypersocial.com/index.php/en/paypersocial-facebook-publisher-english/nl"
+      sent_email_title: "Newsletter Sent List"
+      email: "Email"
+      facebook_engage: "FACEBOOK Engage"
+      facebook_engage_msg: "Attention! for posting into your facebook account we need engage your Facebook account with our application.This process ask you to confirm Facebook Application condition."
+      facebook_engaged: "Successfully engaged. Now you can Share."
+    transactions: "Transactions"
+    withdraws: "Go To Publisher's Withdraws"
+    created:
+      success: "Publisher successfully created"
+      account: "Account successfully created. Check your email for confirmation."
+    facebook:
+      share_link: "Share link!"
+      your_post_messsage: "Add your post message, if any"
+      fail: "Logging In with your Facebook account failed with following message: '%{fb_msg}'. Please contact our support if you need help."
+    terms:
+      not_accepted: "You must accept the terms to use the application"
+      promo_code: "Promotional Code"
+      engage_msg: "If you register from one of our engagement partners you can use the Coupon to receive free credit. Please insert the code you received down."
+    email:
+      valid_token: "Email validated with success. Please login to continue."
+      invalid_token: "Invalid or expired request. Please require a new <a href='%{url}'>confirmation email</a>."
+      token_sent: "The confirmation email has been sent. Please check your email to complete registration process."
+      email_not_found: "Email not found. Check email and try again."
+      resend_confirmation: Send confirmation email
+      password_reset: "Password reset"
+      password_token_sent: "The Reset Password email has been sent. Please check your email to complete password recovery process."
+      valid_password_token: "Please enter new password to complete Password Recovery process."
+      invalid_password_token: "Invalid or expired request.  Click <a href='%{url}'>here</a> to reset it."
+      invalid_password_size_or_confirmation: "Invalid Password size (min 4 chars) or Confirmation does not match."
+      password_changes: "Password changed with success. Please login to continue."
+    newsletter:
+      send_to: "Send newsletter to: %{email}"
+      send_to_alternative_email: "Send newsletter to alternative email"
+      alternative_email: "Newsletters alternative email"
+      invalid_email: "has invalid format"
+    updated:
+      success: "Profile successfully updated"
+    listing:
+      title: "Publishers Directory"
+    editing:
+      title: "Editing Publisher"
+    dashboard:
+      claim: "The best way to make money on Facebook"
+      fill_data: "Complete your details and specify your chosen market(s)"
+      your_balance: "Your Balance"
+    amount:
+      pending: "Pending Approval"
+      earned: "Amount Matured"
+      processing: "Amount being Processed"
+      cashed: "Amount Paid"
+    info_mandatory_data: "Language, Time Zone and Markets are mandatory data"
+    fill_your_mandatory_data: "Please fill-in the mandatory data"
+    available_campaigns: "Available Campaigns"
+    your_campaigns: "Your chosen Campaigns"
+    engagement:
+      term:
+        accept: "I accept the Terms and Conditions"
+    profile:
+      profile: "Your Profile"
+      application:
+        title: "Application"
+        allowed_places: "Authorized Places"
+        allowed_places_txt: "Select your walls"
+      billing: "Billing"
+      save: "Update your Profile"
+      newsletter: "Newsletter"
+    coupon:
+      not_valid: "Coupon %{coupon} is not valid"
+      not_active: "Coupon %{coupon} is not active"
+      expired: "Coupon %{coupon} is expired"
+      unavailable: "Coupon %{coupon} is not available"
+      engagement:
+        title: "Congratulations"
+        content: "You earned %{value} with this coupon"
+    home:
+      slide1: Welcome in paypersocial, the social affiliation system that will pay you for any clicks of your friend on your post of our campaign.
+      slide2: Select your preferred campaign, and post them on your wall click on "Publish"
+
+  campaign:
+    dashboard: "Campaign Dashboard"
+    new: "New Campaign"
+    edit: "Edit Campaign"
+    list: "List Available Campaigns"
+    created:
+      success: "The campaign was successfully created"
+      no_budget: "The campaign's budget is larger than your balance. Budget: %{budget}, Balance: %{balance}"
+    updated:
+      success: "Advertiser data successfully updated"
+      no_changes: "No Advertiser data changed"
+    validate:
+      start_date:
+        future: "Start date should be in the future"
+      end_date:
+        after_start: "End Date should be set greater than Start Date"
+      end_date_before_start_date: "End Date must be set greater than Start Date"
+      markets_missing: "You have to choose a market"
+      post_times_missing: "You have to choose at least one post time"
+    reports:
+      dashboard: "Reports Dashboard"
+    click_value_disabled: "You cannot change click value"
+    billing:
+      pending_requests_exist: "It is not possible to process the campaign. The campaign: %{id} has pending requests."
+      exceed_budget: "It is not possible to process the campaign. The campaign: %{id} has budget of %{budget} but it has %{to_pay} to pay."
+    reprocess:
+      exceed_budget: "It is not possible to re-process the campaign. The advertiser: %{id} has funds of %{budget} but it has %{to_pay} to pay."
+      nothing: "Nothing to re-process"
+      success: "Re-Processed with success"
+
+  coupon:
+    list: "Coupons"
+    new: "New Coupon"
+    edit: "Edit Coupon"
+    created:
+      success: "Coupon successfully created"
+    updated:
+      success: "Coupon successfully updated"
+    deleted:
+      success: "Coupon successfully deleted"
+
+
+  dates:
+    start_date_invalid: "can't be in the past"
+    end_date_invalid: "must be after start date"
+
+  tracking_url_validator:
+    partner_invalid: "partner should be the same as for tracking url"
+
+  revenue_share:
+    validate:
+      tracking_url_invalid: "have already been taken"
+      tracking_url_attached: "Tracking Url cannot be deleted. It has attached coupons or/and partner condition."
+      partner_invalid: "partner should be the same as revenue share's partner"
+      coupon_partner_invalid: "partner should be the same as coupon's partner"
+      tracking_url_when_coupon: "tracking url should be present too"
+      tracking_url_same_as_for_coupon: "tracking url should be the same as for tracking url"
+      coupon_update_invalid: "Coupon cannot be update (except active field) because it is used by publishers"
+      coupon_destroy_invalid: "Coupon cannot be deleted because it is used by publishers."
+    list: "Revenue Share List"
+    traffic: "Revenue Share Consolidated Traffic"
+    billing: "Revenue Share Payment Billing"
+
+  bot_user_agents:
+    list: "Bot User Agents"
+    updated:
+      success: "User Agent successfully updated"
+
+  prepaid_package:
+    new: "New Prepaid Package"
+    edit: "Edit Prepaid Package"
+    list: "List Prepaid Package"
+    created:
+      success: "Prepaid Package was successfully created"
+    updated:
+      success: "Prepaid Package was successfully updated"
+    validate:
+      start_date:
+        future: "Start Date should be in the future"
+      end_date:
+        after_start: "End Date should be set greater than Start Date"
+      finished_status: "Prepaid Package cannot be edited after it has been completed"
+      create_status: "Prepaid Package must start on a future date"
+      active_status: "Start Date cannot be changed after the Prepaid Package has been started"
+      past_start_date: "Start Date cannot be a date in the past"
+      end_date_before_start_date: "End Date must be set greater than Start Date"
+
+  post:
+    created:
+      success: "Post was successfully created"
+      failure: "Post creation has failed"
+      expired: "Campaign is not available"
+    published: "Successfully Posted"
+    publish_it: "Share"
+    publish_it_again: "Share!"
+    just_posted: "Posted"
+    failed: "Sharing failed. Please contact us for support. Thank you."
+    failed_auth: "Last Sharing failed because of expired session. Please try again. Thank you."
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      default_time: "%d/%m/%Y %H:%M:%S"
+      short: "%d of %B"
+      long: "%d of %B, %Y"
+      sortable_time: "%b %d, %Y %I:%M %P"
+
+  infopage:
+    intro:
+      title: "Who we are"
+      content: "Paypersocial is the first social affiliation platform entirely thought to let Facebook users earn money from publishing and sharing advertising and communication campaigns on their timeline, wall (or Facebook pages)."
+    block1:
+      title: "How to earn money"
+      content: "Simply put, you earn money each time your fans and friends interact with the campaigns you publish on your walls or pages. The interaction we mean includes, at the moment, clicking on the campaign and following the link to the landing page of the campaign. The commission paid can vary depending on the campaign you select and share."
+    block2:
+      title: "How to use PayPerSocial"
+      content:
+        li1: "Select the campaign(s) of your interest, analysing the payout terms (box on the left of the campaign preview block);"
+        li2: "Click on “Publish” and in a few seconds the Ad will be published on your timeline, wall(s) and or page(s);"
+        li3: "Use the App menu “<b>Report</b>” to check the status of your campaigns; the App menu “<b>Billing</b>” to check the amounts matured and your payments status."
+    block3:
+      title: "Process Description"
+      content:
+        li1: "Each click your friends and followers originate must be approved. Why? It is not your case, but you should be aware there are frauds on the Internet… So we need to check the quality of the social actions originated and let the advertiser, who pays us so we can pay you, approve the list of clicks (or other social actions). That is why the amount equivalent to the clicks recorded is in “<b>Pending Approval</b>” status;"
+        li2: "After the traffic has been approved, the confirmed Clicks (or other social actions) are added up to your “<b>Amount Matured</b>” box. This process gets closed by the 10th of the month following the month being accounted for;"
+        li3: "Once the minimum <b>$100</b> (in dollars) <b>threshold</b> has been reached, you will be able to ask for payment of the “Earned” traffic. The amount will be indicated within the “<b>Amount being Processed</b>” box;"
+        li4: "The final box “<b>Amount Paid</b>” is the cumulated amount you earned with (and got paid by) Paypersocial;"
+        li5: "<b>Please note!</b> If you received a welcome Coupon the amounts there contained will be paid only upon reaching of the <b>$100</b> (in dollar) generated traffic <b>threshold<b>."
+    block4:
+      title: "Payment"
+      content:
+        li1: "Carefully review and complete the information section contained on the “Profile” menu, focussing in particular on the “Paypal Account” field. This is the email address associated with the Paypal account you associated to Paypersocial;"
+        li2: "Payment will be executed 30 days after your request was submitted."
+    block5:
+      title: "How to increase your Earnings"
+      content:
+        intro: "It could be useful to share some tips on how to help you increase the earnings you make with Paypersocial:"
+        li1: "<b>Access</b> the Paypersocial App every day, select the campaigns based on the interests of your friends and fans;"
+        li2: "<b>Select<b/> in which pages or walls (or timeline) you want to publish each Ad;"
+        li3: "Visit the “<b>Report</b>” menu and assess which Ads generated more traffic, publish again according to your findings (those more successful), but do not spam or exceed with the publishing. Ads need a bit of “resting”. Respect the interest and courtesy of your friends;"
+        li4: "Create <b>positive comments</b> and likes for each of your posts, adding your personal experience with the information you share. Stimulate comments and likes from your friends on your shared Ads too;"
+        li5: "<b>Stimulate</b> your friends to click on the campaigns that you believe in and deem the most interesting;"
+        li6: "Use <b>discretion</b> and adopt a professional attire when you comment or stimulate your friends to click. Only do it if you trust the Ads you endorsed. Stimulate your friends to share with their friends (you can create <b>a viral campaign</b> that dramatically increments the clicks on your post!)"
+
+  activerecord:
+    models:
+      account: "Account"
+      ad: "Ad"
+      advertiser: "Advertiser"
+      campaign: "Campaign"
+      entry: "Entry"
+      language: "Language"
+      market: "Market"
+      partner: "Partner"
+      payment: "Payment"
+      place: "Place"
+      post: "Post"
+      prepaid_package: "Prepaid Package"
+      publisher_facebook: "Facebook Publisher"
+      publisher_type: "Publisher Type"
+      publisher: "Publisher"
+      session: "Session"
+      term: "Terms and Conditions"
+      tracking_code: "Tracking Code"
+      tracking_request: "Tracking Request"
+      transaction: "Transaction"
+      user: "User"
+    attributes:
+      user:
+        is_email_confirmed: "Is Email Confirmed?"
+      advertiser:
+        company_name: "Company Name"
+        address: "Address"
+        city: "City"
+        country: "Country"
+        zip_code: "Zip Code"
+        phone: "Phone"
+        fax: "Fax"
+        site: "Website"
+        created_at: "Date Created"
+        updated_at: "Date Updated"
+      publisher:
+        name: "Name"
+        first_name: "First Name"
+        last_name: "Last Name"
+        address: "Address"
+        zip_code: "Zip Code"
+        city: "City"
+        state: "State"
+        country: "Country"
+        email: "Email"
+        phone: "Phone"
+        paypal: "Paypal Account"
+        autopublishing: "Auto-Publishing"
+        time_zone: "Time Zone"
+        language_id: "Language"
+        markets: "Markets"
+        places: "Places"
+        document_number: "Document number"
+        personality: "Personality"
+        tax_number: "VAT"
+        billing_name: "Billing Name"
+        billing_address: "Billing Address"
+        news_alternative_email: "Newsletter alternative email"
+      ad:
+        message: "Message"
+        link: "Link"
+        picture_link: "Picture Link"
+        link_name: "Link Name"
+        link_caption: "Link Caption"
+        link_description: "Link Description"
+        visibilityrating: "Visibility"
+        clicks: "Clicks"
+        picture: "Picture"
+        start_date: "Start Date"
+        end_date: "End Date"
+      campaign:
+        description: "Description"
+        start_date: "Start Date"
+        end_date: "End Date"
+        click_value: "Value of Click"
+        status: "Status"
+        budget: "Budget"
+        active: "Active"
+        clicks: "Clicks"
+        autopublishing: "Auto-Publishing"
+      entry:
+        amount: "Amount"
+        reconciled: t.boolean  "Reconciled"
+      language:
+        code: "Code"
+      partner:
+        lead_url: "Lead URL"
+        partner_tracking_code: "Tracking Code"
+      payment:
+        payment_type: "Type"
+      place:
+        place_type: "Type"
+        friends: "Friends"
+        fans: "Fans"
+        placeable_type: "Publishing Place"
+      prepaid_package:
+        package_code: "Code"
+        start_date: "Start Date"
+        end_date: "End Date"
+        price: "Price"
+        discount: "Discount"
+        budget: "Budget"
+      publisher_type:
+        commission: "Commission"
+        minimal_payment: "Minimum Payment Threshold"
+        payment_delay: "Payment Delay"
+        name: "Name"
+        is_default: "Mark as Default"
+      term:
+        title: "Title"
+        content: "Content"
+
+  errors:
+    unbalanced_transaction_error: "The transaction is not balanced. This difference was found to be: %{difference}"

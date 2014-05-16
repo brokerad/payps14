@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Bank account <small><%= link_to 'New', new_admin_payment_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Payment Type</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.payment_type %></td>
+        <td><%= link_to 'Edit', edit_admin_payment_path(payment) %></td>
+        <td><%= link_to 'Destroy', [:admin, payment], :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+

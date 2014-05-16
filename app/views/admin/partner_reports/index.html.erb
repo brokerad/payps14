@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Partners</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th><%= t("activerecord.attributes.partner.name") %></th>
+      <th>Total <%= t("commons.publishers") %></th>
+      <th>Complete<%= t("commons.publishers") %></th>
+      <th>Incomplete<%= t("commons.publishers") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @partners.each do |partner| %>
+      <tr>
+        <td><%= partner.name %></td>
+        <td><%= link_to partner.publishers.count, admin_partner_reports_publishers_path(partner) %></td>
+        <td><%= link_to partner.publishers.completed.count, admin_partner_reports_publishers_complete_path(partner) %></td>
+        <td><%= link_to partner.publishers.incomplete.count, admin_partner_reports_publishers_incomplete_path(partner) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

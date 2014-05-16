@@ -1,0 +1,26 @@
+<div class="row">
+    <div id="partner_filter">
+        <form class="pull-left" action="<%= new_admin_revenue_share_path %>">
+         Filter Partner
+         <%= select_tag "partner", options_from_collection_for_select(@partners, 'id', 'name', params[:partner]), :include_blank => true %>
+        <button class="btn success">Filter</button>
+     </form>
+    </div>
+</div>
+
+<%= simple_form_for([:admin, @revenue_share], :wrapper => "inline") do |f| %>
+    <%= render 'commons/error_notification', :f => f %>
+
+    <%= f.association :tracking_url, :collection => @traking_urls, :as => :select %>
+    <%= f.input :revenue, :label => "Revenue (%)" %>
+    <div class="input_notes">% from the Publisher earned commission</div>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :duration, :label => "Duration (days)" %>
+    <div class="input_notes">Period of time publisher is eligible for share revenue (staring with engage date)</div>
+    <%= f.input :active %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

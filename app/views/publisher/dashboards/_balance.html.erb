@@ -1,0 +1,56 @@
+  <h6><%= t("publisher.dashboard.your_balance") %></h6>
+
+  <table class="condensed-table balance">
+    <tbody>
+      <tr>
+        <td class="attribute"><%= t("publisher.amount.pending") %></td>
+        <td class="value">
+          <% if cookies[:coupon_added].to_s == 'yes' && !current_publisher.coupon.nil? %>
+          <% cookies[:coupon_added] = nil %>
+            <span name="coupon" data-content="<%= t("publisher.coupon.engagement.content", :value => currency_format(current_publisher.coupon.amount)) %>" data-original-title="<%= t("publisher.coupon.engagement.title") %>" rel="popover" id="coupon"><%= currency_format(current_publisher.pending_amount) %></span>
+            <script>
+              $(document).ready(function(){
+                $('span#coupon')
+                  .popover({ trigger: 'manual' })
+                  .popover('show');
+                $('*').click(function(){
+                  if($('span#coupon').length > 0){
+                    $('span#coupon').popover('hide');
+                    $('span#coupon').after($('span#coupon').html());
+                    $('span#coupon').remove();
+                  }
+                });
+              });
+            </script>
+          <% else %>
+            <%= currency_format(current_publisher.pending_amount) %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="attribute"><%= t("publisher.amount.earned") %></td>
+        <td class="value">
+            <%= currency_format(current_publisher.earned_amount) %>
+            </td>
+      </tr>
+      <tr>
+        <td class="attribute"><%= t("publisher.amount.processing") %></td>
+        <td class="value">
+            <%= currency_format current_publisher.processing_amount %>
+            </td>
+      </tr>
+      <tr>
+        <td class="attribute"><%= t("publisher.amount.cashed") %></td>
+        <td class="value">
+            <%= currency_format(current_publisher.cashed_amount) %>
+            </td>
+      </tr>
+      <% if current_publisher.billable? %>
+        <tr>
+          <td colspan="2">
+            <%= link_to t('publisher.request_payment_now'), publisher_billing_request_payment_path, :class => "btn large success" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

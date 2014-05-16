@@ -1,0 +1,40 @@
+<div id="fb_share_info_popup" class="popup_engage gray_border" style="display: none;">
+    <div class="ads_dashboard popup_engage_interior gray_border">
+        <div class="title">
+            <span><%= t('publisher.facebook.your_post_messsage') %></span>
+        </div>
+        <%= form_tag '', :id => 'share_popup_form' do %>
+            <div style="margin: 20px;">
+                <div class="message"><%= text_area_tag :message, nil, :maxlength => "255" %></div>
+                <div class="image"></div>
+                <div class="txt">
+                    <div class="link_title"></div>
+                    <div class="link_caption"></div>
+                    <div class="link_description"></div>
+                </div>
+                <div class="clear"></div>
+                <div style="float: right;">
+                    <%= submit_tag t('publisher.facebook.share_link'), :disable_with => t('commons.buttons.please_wait'), :class => 'btn success' %>
+                </div>
+            </div>
+            <div class="clear"></div>
+        <% end %>
+    </div>
+</div>
+
+<script>
+    $('a.fb_share_btn_click').click(function(event) {
+        event.preventDefault();
+        $('form#share_popup_form').attr('action', this)
+        id = this.href.split('/')[this.href.split('/').length - 1]
+
+        $('form#share_popup_form div.message textarea#message').text('');
+        $('form#share_popup_form div.image').html($('article#post_ad_id_' + id + ' div.image').html());
+        $('form#share_popup_form div.link_title').html($('article#post_ad_id_' + id + ' div.link_title').html());
+        $('form#share_popup_form div.link_caption').html($('article#post_ad_id_' + id + ' div.link_caption').html());
+        $('form#share_popup_form div.link_description').html($('article#post_ad_id_' + id + ' div.link_description').html());
+        $('div#fb_share_info_popup').bPopup();
+        
+        $('form#share_popup_form div.message textarea#message').focus();
+    });
+</script>

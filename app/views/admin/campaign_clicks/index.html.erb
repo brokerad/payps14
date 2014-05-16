@@ -1,0 +1,59 @@
+<div id="campaignClicksMainContainer">
+	<div class="page-header">
+	  <h1>Clicks per Campaigns</h1>
+	</div>
+	
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	    $('table th span').twipsy();
+	    $("table").tablesorter({});
+	  });
+	</script>
+	
+	<div style="padding-bottom: 20px;">
+		<div class="page-header"><h2>Filter</h2></div>
+		<%= select("campaign_click", "status", @available_statuses,  { :selected => @status })%>
+		<div style="display: none;">
+			<%= link_to 'Show', "#{admin_campaign_clicks_path}?status=#{params[:status]}", :id => 'filter_campaings_clicks' %>
+		</div>
+	</div>
+	  
+	<table class="zebra-striped">
+	  <thead>
+	    <tr>
+	      <th>ID</th>
+	      <th>Name</th>
+	      <th>Advertiser</th>
+	      <th>Dates (<span class="font_normal">UTC time zone</span>)</th>
+	      <th>Status</th>
+	      <th>Last payable click</th>
+	      <th>AP</th>
+	      <th>Budget</th>
+	      <th>Balance</th>
+	      <th><span data-placement="top" rel='twipsy' title='PAYED!'>Payable</span></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @campaigns.each do |campaign| %>
+	      <% payable_clicks = @payable_clicks[campaign.id] ? @payable_clicks[campaign.id][0] : 0 %>
+	      <% last_payable_click_date = @payable_clicks[campaign.id] ? @payable_clicks[campaign.id][1] : '-' %>
+	      <tr>
+	        <td><%= campaign.id %></td>
+	        <td><%= link_to campaign.name, admin_campaign_detailed_clicks_path(campaign)%></td>
+	        <td><%= campaign.advertiser.company_name %></td>
+	        <td class="text_in_line"><%=l campaign.start_date, :format => default_time_format %> - <%=l campaign.end_date, :format => default_time_format %></td>
+	        <td><%= campaign.status %></td>
+	        <td><%= last_payable_click_date %></td>
+	        <td><%= disabled_checkbox(campaign.autopublishing) %></td>
+	        <td><span class="btn info"><%= currency_format(campaign.budget) %></span></td>
+	        <td><span class="btn info"><%= currency_format(payable_clicks * campaign.click_value) %></span></td>
+	        <td><%= payable_clicks %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	
+	<div class="kaminari_paginator">
+		<%= paginate @campaigns %>
+	</div>
+</div>

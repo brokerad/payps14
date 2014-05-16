@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/head' %>
+  <%= render "layouts/google_analytics_partner_tracking" %>
+
+  <script>
+    $(document).ready(function() {
+      $('#total_clicks').popover();
+      $('#money_earned').popover();
+    });
+  </script>
+  
+  <script type="text/javascript" charset="utf-8">
+    var is_ssl = ("https:" == document.location.protocol);
+    var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+    document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+  <script type="text/javascript" charset="utf-8">
+    var feedback_widget_options = {};
+
+    feedback_widget_options.display = "overlay";
+    feedback_widget_options.company = "paypersocial";
+    feedback_widget_options.placement = "bottom";
+    feedback_widget_options.color = "#222";
+    feedback_widget_options.style = "idea";
+
+    var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+  </script>
+
+</head>
+<body>
+  <% load_categories_if @categories.nil? %>
+  <%= render "layouts/publisher/topbar" %>
+  <div class="pps_container">
+    <div class="sidebar">
+        <div class="account" style="padding-top: 10px;">
+            <% unless current_publisher.engaged? %>
+                <span class="fb_engage_btn btn primary dashboard_left_menu_btn"><%= t("publisher.support.facebook_engage") %></span>
+            <% end %>
+        </div>
+        <%= render "publisher/dashboards/balance" %>
+        <%= render "publisher/dashboards/account" %>
+        <%= render "publisher/dashboards/autopublishing" %>
+        <%= render "publisher/dashboards/newsletter" %>
+        <%= render "publisher/dashboards/trafficmanager" %>
+    </div>
+    <div class="content" style="min-width: 850px;">
+        <div class="air">
+          <%= raw show_messages_flash %>
+          <%= yield %>
+        </div>
+        <%= render "layouts/footer" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+    <% if current_publisher.engaged? %>
+      <%= render 'layouts/publisher/dashboard/share_popup', :app_data_param => '' %>
+    <% else %>
+      <%= render 'layouts/publisher/dashboard/engage_popup', :app_data_param => '' %>
+    <% end %>
+    <%= javascript_include_tag "jquery.bpopup-0.7.0.min.js" %>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= t("menu.admin.publisher_type") %> <small><%= link_to t("commons.new"), new_admin_publisher_type_path %></small></h1>
+</div>
+
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.publisher_type.name") %></th>
+    <th><%= t("activerecord.attributes.publisher_type.commission") %></th>
+    <th><%= t("activerecord.attributes.publisher_type.minimal_payment") %></th>
+    <th><%= t("activerecord.attributes.publisher_type.payment_delay") %></th>
+    <th class="text_center"><%= t("commons.default") %></th>
+    <th colspan="2" class="text_center"><%= t("commons.actions") %></th>
+  </tr>
+<% @publisher_types.each do |publisher_type| %>
+  <tr>
+    <td><%= publisher_type.name %></td>
+    <td><%= publisher_type.commission %></td>
+    <td><%= publisher_type.minimal_payment %></td>
+    <td><%= publisher_type.payment_delay %></td>
+    <td class="text_center"><%= disabled_checkbox publisher_type.is_default %></td>
+    <td class="text_center"><%= link_to t("commons.edit"), edit_admin_publisher_type_path(publisher_type), :class => 'btn info' %></td>
+    <td class="text_center"><%= link_to t("commons.destroy"), [:admin, publisher_type], 
+        :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger' %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1><%= t("coupon.list") %> <small><%= link_to t("commons.new"), new_admin_coupon_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Coupon Name</th>
+      <th>Coupon Code</th>
+      <th>Partner Name (id)</th>
+      <th>Tracking Url Name(s)</th>
+      <th>Total</th>
+      <th>Total Used</th>
+      <th>Amount</th>
+      <th>From Date</th>
+      <th>To Date</th>
+      <th class="text_center">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coupons.each do |coupon| %>
+      <tr>
+        <td><%= coupon.id %></td>
+        <td class="text_in_line"><%= coupon.name %></td>
+        <td><%= coupon.code %></td>
+        <td class="text_in_line"><%= "#{coupon.partner.name} (#{coupon.partner.id})" %></td>
+        <td>
+            <% coupon.tracking_urls.each do |tu| %>
+                <%= "#{tu.name} (#{tu.id})" %><%= ";" if coupon.tracking_urls.index(tu) < coupon.tracking_urls.size - 1  %>
+            <% end %>
+        </td>
+        <td><%= coupon.total %></td>
+        <td><%= @total_used_coupons[coupon.id] || 0 %></td>
+        <td><%= number_to_currency coupon.amount %></td>
+        <td class="text_in_line"><%= l coupon.start_date, :format => default_time_format %></td>
+        <td class="text_in_line"><%= l coupon.end_date, :format => default_time_format %></td>
+        <td class="text_in_line text_center">
+          <%= link_to t("commons.edit"), edit_admin_coupon_path(coupon), :class => 'btn' %>
+          <%= link_to t("commons.destroy"), [:admin, coupon], :method => :delete, :confirm =>'Are you sure?', :class => 'btn danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

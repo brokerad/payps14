@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1><%= t("campaign.list") %></h1>
+</div>
+
+	<div style="padding-bottom: 20px;">
+		<div class="page-header"><h2>Filter</h2></div>
+		<%= select("campaign_click", "company_name", @available_advertisers.map{|a| [a.company_name, a.id]},
+			{ :selected => @selected_advertiser })%>
+		<div style="display: none;">
+			<%= link_to 'Show', "#{admin_campaigns_path}?advertiser=#{@advertiser}", :id => 'filter_campaings_by_name_click' %>
+		</div>
+	</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= sortable_campaigns "name",          t("activerecord.attributes.campaign.name"), @selected_advertiser %></th>
+      <th><%= sortable_campaigns "company_name",   t("activerecord.attributes.campaign.advertiser.company_name"), @selected_advertiser %></th>
+      <th><%= sortable_campaigns "description",    t("activerecord.attributes.campaign.description"), @selected_advertiser %></th>
+      <th><%= sortable_campaigns "click_value",    t("activerecord.attributes.campaign.click_value"), @selected_advertiser %></th>
+      <th><%= sortable_campaigns "start_date",    t("activerecord.attributes.campaign.start_date"), @selected_advertiser %> <br/>(<span class="font_normal">UTC time zone</span>)</th>
+      <th><%= sortable_campaigns "end_date",      t("activerecord.attributes.campaign.end_date"), @selected_advertiser %> <br/>(<span class="font_normal">UTC time zone</span>)</th>
+      <th><%= sortable_campaigns "autopublishing", 'AP', @selected_advertiser %></th>
+      <th><%= sortable_campaigns "status",         t("activerecord.attributes.campaign.state"), @selected_advertiser %></th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= campaign.id %></td>
+        <td><%= campaign.name %></td>
+        <td><%= campaign.advertiser.company_name %></td>
+        <td><%= campaign.description %></td>
+        <td><%= campaign.click_value %></td>
+        <td class="text_in_line"><%= l campaign.start_date, :format => default_time_format %></td>
+        <td class="text_in_line"><%= l campaign.end_date, :format => default_time_format %></td>
+    	<td><%= disabled_checkbox(campaign.autopublishing) %></td>
+        <td><%= campaign.state %></td>
+        <td><%= link_to t("commons.edit"), edit_admin_campaign_path(campaign), :class => "btn" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

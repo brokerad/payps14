@@ -1,0 +1,535 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+it:
+  hello: "Ciao Mondo"
+
+  engage_notifier:
+    engage_complete:
+      subject: "Benvenuto a bordo!"
+    new_publisher_jois_us:
+      subject: "A new publisher joined us!"
+
+  commons:
+    or: "o"
+    back: "Indietro"
+    create: "Crea"
+    create_account: "Crea Account"
+    cancel: "Annulla"
+    next: "Prossimo"
+    exit: "Esci"
+    logout: "Esci"
+    actions: "Actions"
+    buttons:
+      login: "Entra"
+      send: "Inviare"
+      submit: "Submit"
+      please_wait: "Please wait..."
+    destroy: "Cancella"
+    edit: "Modifica"
+    new: "Nuovo"
+    show: "Mostra"
+    enable: "Abilita"
+    disable: "Disabilita"
+    are_you_sure: "Sei sicuro?"
+    pause: "Pausa"
+    unpause: "Attiva"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Conferma Password"
+    hello: "Ciao"
+    active:
+      "true": "SI"
+      "false": "NO"
+    report: "Report"
+    reports: "Dati"
+    campaign: "Campagna"
+    campaigns: "Campagne"
+    bank_information: "Informazioni bancarie"
+    search: "Cerca"
+    filter: "Filtra"
+    detail: "Dettaglio"
+    details: "Dettagli"
+    amount: "Totale"
+    proudly: "Orgogliosamente da "
+    my_ad: "I miei Ad"
+    newest_ad: "Ad recenti"
+    model:
+      name: "Nome"
+      description: "Descrizione"
+      type: "Tipo"
+    bug:
+      calculation: "Ci scusiamo ma c'é un errore nel calcolo dell'importo In Attesa. Lo fisseremo entro breve. Grazie per la pazienza."
+    publisher:
+      personality:
+        Person: "Persona"
+        Company: "Azienda"
+    network: "Rete"
+    connections: "Collegamenti"
+    facebook: "Facebook"
+    twitter: "Twitter"
+    facebook_engaged: "Facebook engaged"
+    facebook_account_url: "Facebook account"
+    equal_to: "Uguale a"
+    greater_than: "Maggiore di"
+    less_than: "Minore di"
+    default: "Default"
+
+  access:
+    not_authorized: "Non autorizzato"
+    must_be_logged_in: "Devi essere loggato"
+
+  menu:
+    commons:
+      campaign_reports: "Dati Campagne"
+      advertiser_reports: "Dati Advertiser"
+    admin:
+      admin: "Nostro Admin"
+      users: "Utenti"
+      advertisers: "Advertisers"
+      publishers: "Publishers"
+      publisher_types: "Publishers Type"
+      campaigns: "Campaigns"
+      campaign_clicks: "Click x Campagne"
+      prepaid_packages: "Pacchetto prepagato"
+      conditions: "Revenue Share"
+      tracking_urls: "Tracking Urls"
+      publisher_type: "Configurazione credito Publisher"
+      languages: "Lingue"
+      publisher_billing_config: "Configurazione credito Publisher"
+      revenueshare-reports: "Reports"
+      revenueshare-traffic: "Traffic"
+      revenueshare-billing: "Billing"
+      partner_reports: "Partner Reports"
+      ads: "Ads"
+      variables: "Variables"
+
+    advertiser:
+      ads: "Ads"
+      campaigns: "Campagne"
+      prepaid_packages: "Pacchetto prepagato"
+    publisher:
+      ads: "Ads"
+      profile: "Profilo"
+      request_payment: "Richiesta di pagamento"
+      checking_account: "Conto"
+      withdrawal: "Withdrawal"
+      info: "Come funziona"
+    create:
+      publisher: "Crea un publisher"
+      advertiser: "Crea un advertiser"
+    dashboard:
+      publisher: "Cruscotto Publisher"
+      advertiser: "Cruscotto Dashboard"
+      partner: "Partners's Dashboard"
+
+  login:
+    login: "Login"
+    remember_me: "Ricordami"
+    successful: "Login avvenuto con successo"
+    failed: "Login fallito"
+  user_session:
+    logout:
+      successful: "Logout avvenuto con successo"
+
+  advertiser:
+    created:
+      success: "L'Advertiser è stato creato con successo."
+    updated:
+      success: "Advertiser è stato aggiornato con successo."
+    creation:
+      error: "Ci sono alcuni errori nella creazione dell'advertiser"
+    destroy:
+      success: "Advertiser deleted with success"
+      with_campaigns: "Cannot delete Advertiser that has campaigns"
+
+  partner:
+    engage_fb: "Engage from FB:"
+    engage_web: "Engage from WEB:"
+
+  publisher_type:
+    create: New Publisher Type
+    edit: Update Publisher Type
+    created:
+      success: "Publisher Type was successfully created"
+      error: "There were some errors creating the Publisher Type"
+    updated:
+      success: "Publisher Type was successfully updated"
+      error: "There were some errors updating the Publisher Type"
+    destroy:
+      success: "Publisher Type deleted with success"
+      with_publishers: "Cannot delete Publisher Type that has publishers"
+
+  ad:
+    new: "Nuovo Ad"
+    edit: "Modifica Ad"
+    list: "Ads"
+    impressions: "Impressions"
+    clicks: "Clicks"
+    created:
+      success: "Ad creato con successo."
+    updated:
+      success: "Ad modificato con successo."
+    deleted:
+      success: "Ad cancellato con successo."
+    search:
+      report_html: "Cercando <b>%{search_term}</b> sono stati trovati <b>%{results_count} risultati</b>"
+    validate:
+      end_date_before_start_date: "La data di termine deve essere dopo la data di inizio"
+      start_date_invalid_range: "La data di inizio deve essere compresa fra la data di inizio della Campagna (%{start_date}) e la data di termine della Campagna (%{end_date})"
+      end_date_invalid_range: "La data di termine deve essere compresa fra la data di inizio della Campagna (%{start_date}) e la data di termine della Campagna (%{end_date})"
+
+  publisher:
+    disabled: "Il tuo account � stato disabilitato"
+    traffic_manager: "Traffice Manager"
+    support:
+      title: "Supporto"
+      newsletter_title: "Newsletter"
+      facebook_page: "http://www.facebook.com/paypersocial"
+      facebook_page_title: "Pagina Facebook"
+      sent_email: "http://www.paypersocial.com/index.php/it/paypersocial-facebook-publisher-italiano/newsletter-italiano"
+      sent_email_title: "Newsletter spedite"
+      email: "Email"
+      facebook_engage: "FACEBOOK Engage"
+      facebook_engage_msg: "Attenzione! per poter inviare post al tuo account Facebook dobbiamo collegare il tuo account al nostro sistema. Questo processo ti chiederà di autorizzare la nostra applicazione."
+      facebook_engaged: "Collegamento effettuato! Ora puoi condividere le inserzioni."
+    transactions: "Transazioni"
+    withdraws: "Vai a prelievi di Publisher"
+    created:
+      success: "Publisher creato con successo."
+      account: "Conto creato con successo. Controlla la tua email di conferma."
+    facebook:
+      share_link: Condividi link
+      your_post_messsage: Add your post message, if any
+      fail: "L'accesso al tuo account Facebook è fallito con il seguente messaggio: '%{fb_msg}'. Contatta il nstro supporto se hai bisogno di aiuto."
+    terms:
+      not_accepted: "Devi accettare i Termini d'uso della nostra applicazione"
+      promo_code: "Codice promozionale"
+      engage_msg: "Se ti stai registrando attraverso uno dei nostri Partner puoi utilizzare il Coupon per ricevere del credito gratuitamente. Inserisci il codice nello spazio qui sotto."
+    email:
+      valid_token: "Email verificata con successo. Accedi per continuare."
+      invalid_token: "Richiestanon valida o scaduta. Richiedi una nuova <a href='%{url}'>email di conferma</a>."
+      token_sent: "L'email diu conferma è stata inviata. Controlla la tua posta per ricevere istruzioni."
+      email_not_found: "Email non trovata. Controlla l'indirizzo inserito e riprova."
+      resend_confirmation: "Email di conferma inviata."
+      password_reset: "Reimposta Password"
+      password_token_sent: "Le istruzioni per reimpostare la password sono state inviate al tuo indirizzo email."
+      valid_password_token: "Inserisci una nuova Password per completare il processo."
+      invalid_password_token: "Richiesta non valida o scaduta. <a href='%{url}'>Clicca su questo link</a> per reimpostare."
+      invalid_password_size_or_confirmation: "La dimensione della Password non è valida (almeno 4 caratteri) o la conferma non è corretta."
+      password_changes: "Password modificata con successo. Accedi per continuare."
+    newsletter:
+      send_to: "Newsletter inviate a: %{email}"
+      send_to_alternative_email: "Invia le newsletter ad un indirizzo alternativo"
+      alternative_email: "Indirizzo alternativo per le newsletter"
+      invalid_email: "ha un formato non valido"
+    updated:
+      success: "Publisher modificato con successo."
+    listing:
+      title: "Elenco publishers"
+    editing:
+      title: "Modifica publisher"
+    dashboard:
+      claim: "Il miglior modo di guadagnare denaro. Su Facebook!"
+      fill_data: "Completa con le tue informazioni. Facci sapere qual'è il tuo mercato preferito"
+      your_balance: "Il tuo conto"
+      categories: "Categorie"
+      category_all: "Tutte le categorie"
+    coupon:
+      not_valid: "Il coupon %{coupon} non è valido"
+      not_active: "Il coupon %{coupon} non è attivo"
+      expired: "Il coupon %{coupon} è scaduto"
+      unavailable: "Il coupon %{coupon} non è più disponibile"
+      engagement:
+        title: "Congratulazioni"
+        content: "Hai appena guadagnato %{value} grazie al codice inserito"
+    home:
+      slide1: Benvenuto in paypersocial, il social affiliation system che ti paga per ogni click di amici o fans sulle campagne pubblicate nella tua bacheca.
+      slide2: Seleziona la campagna che ti interessa e clicca su "INVIA"
+
+    amount:
+      pending: "In attesa"
+      earned: "Guadagnato"
+      processing: "Richiesto"
+      cashed: "Incassato"
+    info_mandatory_data: "Lingua, timezone e mercati sono campi obbligatori"
+    fill_your_mandatory_data: "Completa con le tue informazioni obbligatorie"
+    available_campaigns: "Campagne disponibili"
+    your_campaigns: "Le tue campagne"
+    engagement:
+      term:
+        accept: "Accetto i termini e le condizioni"
+    profile:
+      profile: "Il tuo profilo"
+      application:
+        title: "Applicazione"
+        allowed_places: "Bachece autorizzate"
+        allowed_places_txt: "Selezione le bacheche su cui desideri postare i tuoi Ad"
+      billing: "Pagamenti"
+      save: "Aggiorna il tuo profilo"
+      newsletter: "Newsletter"
+      autopublishing:
+        title: "Autopublishing"
+        enable: "Vuoi abilitare l'autopublishing?"
+        place_limit: "Imposta il limite per ciascuna bacheca"
+
+  campaign:
+    dashboard: "Cruscotto delle campagne"
+    new: "Nuova campagna"
+    edit: "Modifica Campagna"
+    list: "Elenco Campagne"
+    created:
+      success: "Campaign creata con successo."
+      no_budget: "Il budget della campagna è pià grande della tua disponibilità. Budget: %{budget}, Disponibilità: %{balance}"
+    updated:
+      success: "Advertiser modificato con successo."
+      no_changes: "No Advertiser data changed"
+    validate:
+      start_date:
+        future: "La data di inizio deve essere nel futuro"
+      end_date:
+        after_start: "La data di terminazione deve essere più grande di quella di partenza"
+      end_date_before_start_date: "La data di terminazione non può essere precedente a quella di inizio"
+      markets_missing: "Devi selezionare almeno un mercato"
+      post_times_missing: "Devi selezionare almeno un orario di pubblicazione"
+    reports:
+      dashboard: "Cruscotto campagne"
+    click_value_disabled: "Non puoi modificare il valore del click"
+    billing:
+      pending_requests_exist: "It is not possible to process the campaign. The campaign: %{id} has pending requests."
+      exceed_budget: "It is not possible to process the campaign. The campaign: %{id} has budget of %{budget} but it has %{to_pay} to pay."
+    reprocess:
+      exceed_budget: "It is not possible to re-process the campaign. The advertiser: %{id} has funds of %{budget} but it has %{to_pay} to pay."
+      nothing: "Nothing to re-process"
+      success: "Re-Processed with success"
+
+  dates:
+    start_date_invalid: "can't be in the past"
+    end_date_invalid: "must be after start date"
+
+  tracking_url_validator:
+    partner_invalid: "partner should be the same as for tracking url"
+
+  revenue_share:
+    validate:
+      tracking_url_invalid: "have already been taken"
+      tracking_url_attached: "Tracking Url cannot be deleted. It has attached coupons or/and partner condition."
+      partner_invalid: "partner should be the same as revenue share's partner"
+      coupon_partner_invalid: "partner should be the same as coupon's partner"
+      tracking_url_when_coupon: "tracking url should be present too"
+      tracking_url_same_as_for_coupon: "tracking url should be the same as for tracking url"
+      coupon_update_invalid: "Coupon cannot be update (except active field) because it is used by publishers"
+      coupon_destroy_invalid: "Coupon cannot be deleted because it is used by publishers."
+    list: "Revenue Share List"
+    traffic: "Revenue Share Consolidated Traffic"
+    billing: "Revenue Share Payment Billing"
+  coupon:
+    list: "Coupons"
+    new: "Nuovo Coupon"
+    edit: "Modifica Coupon"
+    created:
+      success: "Coupon inserito con successo"
+    updated:
+      success: "Coupon modificato con successo"
+    deleted:
+      success: "Coupon cancellato con successo"
+
+  prepaid_package:
+    new: "Nuovo pacchetto prepagato"
+    edit: "Modifica pacchetto prepagato"
+    list: "Elenca pacchetti prepapagti"
+    created:
+      success: "Pacchetto prepagato inserito con successo."
+    updated:
+      success: "Pacchetto prepagato modificato con successo."
+    validate:
+      start_date:
+        future: "La data di inizio deve essere nel futuro"
+      end_date:
+        after_start: "La data di terminazione non può essere precedente a quella di inizio"
+      finished_status: "Pacchetto prepagato non modificabile dopo la sua chiusura della campagna"
+      create_status: "Un pacchetto prepagato deve avere una data di applicazione nel futuro"
+      active_status: "La data di inizio non può cambiare dopo l'applicazione del pacchetto prepagato"
+      past_start_date: "La data di inizio non può essere nel passato"
+      end_date_before_start_date: "La data di fine non può precedere quella di inizio"
+
+  post:
+    created:
+      success: "Post creato con successo."
+      failure: "Creazione Post fallita."
+      expired: "La campagna non è più disponibile."
+    published: "Condiviso"
+    publish_it: "Condividi!"
+    publish_it_again: "Condividi!"
+    just_posted: "Condiviso"
+    failed: "Sharing failed. Please contact us for support. Thank you."
+    failed_auth: "La tua condivisione è fallita a causa della sessione scaduta. Per favore riprova. Grazie."
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      default_time: "%d/%m/%Y %H:%M:%S"
+      short: "%d di %B"
+      long: "%d de %B de %Y"
+      sortable_time: "%b %d, %Y %I:%M %P"
+    order:
+      - :year
+      - :month
+      - :day
+    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]
+    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
+
+  infopage:
+    intro:
+      title: "Chi siamo"
+      content: "Paypersocial il primo sistema interamente pensato per far guadagnare ogni utente Facebook con la pubblicazione di campagne promozionale nella propria bacheca (Diario Facebook) e nelle pagine Facebook."
+    block1:
+      title: "Come guadagni"
+      content: "Semplicemente su ogni azione compiuta dai tuoi amici e fans negli annunci pubblicati sulle tue bacheche. Con azioni intendiamo, al momento, i Click di apertura pagina destinazione della campagna. Il valore di ogni commissione riconosciuta cambia in base alla campagna selezionata."
+    block2:
+      title: "Usare PayPerSocial"
+      content:
+        li1: "Seleziona le campagne di tuo interesse analizzando le condizioni di payout (riquadro sinistro in ogni anteprima di pubblicazione);"
+        li2: "Clicca su “<b>Invia</b>” e in pochi secondi l’annuncio verrà pubblicato sulla tua bacheca, muro o pagine (anche nel caso di Diario Facebook);"
+        li3: "Usa i Menu “<b>Report</b>” per verificare lo stato dei click fatti dai tuoi amici; Il menu ‘<b>Billing</b>’ per verificare le commissioni maturate e lo stato dei pagamenti;"
+    block3:
+      title: "Descrizione del Processo"
+      content:
+        li1: "Ogni click generato dagli amici deve essere approvato. Perché? Non è il tuo caso, naturalmente, ma ci sono frodi su Internet. Quindi dobbiamo verificare la qualità delle azioni sociali che si sono originate e dobbiamo avvisare l’Advertiser, che ci paga così che noi possiamo pagarti, l’elenco delle azioni affinché le approvi. Questo traffico entra in una lista di approvazione e il relativo valore accumulato e rappresentato dalla voce: “<b>In Attesa</b>”;"
+        li2: "Successivamente alla approvazione del traffico, il valore dei click (o altre azioni social) confermati verrà visualizzato nel box “<b>Guadagnato</b>”. Tale processo viene chiuso entro il 10 del mese successivo a quello del mese per cui si calcola il traffico generato;"
+        li3: "Raggiunta la <b>soglia minima di $100</b> (dollari), potrai richiedere il pagamento delle commissioni accumulate. Tale richiesta di pagamento verrà visualizzata nella voce “<b>Richiesto</b>”;"
+        li4: "Infine nella voce “<b>Incassato</b>” potrai verificare il totale del valore guadagnato da inizio attività con Paypersocial."
+        li5: "<b>Attenzione!</b> Eventuali valori ricevuti con <b>Coupon</b> verranno liquidati solo in seguito al raggiungimento della soglia di <b>$100</b> (dollari) di traffico generato."
+    block4:
+      title: "Pagamento"
+      content:
+        li1: "Completa accuratamente ogni sezione del menu ‘<b>Profile</b>’, in particolar modo inserisci le informazioni del tuo conto Paypal dove vorrai ricevere i compensi. Questo è l’indirizzo mail associato al conto Paypal su cui vuoi ricevere i pagamenti;"
+        li2: "Il pagamento viene erogato a <b>30 giorni</b> fine mese dalla data di richiesta inoltrata;"
+    block5:
+      title: "Come incrementare i tuoi guadagni"
+      content:
+        intro: "Alcune regole e suggerimenti che ti potranno essere utili per incrementare i tuoi guadagni con Paypersocial:"
+        li1: "<b>Entra</b> ogni giorno e seleziona le campagne in base alla categoria di interesse dei tuoi amici e fans;"
+        li2: "<b>Seleziona</b> in quale pagina o bacheca (diario Facebook) pubblicare ogni annuncio;"
+        li3: "Valuta nel menu “<b>Report</b>” gli annunci che hanno generato più traffico e ripubblica quelli migliori (attenzione a non pubblicare lo stesso annuncio nello stesso giorno. Rispetta un po’ di pausa);"
+        li4: "<u>Crea <b>commenti positivi</b> e Like ad ogni pubblicazione, stimolando gli amici a commentare e cliccare in Like su ogni pubblicazione;</u>"
+        li5: "<b>Incentiva</b> amici e fans a cliccare nelle campagne che ritieni più interessanti;"
+        li6: "Usa <b>discrezione</b> e professionalità nei commenti e negli stimoli a cliccare, fallo solo se credi nell’annuncio pubblicato. Stimola gli amici a condividere i tuoi annunci con i suoi amici (crea <b>viralità</b> alla tua"
+
+  activerecord:
+    models:
+      account: "Account"
+      ad: "Ad"
+      advertiser: "Advertiser"
+      campaign: "Campagne"
+      entry: "Entry"
+      language: "Lingua"
+      market: "Market"
+      partner: "Partner"
+      payment: "Pagamenti"
+      place: "Bacheca"
+      post: "Post"
+      prepaid_package: "Pacchetti prepagati"
+      publisher_facebook: "Publisher facebook"
+      publisher_type: "Publisher type"
+      publisher: "Publisher"
+      session: "Session"
+      term: "Term and condition"
+      tracking_code: "Tracking code"
+      tracking_request: "Tracking request"
+      transaction: "Transaction"
+      user: "User"
+    attributes:
+      user:
+        is_email_confirmed: "Is Email Confirmed?"
+      advertiser:
+        company_name: "Company Name"
+        address: "Address"
+        city: "City"
+        country: "Country"
+        zip_code: "Zip Code"
+        phone: "Phone"
+        fax: "Fax"
+        site: "Site"
+        created_at: "Create Date"
+        updated_at: "Update Date"
+      publisher:
+        name: "Nome"
+        first_name: "Nome"
+        last_name: "Cognome"
+        address: "Indirizzo"
+        zip_code: "Cap"
+        city: "Citt&aacute;"
+        state: "Provincia"
+        country: "Nazione"
+        email: "Email"
+        phone: "Telefono"
+        paypal: "Account Paypal"
+        autopublishing: "Autopublishing"
+        time_zone: "Fuso Orario"
+        language_id: "Lingua"
+        markets: "Mercati"
+        places: "Bacheche"
+        document_number: "Carta di identitá"
+        personality: "Personalitá"
+        tax_number: "P. IVA/Codice Fiscale"
+        billing_name: "Nome Fatturazione"
+        billing_address: "Indirizzo Fatturazione"
+        news_alternative_email: "Newsletter alternative email"
+      ad:
+        message: "Message"
+        link: "Link"
+        picture_link: "Picture ink"
+        link_name: "Link name"
+        link_caption: "Link caption"
+        link_description: "Link description"
+        visibilityrating: "Visibility"
+        clicks: "Clicks"
+        picture: "Picture"
+        start_date: "Data di inizio"
+        end_date: "Data di termine"
+      campaign:
+        description: "description"
+        start_date: "start_date"
+        end_date: "end_date"
+        click_value: "click_value"
+        status: "Status"
+        budget: "Budget"
+        active: "Active"
+        clicks: "Clicks"
+        autopublishing: "Autopublishing"
+      entry:
+        amount: "amount"
+        reconciled: t.boolean  "reconciled"
+      language:
+        code: "Code"
+      partner:
+        lead_url: "Lead url"
+        partner_tracking_code: "Tracking code"
+      payment:
+        payment_type: "Type"
+      place:
+        place_type: "Type"
+        friends: "Friends"
+        fans: "Fans"
+        placeable_type: "Placeable type"
+        post_limit: "Limite di post"
+      prepaid_package:
+        package_code: "Code"
+        start_date: "Start date"
+        end_date: "End date"
+        price: "Price"
+        discount: "Discount"
+        budget: "Budget"
+      publisher_type:
+        commission: "Commission"
+        minimal_payment: "Minimal Payment"
+        payment_delay: "Payment Delay"
+        name: "Nome"
+        is_default: "Mark as Default"
+      term:
+        title: "Title"
+        content: "Content"
+
+  errors:
+    unbalanced_transaction_error: "Transactions is not balanced. Difference found: %{difference}"

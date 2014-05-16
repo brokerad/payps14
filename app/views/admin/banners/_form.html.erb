@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @banner], :wrapper => "inline", :html => {:multipart => true}) do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+  <%= f.input :name %>
+  <%= f.association :language %>
+  <%= f.input :page, :collection => Banner::PAGES.map {|k,v| [v,k]} %>
+  <%= f.input :target_url %>
+  <%= f.input :image %>
+  <%= f.input :active %>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

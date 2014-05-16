@@ -1,0 +1,37 @@
+<%= simple_form_for([:admin, @campaign], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <%= f.input :name, :disabled => !@editable %>
+  <%= f.association :advertiser, :collection => @advertisers, :disabled => !@editable %>
+  <%= f.input :description, :disabled => !@editable %>
+  <%= f.input :budget, :disabled => !@editable %>
+  <%= f.input :click_value, :disabled => !@editable %>
+  <%= f.input :autopublishing, :disabled => !@campaign.scheduled? %>
+    
+  <div style="float: left;">
+  	<%= f.input :start_date, 	:as => :datetime,
+			  :start_year => Date.today.year - 1, 
+			  :end_year => Date.today.year + 3,
+			  :default => Time.now,
+			  :disabled => !@editable %>
+  </div>
+  <div class="utc_word_format">UTC</div>
+  <div class="clearfloats"></div>
+  <%= f.input :market_id, :as => :radio_buttons, :collection =>  @markets,  
+  	:wrapper => "checkboxes", :item_wrapper_tag => "li", :disabled => !@editable %>
+  <%= f.association :post_times, :label_method => lambda { |post_time| "#{"%02d" % post_time.post_time}:00" }, 
+  	:disabled => !@editable %>
+  <div style="float: left;">
+  	<%= f.input :end_date, 	:as => :datetime, 
+			  :start_year => Date.today.year - 1, 
+			  :end_year => Date.today.year + 3,
+			  :default => Time.now,
+			  :disabled => !@editable_end_date %>
+  </div>
+  <div class="utc_word_format">UTC</div>
+  <div class="clearfloats"></div>
+  
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

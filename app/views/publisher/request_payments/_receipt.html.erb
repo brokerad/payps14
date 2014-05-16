@@ -1,0 +1,54 @@
+
+<div class="row">
+  <div class="span8">
+    <div class="page-header">
+      <h2>Publisher Infos</h2>
+    </div>
+    <table class="zebra-striped">
+      <tr>
+        <td>Name</td>
+        <td><%= @publisher.name %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="span8">
+    <div class="page-header">
+      <h2>Billing Infos</h2>
+    </div>
+    <table class="zebra-striped">
+      <tr>
+        <td>Name</td>
+        <td><%= @publisher.name %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="page-header">
+  <h2>Campaigns</h2>
+</div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th width="80%">Name</th>
+      <th width="20%">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publisher.payable_campaigns.each do |campaign| %>
+      <tr>
+        <td><%= link_to campaign.name, publisher_campaign_reports_path(campaign) %></td>
+        <td><%= currency_format(@publisher.earned_amount_per_campaign campaign) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td><span class="btn success"><%= currency_format @publisher.earned_amount %></span></td>
+    </tr>
+  </tfoot>
+</table>
+
+<a href="javascript:window.print();" class="btn large info">Print this data</a>

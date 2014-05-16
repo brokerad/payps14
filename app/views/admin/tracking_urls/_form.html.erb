@@ -1,0 +1,28 @@
+<%= simple_form_for([:admin, @tracking_url], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :active %>
+    <%= f.input :name %>
+    <%= render 'coupons' unless @tracking_url.new_record? %>
+    <%= f.association :partner, :readonly => !@tracking_url.new_record?, :disabled => !@tracking_url.new_record? %>
+
+    <%= f.input :lead_url %>
+    <p class="input_info">
+        The url to be used in &lt;img src=lead_url&gt; after an user registered in the application through this partner.
+        <br/>
+        <strong>E.g.: http://partner-url.com/lead-url</strong>
+    </p>
+    </br>
+    <%= f.input :tracking_code %>
+    <p class="input_info">
+      The tracking code to be use in the url: <br/>
+      <b>WEB</b>: <%= Paypersocial::Constants::TRACKING_URL_WEB %><br/>
+      <b>FB</b>: <%= Paypersocial::Constants::TRACKING_URL_FB %><br/>
+    </p>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

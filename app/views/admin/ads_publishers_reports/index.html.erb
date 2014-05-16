@@ -1,0 +1,45 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[1,0], [4,1]]
+    });
+
+  //$('th:last').popover({ placement: 'left'});
+  //$('th').popover({ placement: 'right'});
+  });
+</script>
+
+<div class="page-header">
+  <h1>Ads / <%= @ad.link_name %> / Publisher</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th rel="popover" data-content="content" data-original-title="title">Name</th>
+      <th>Posts</th>
+      <th>Impressions</th>
+      <th>Clicks</th>
+      <th>CR</th>
+      <th>CTR</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <%posts_count = publisher.posts_count_per_campaign_id(@ad.campaign.id).to_i
+        clicks_count = publisher.clicks_count_per_campaign_id(@ad.campaign.id).to_i
+        impressions_count = publisher.impressions_count_per_campaign_id(@ad.campaign.id).to_i %>
+      <tr>
+        <td><%= publisher.id %></td>
+        <td><%= link_to publisher.name, admin_publisher_path(publisher) %></td>
+        <td><%= posts_count %></td>
+        <td><%= impressions_count %></td>
+        <td><%= clicks_count %></td>
+        <td><%= posts_count.zero? ? 0 : (clicks_count*100)/posts_count %></td>
+        <td><%= impressions_count.zero? ? 0 : (clicks_count*100)/impressions_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

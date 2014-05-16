@@ -1,0 +1,14 @@
+<%= simple_form_for([:admin, @category], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :name_it %>
+    <%= f.input :name_en %>
+    <%= f.input :name_pt_BR %>
+    <%= f.input  :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

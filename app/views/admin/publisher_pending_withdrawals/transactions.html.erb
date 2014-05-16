@@ -1,0 +1,8 @@
+<%= render "admin/publisher_pending_withdrawals/publisher_info", 
+	{ :url => admin_publisher_pending_withdrawal_path(@publisher) } %>
+<%= render "advertiser/transactions/balance", 
+	{ :title_transaction_page => t("menu.publisher.checking_account") } %>
+<%= render "advertiser/transactions/details" %>
+
+<%= link_to t("commons.back"), admin_publisher_pending_withdrawals_path, :class => "btn info" %>
+<%= link_to t("publisher.withdraws"), admin_publisher_pending_withdrawal_path(@publisher), :class => "btn success" %>

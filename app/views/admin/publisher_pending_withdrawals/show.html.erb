@@ -1,0 +1,35 @@
+<%= render "admin/publisher_pending_withdrawals/publisher_info" %>
+
+<div class="page-header">
+  <h2>Withdraws</h2>
+</div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Credit</th>
+      <th>Debit</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.transaction.description %></td>
+        <td><%= entry.credit_amount %></td>
+        <td><%= entry.debit_amount %></td>
+        <td><%= l(entry.updated_at, :format => :long) %></td>
+        <td>
+        <% if entry.reconciled? %>
+          Confirmed
+        <% else %>
+          <%= link_to "Confirm", admin_confirm_publisher_withdrawal_path(@publisher, entry.transaction), :class => "btn success" %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href="javascript:window.print();" class="btn large info">Print this data</a>

@@ -1,0 +1,42 @@
+<h1>Listing ads</h1>
+
+<table>
+  <tr>
+    <th><%= t("activerecord.models.advertiser") %></th>
+    <th><%= t("activerecord.models.campaign") %></th>
+    <th><%= t("activerecord.attributes.ad.message") %></th>
+    <th><%= t("activerecord.attributes.ad.link") %></th>
+    <th><%= t("activerecord.attributes.ad.clicks") %></th>
+    <th><%= t("activerecord.attributes.ad.picture") %></th>
+    <th></th>
+  </tr>
+<% @ads.each do |ad| %>
+  <% post = find_or_initialize_post(@campaign, ad, current_publisher)%>
+  <tr>
+    <td><%= ad.advertiser.company_name %></td>
+    <td><%= post.campaign.name %></td>
+    <td><%= ad.message %></td>
+    <td><%= link_to ad.link, ad.link %></td>
+    <td align="right"><%= post.clicks %></td>
+    <td><%= image_tag ad.picture_link, :class => "thumb90" %></td>
+    <td>
+      <% if post.persisted? %>
+        <%= t("post.published") %>
+      <% else %>
+        <%= simple_form_for([:publisher, @campaign, post]) do |f| %>
+          <%= render 'commons/error_notification', :f => f %>
+
+          <div class="inputs">
+            <%= f.input :ad_id, :as => :hidden %>
+            <%= f.input :publisher_id, :as => :hidden %>
+          </div>
+
+          <div class="actions">
+            <input class="button" id="post_submit" name="commit" type="submit" value="<%= t("post.publish_it") %>"/>
+          </div>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>

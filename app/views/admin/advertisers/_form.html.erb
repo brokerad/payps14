@@ -1,0 +1,22 @@
+<%= render "layouts/tinymce" %>
+
+<%= simple_form_for([:admin, @advertiser], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <div class="inputs">
+    <%= f.input :company_name %>
+    <%= f.input :address %>
+    <%= f.input :city %>
+    <%= f.input :country %>
+    <%= f.input :zip_code %>
+    <%= f.input :phone %>
+    <%= f.input :fax %>
+    <%= f.input :site %>
+    <%= f.input :new_password, :as => :string %>
+    <%= f.input :referer %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

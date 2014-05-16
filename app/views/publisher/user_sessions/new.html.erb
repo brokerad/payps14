@@ -1,0 +1,53 @@
+<div id="sign_up_pps_baner"><%= banner_for_page Banner::SIGN_IN %></div>
+
+<div id="sign_in_pps_form">
+  <%= form_for([:publisher, @user_session]) do |f| %>
+    <h2 class="form_title">LogIn</h2>
+    <div class="clearfix">
+      <%= f.label :email %>
+      <div class="input">
+         <%= f.text_field :email, :class => "xlarge", :style => 'width: 200px;' %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :password %>
+      <div class="input">
+         <%= f.password_field :password, :class => "xlarge", :autocomplete => 'off', :style => 'width: 200px;' %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <label for="remember_id"><%= t("login.remember_me") %></label>
+      <div class="input">
+        <%= f.check_box :remember_me, :id => "remember_id" %>
+      </div>
+    </div>
+    <div class="actions">
+
+      <%= f.submit(t("commons.buttons.login"), { :class => 'btn primary' }) %> |
+      <%= link_to 'Password Forgotten', password_reset_path %>
+    </div>
+  <% end %>
+
+    <div style="padding-top: 20px;">
+      <%= link_to t("commons.create_account"), publisher_new_path %> |
+      <%= link_to 'Resend confirmation email', resend_confirmation_email_path %>
+    </div>
+
+</div>
+
+<div id="sign_in_pps_social">
+    <h2 class="form_title" style="font-size: 22px;">LogIn with</h2>
+    <div class="social_btn">
+        <%= link_to "/auth/facebook", {:target => "_top"}, :style => "text-decoration: none; color: white;" do %>
+            <span class="btn primary social_btn">FACEBOOK</span>
+        <% end %>
+    </div>
+    <div style="padding: 17px;">
+        <%= link_to "#", :style => "text-decoration: none; color: black;" do %>
+            <span class="btn social_btn">TWITTER</span>
+        <% end %>
+    </div>
+</div>
+
+<div class="clearfloats"></div>
+

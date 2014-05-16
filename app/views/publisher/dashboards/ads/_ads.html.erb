@@ -1,0 +1,63 @@
+<% if controller.class.to_s == "Publisher::FacebookDashboardsController" %>
+  <% logger.debug "PUBLISHER_FACEBOOK_CANVAS_TOP" %>
+  <div id="ads_list_top_baner"><%= banner_for_page Banner::PUBLISHER_FACEBOOK_CANVAS_TOP, current_publisher.language.code %></div>
+<% else %>
+  <% logger.debug "PUBLISHER_DASHBOARD_TOP" %>
+
+  <div id="ads_list_top_baner"><%= banner_for_page Banner::PUBLISHER_DASHBOARD_TOP, current_publisher.language.code %></div>
+<% end %>
+
+<div class="ads_dashboard">
+    <% if flash[:error] %>
+    <div class="alert-message error" style="margin-top:5px; width:95%; margin-left:auto; margin-right:auto;">
+      <a class="close" href="#">x</a><%= flash[:error] %>
+    </div>
+  <% end %>
+  <% @ads_available.each do |ad| %>
+  <article id="post_ad_id_<%=ad.id%>">
+        <% if is_facebook_dashboard %>
+    <div class="right-column" style="width: 300px;">
+
+        <% else %>
+    <div class="right-column">
+            <%= render 'publisher/dashboards/ads/web_ad', :ad => ad %>
+        <% end %>
+    	<div class="clear"></div>
+    	<div class="campaign-name">Campaign: <%= ad.campaign.name %></div>
+    	<div class="date">
+      	<em><%= l ad.campaign.start_date, :format => t("date.formats.default") %> - <%= l ad.campaign.end_date, :format => t("date.formats.default") %></em>
+      </div>
+    	<div class="categories">
+	    	<% ad.categories.each do |cat| %>
+          <% if current_publisher.engaged? %>
+	    		<span><%= link_to cat.get_category_name_for_publisher(current_publisher), publisher_filter_category_path(cat.id) %></span>
+          <% else %>
+          <span><%= cat.get_category_name_for_publisher(current_publisher) %></span>
+          <% end %>
+	    	<% end %>
+    	</div>
+    	<div class="advertiser">
+    		<%= ad.campaign.advertiser.company_name %>
+    	</div>
+    </div>
+    <div class="message">
+      <%= ad.message %>
+    </div>
+    <div class="image">
+      <%= image_tag ad.picture_link, :width => 90 %>
+    </div>
+    <div class="txt">
+      <div class="link_title">
+        <%= link_to ad.link_name, ad.link, :target => "_blank" %>
+      </div>
+      <div class="link_caption">
+        <%= ad.link_caption %>
+      </div>
+      <div class="link_description">
+        <%= ad.link_description %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </article>
+  <% end %>
+</div>

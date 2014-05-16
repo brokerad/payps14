@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h1>Publishers report</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>FB link</th>
+        <th>Network nr.</th>
+        <th>Created at</th>
+        <th>Total pending traffic</th>
+        <th>Total Publisher Earn</th>
+        <th>Total RS commission earned</th>
+    </thead>
+    <tbody>
+        <% @publishers.each do |publisher| %>
+            <tr>
+                <td><%= publisher.id %></td>
+                <td><%= publisher.name %></td>
+                <td><%= extract_facebook_link_if(publisher) %></td>
+                <td><%= publisher.connections %></td>
+                <td><%= l(publisher.created_at, :format => :long) %></td>
+                <td><%= publisher.pending_amount %></td>
+                <td><%= publisher.earned_amount %></td>
+                <td><%= publisher.revenue_share.nil? ? 0 : publisher.revenue_share.commission_earned(publisher) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

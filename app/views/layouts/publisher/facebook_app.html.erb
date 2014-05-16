@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/head' %>
+  <%= render "layouts/google_analytics_partner_tracking" %>
+  <script>
+    if(top == self) { window.top.location.href = "<%=ENV["FACEBOOK_APP_URL"]%>"; }
+  </script>
+</head>
+<body>
+  <div class="pps_container" style="margin-left: 200px;">
+    <%= render 'layouts/publisher/terms/left_nav' %>
+    <div class="content" style="padding-top: 0px; min-width: 680px;">
+        <div class="air">
+          <%= raw show_messages_flash %>
+          <%= yield %>
+        </div>
+      <%= render "layouts/footer" %>
+    </div>
+    <div class="clear"></div>
+    <% if current_publisher.engaged? %>
+        <%= render 'layouts/publisher/dashboard/share_popup', :app_data_param => 'facebook_dashboard' %>
+    <% else %>
+        <%= render 'layouts/publisher/dashboard/engage_popup', :app_data_param => 'facebook_dashboard'  %>
+    <% end %>
+    <%= javascript_include_tag "jquery.bpopup-0.7.0.min.js" %>
+  </div>
+</body>
+</html>
+

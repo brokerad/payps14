@@ -1,0 +1,132 @@
+<div class="page-header">
+  <h1><%= t("publisher.listing.title") %></h1>
+</div>
+
+<div class="page-header"><h2>Publishers Summary</h2></div>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Total publishers</th>
+      <th>Total publishers accepted terms</th>
+      <th>Total publishers engaged Facebook</th>
+      <th>Total publishers not accepted terms</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+	      <td><%= total_publishers = Publisher.total_publishers %></td>
+	      <td><%= publisher_accepted_terms = Publisher.total_publishers_accepted_terms %></td>
+	      <td><%= total_engaged = Publisher.total_publishers_engaged %></td>
+	      <td><%= total_publishers - publisher_accepted_terms %></td>
+      </tr>
+  </tbody>
+</table>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+	<div class="span8">
+		<div class="page-header"><h2>Search Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_search_path %>">
+	  		<input type="text" name="search" placeholder="Search" />
+	  		<button class="btn success">Search</button>
+			</form>
+	</div>
+	<div class="span8">
+		<div class="page-header"><h2>Filter Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_filter_path %>">
+  		  <%= select_tag "filter_status", options_for_select([["Facebook Engaged",:fb_engaged],["Accepted Terms",:accepted_terms],["Not Accepted Terms",:not_accepted_terms]]) %>
+	  		<button class="btn success">Filter</button>
+			</form>
+	</div>
+	<div class="span10">
+		<div id="filter-date" class="page-header"><h2>Filter Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_filter_path %>">
+  			  <div class="from-date"><label>From: </label><%= select_date(Date.today, :use_short_month => 1, :order => [:month, :day, :year], :prefix => "filter_date_from") %></div>
+  			  <div class="to-date"><label>To: </label><%= select_date(Date.today, :use_short_month => 1, :order => [:month, :day, :year], :prefix => "filter_date_to") %></div>
+	  		<button id="filter-date-btn" class="btn success">Filter</button>
+	  	</form>
+	</div>
+	<div class="span8">
+		<div class="page-header"><h2>Filter Partner</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_filter_path %>">
+  			<%= select_tag "filter_partner", options_from_collection_for_select(@partner, 'id', 'name') %>
+	  		<button class="btn success">Filter</button>
+	  	</form>
+	</div>
+	<div class="span8">
+		<div class="page-header"><h2>Filter Traffic Manager</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_filter_path %>">
+  			<%= select_tag "filter_traffic_manager", options_from_collection_for_select(@traffic_manager, 'id', 'email', @current_traffic_manager.nil? ? '' : @current_traffic_manager.id), :include_blank => true %>
+	  		<button class="btn success">Filter</button>
+	  	</form>
+	</div>
+	<div class="span8">
+		<div class="page-header"><h2>Filter Account Type</h2></div>
+			<form class="pull-left" action="<%= admin_publishers_filter_path %>">
+  			<%= select_tag "filter_account_type", options_from_collection_for_select(@account_type, 'id', 'name') %>
+	  		<button class="btn success">Filter</button>
+	  	</form>
+	</div>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="page-header"><h2>Last engaged publishers</h2></div>
+<table class="zebra-striped" id="last_publisher_list">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t("activerecord.attributes.publisher.name") %></th>
+      <th>Email</th>
+      <th>Facebook link</th>
+      <th>T&C</th>
+      <th class="text_in_line">FB-E</th>
+      <th><%= t("activerecord.attributes.publisher.partner") %></th>
+      <!--th><%= t("activerecord.attributes.publisher.type") %></th-->
+      <!--th><%= t("activerecord.attributes.publisher.traffic_manager") %></th-->
+      <th><%= t("activerecord.common.network") %></th>
+      <th><%= t("activerecord.attributes.publisher.friends") %></th>
+      <!--th>AP</th-->
+      <th><%= t("activerecord.attributes.publisher.created_at") %></th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td class="text_in_line"><%= publisher.id %></td>
+	      <td class="text_in_line"><%= link_to publisher.name, admin_publisher_path(publisher.id) %></td>
+        <td><%= mail_to(publisher.email, truncate(publisher.email, :length => 40)) %></td>
+	      <td class="text_in_line"><%= get_facebook_link @fb_publishers[publisher.id] %></td>
+	      <td class="text_in_line"><%= "X" if publisher["accepted_last_term"] == 't' %></td>
+	      <td><%= "X" if publisher["accepted_last_term"] == 't' && @fb_publishers[publisher.id] && @fb_publishers[publisher.id].engaged? %></td>
+	      <td class="text_in_line"><%= link_to publisher["partner_name"], edit_admin_partner_path(publisher["partner_id"]) if publisher["partner_id"] %></td>
+	      <!--td><%= publisher.publisher_type.name if publisher.publisher_type %></td-->
+	      <!--td><%= publisher.admin.email if publisher.admin %></td-->
+	      <td><%= publisher["total_connections"] %></td>
+	      <td><%= publisher["friends"] %></td>
+	      <!--td><%= "X" if publisher["autopublishing"] == 't' %></td-->
+	      <td class="text_in_line"><%= l(publisher["created_at"], :format => :short) %></td>
+	      <td><%= link_to t("commons.edit"), edit_admin_publisher_path(publisher["id"]), :class => "btn" %></td>
+	      <td><%= enable_publisher_button(publisher["id"], publisher["enabled"]) %></td>
+        <td>
+          <% if publisher["enabled"] %>
+            <%= link_to(t("commons.buttons.login"), admin_publisher_login_as_publisher_path(publisher), :confirm => 'Are you sure?',:class => "btn info") %>
+          <% else %>
+            <span class="btn"><%= t("commons.buttons.login") %></span>
+          <% end %>
+        </td>
+	      <% unless Rails.env.production? %>
+	        <td><%= link_to t("commons.destroy"), admin_publisher_path(publisher["id"]), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger" %></td>
+	      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div><%= link_to "Export CSV", params.merge({:format => :csv}) %></div>
+
+<div class="kaminari_paginator">
+	<%= paginate @publishers %>
+</div>

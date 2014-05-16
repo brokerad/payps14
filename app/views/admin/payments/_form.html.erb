@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, @payment], :wrapper => "inline") do |f| %>
+  <%= render 'commons/error_notification', :f => f %>
+
+  <%= f.select :payment_type, [["Bank Account", Payment::BANK_ACCOUNT]]%>
+  <%= f.text_area :description %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

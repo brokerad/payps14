@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	</head>
+		<body>
+			<div>
+				Welcome to <%= link_to @site_name, @current_host_with_port %>
+			</div>
+			<br/>
+			<div>
+				To finish the registering process,
+				please click on link below to vefiry your email address:
+			</div>
+			<br/>
+			<div>
+				<%= link_to 'Verify email address', @url_to_follow %>
+			</div>
+			<br/>
+			<br/>
+			<div>
+				Welcome aboard, <br/>
+				The <%= @site_name %> Team
+			</div>
+		</body>
+</html>

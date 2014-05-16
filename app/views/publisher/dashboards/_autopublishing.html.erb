@@ -1,0 +1,22 @@
+<div class="autopublishing">
+	<h6>Autopublishing <% if current_publisher.autopublishing %><span class="on">ON<%else%><span class="off">OFF<%end%></span></h6>
+	<% if current_publisher.autopublishing %>
+		<table>
+			<thead>
+				<tr>
+					<th>Place</th>
+					<th>Limit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tbody>
+				<% current_publisher.places.each do |place| %>
+					<tr>
+						<td class="attribute"><%= place.name %></td>
+						<td class="value"><%= place.post_limit %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>

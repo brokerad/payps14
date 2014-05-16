@@ -1,0 +1,159 @@
+<div class="page-header">
+  <h1>Clicks per Campaign</h1>
+</div>
+
+<div class="row">
+  <div class="span11">
+    <div class="page-header"><h2>Details</h2></div>
+    <table class="zebra-striped">
+      <tr><td>Name:</td><td><%= @campaign.name %></td></tr>
+      <tr><td>Description:</td><td><%= @campaign.description %></td></tr>
+      <tr><td>Start Date:</td><td><%=l @campaign.start_date, :format => default_time_format %></td></tr>
+      <tr><td>End Date:</td><td><%=l @campaign.end_date, :format => default_time_format %></td></tr>
+      <tr><td>State:</td><td><%= @campaign.state %></td></tr>
+      <tr><td>Budget:</td><td><span class="btn info"><%= currency_format(@campaign.budget) %></span></td></tr>
+      <tr><td>Amount:</td><td><span class="btn info" id="campaign_amount"><%= currency_format(@campaign.amount) %></span></td></tr>
+      <tr><td colspan="2"><%= admin_action_button(@campaign) %></td></tr>
+    </table>
+  </div>
+
+  <div class="span11">
+    <div class="page-header"><h2>Totals Clicks</h2></div>
+    <table class="zebra-striped">
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_FB_BOT %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_FB_BOT %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_FB_BOT) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_INVALID_USER_AGENT %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_INVALID_USER_AGENT %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_INVALID_USER_AGENT) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_UNKNOWN_SOURCE %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_UNKNOWN_SOURCE %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_UNKNOWN_SOURCE) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_EMPTY_REFERER %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_EMPTY_REFERER %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_EMPTY_REFERER) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_INVALID_REFERER %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_INVALID_REFERER %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_INVALID_REFERER) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_WRONG_MARKET %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_WRONG_MARKET %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_WRONG_MARKET) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_ACTION %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_ACTION %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_ACTION) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_BUDGET %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_BUDGET %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_BUDGET) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_DATE %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_DATE %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_DATE) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::SKIPPED_BY_AD_DATE %></td>
+        <td id="<%= TrackingRequest::SKIPPED_BY_AD_DATE %>"><%= value_or_zero(@clicks, TrackingRequest::SKIPPED_BY_AD_DATE) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::REPEATED_SESSION %></td>
+        <td id="<%= TrackingRequest::REPEATED_SESSION %>"><%= value_or_zero(@clicks, TrackingRequest::REPEATED_SESSION) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::REPEATED_IP %></td>
+        <td id="<%= TrackingRequest::REPEATED_IP %>"><%= value_or_zero(@clicks, TrackingRequest::REPEATED_IP) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::PENDING_APPROVAL %></td>
+        <td id="<%= TrackingRequest::PENDING_APPROVAL %>"><%= value_or_zero(@clicks, TrackingRequest::PENDING_APPROVAL) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::REJECTED %></td>
+        <td id="<%= TrackingRequest::REJECTED %>"><%= value_or_zero(@clicks, TrackingRequest::REJECTED) %></td></tr>
+      <tr>
+        <td><%= TrackingRequest::PAYABLE %></td>
+        <td id="<%= TrackingRequest::PAYABLE %>"><%= value_or_zero(@clicks, TrackingRequest::PAYABLE) %></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+  <div class="span7">
+    <div class="page-header"><h2>Filter</h2></div>
+    <%=select("tracking_request", "status", TrackingRequest::AVAILABLE_STATUS, { :include_blank => true, :selected => @status })%>
+    <div style="display: none;">
+		  <%= link_to 'Show', "#{admin_campaign_detailed_clicks_path}?status=#{params[:status]}", :id => 'filter_campaign_clicks_details' %>
+		</div>
+  </div>
+  <div class="span8">
+		<div class="page-header"><h2>Search Publisher</h2></div>
+		<form class="pull-left" action="<%= admin_campaign_detailed_clicks_path %>">
+	  	<input type="text" name="search" placeholder="Search" />
+	  	<button class="btn success">Search</button>
+		</form>
+  </div>
+  <div class="span15">
+    <div class="page-header"><h2>Actions</h2></div>
+    New status for selected clicks:
+    <select id="trackingStatus">
+      <option value="<%=TrackingRequest::PAYABLE%>"><%=TrackingRequest::PAYABLE%></option>
+      <option value="<%=TrackingRequest::REJECTED%>"><%=TrackingRequest::REJECTED%></option>
+      <option value="<%=TrackingRequest::PENDING_APPROVAL%>"><%=TrackingRequest::PENDING_APPROVAL%></option>
+    </select>
+
+    <%= content_tag :button, "Save", :type => "button", :class => "btn success", :id => "btnSaveStatus", :disabled => @campaign.processed? %>
+
+    <div style="display: none;">
+		<%= form_tag admin_campaign_detailed_clicks_update_path, :id => 'save_selected_statuses' do %>
+            <%= hidden_field_tag :status, @status %>
+            <%= hidden_field_tag :page, @page %>
+            <%= hidden_field_tag :campaign_id, @campaign.id %>
+            <%= hidden_field_tag :tracking_requests, '' %>
+            <%= hidden_field_tag :new_status, '' %>
+            <%= submit_tag 'Save', :name => 'SAVE_ALL' %>
+      	<% end %>
+	</div>
+  </div>
+
+  <div class="span6">
+    <div class="page-header"><h2>Http Headers</h2></div>
+    <a class="btn" id="header_listed">Header listed</a>
+  </div>
+</div>
+
+<div class="clear clearfix"></div>
+<br/>
+<div class="clicks_campaing" id="campaignClicksContainer">
+  <%= render "/admin/tracking_requests/index" %>
+</div>
+
+<div class="kaminari_paginator">
+	<%= paginate @tracking_requests_all %>
+</div>
+
+<script>
+function JsonToHTML(data){
+  var htmlOutput = "<ul>";
+  for(var i in data){
+    if(data[i] instanceof Array){
+      htmlOutput += "<li>" + JsonToHTML(data[i]) + "</li>";
+    } else if(data[i] instanceof Object){
+      htmlOutput += "<li>" + i +": " + JsonToHTML(data[i]) + "</li>";
+    } else {
+      htmlOutput += "<li>" + i +": <i>" + data[i] + "</i></li>";
+    }
+  }
+  return htmlOutput + "</ul>";
+}
+
+$("#header_listed").click(function(){
+	$('.data_json').each(function(){
+		data = eval('(' + $(this).html() + ')');
+		$(this).html(JsonToHTML(data));
+	});
+});
+
+function bindSelectAll(){
+	$("#selectAllCheckboxes").click(function(){
+	  var checked = $("#selectAllCheckboxes").attr("checked") != undefined;
+	  $(":checkbox.check_all_element").attr("checked", checked);
+	  return true;
+	});
+}
+
+bindSelectAll();
+</script>

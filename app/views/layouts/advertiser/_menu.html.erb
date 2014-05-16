@@ -1,0 +1,42 @@
+<% context = "Advertiser" %>
+<%
+  campaign_reports = [
+    context + "::CampaignReportsController",
+    context + "::CampaignDashboardReportsController",
+    context + "::CampaignPostReportsController",
+  ]
+
+  campaign = [
+    context + "::CampaignsController",
+    context + "::CampaignDashboardController",
+  ]
+%>
+<ul class="nav">
+	<li class="dropdown">
+    <a class="dropdown-toggle">Advertiser</a>
+    <ul class="dropdown-menu">
+      <li class="<%= "active" if controller.class.to_s == context + "::CampaignsController" %>">
+        <%= link_to t("menu.admin.campaigns"), advertiser_campaigns_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::AdsController" %>">
+        <%= link_to t("menu.admin.ads"), advertiser_ads_path %></li>
+   	</ul>
+	</li>
+  <li class="dropdown">
+    <a class="dropdown-toggle">Reports</a>
+    <ul class="dropdown-menu">
+      <li class="<%= "active" if campaign_reports.include?( controller.class.to_s ) %>">
+        <%= link_to t("menu.commons.campaign_reports"), advertiser_campaign_reports_path %></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle">Billing</a>
+    <ul class="dropdown-menu">
+      <li class="<%= "active" if controller.class.to_s == context + "::CheckingAccountController" %>">
+        <%= link_to t("menu.advertiser.checking_account"), advertiser_checking_account_index_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PendingPaymentController" %>">
+        <%= link_to t("menu.advertiser.pending_payments"), advertiser_pending_payment_index_path %></li>
+      <li class="<%= "active" if controller.class.to_s == context + "::PrepaidPackagesController" %>">
+        <%= link_to t("menu.advertiser.prepaid_packages"), advertiser_prepaid_packages_path %></li>
+    </ul>
+  </li>
+</ul>

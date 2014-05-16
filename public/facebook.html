@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slytrade</title>
+  <link href="/stylesheets/lib/bootstrap.publisher.less" media="screen" rel="stylesheet/less" type="text/css" />
+  <script src="/javascripts/less-1.1.3.min.js?1319050987" type="text/javascript"></script>
+  <script src="/javascripts/jquery.min.js?1318516765" type="text/javascript"></script>
+	<script src="/javascripts/jquery_ujs.js?1318516765" type="text/javascript"></script>
+	<script src="/javascripts/bootstrap-alerts.js?1318538110" type="text/javascript"></script>
+	<script src="/javascripts/bootstrap-twipsy.js?1267783423" type="text/javascript"></script>
+	<script src="/javascripts/bootstrap-popover.js?1267783423" type="text/javascript"></script>
+	<script src="/javascripts/application.js?1318538110" type="text/javascript"></script>
+  <meta name="csrf-param" content="authenticity_token"/>
+	<meta name="csrf-token" content="IW04flUxT8a0Hp1Xk+Z37wj5iwj+JiW1S4VMxWGaCQ4="/>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('article h3 a').click(function() {
+				$(".list_of_ads", $(this).parents("article")).slideToggle();
+			});
+			
+			$('#total_clicks').popover();
+			$('#money_earned').popover();
+		});
+		
+	</script>
+</head>
+<body>
+	<div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <a class="brand" href="#">PayPerSocial</a>
+        <ul class="nav">
+        	<li><a href="#">Info</a></li>
+        	<li><a href="#">Campaign</a></li>
+        	<li><a href="#">Report</a></li>
+        	<li><a href="#">Billing</a></li>
+      	</ul>
+      	<p class="pull-right"><a href="#">Profile</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: 50px;">
+    <div class="content">
+    <footer>
+      <p>&copy; Company 2011</p>
+    </footer>
+
+  </div>
+</body>
+</html>

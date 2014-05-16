@@ -1,0 +1,21 @@
+<div class="page-header"><h2>Campaign Details</h2></div>
+<table class="zebra-striped">
+  <tr><td>Name:</td><td><%= @campaign.name %></td></tr>
+  <tr><td>Description:</td><td><%= @campaign.description %></td></tr>
+  <tr><td>Market:</td><td><%= @campaign.market.name %></td></tr>
+  <tr><td>Dates:</td><td><%=l @campaign.start_date, :format => t("date.formats.default") %> - <%=l @campaign.end_date, :format => t("date.formats.default") %></td></tr>
+  <% if @campaign.autopublishing %>
+  <tr><td>Autopublishing:</td><%= @campaign.autopublishing %><td></td></tr>
+  <% end %>
+   <tr><td>Status:</td><td><%= @campaign.status %></td></tr>
+  <tr>
+    <td>
+      Click Value:
+    </td>
+    <td>
+      <span class="btn info">
+        <%= currency_format(@campaign.net_click_value(current_publisher)) %>
+      </span>
+    </td>
+  </tr>
+</table>

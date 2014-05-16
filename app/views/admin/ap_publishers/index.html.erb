@@ -1,0 +1,58 @@
+<script>
+  $(document).ready(function(){
+    $("table.zebra-striped").tablesorter({
+      sortList: [[5,1]]
+    });
+
+    $('th:last').popover({ placement: 'left'});
+  $('th').popover({ placement: 'right'});
+  });
+</script>
+
+<div class="page-header">
+  <h1>Publishers</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<div class="row">
+	<div class="span8">
+		<div class="page-header"><h2>Search Publisher</h2></div>
+			<form class="pull-left" action="<%= admin_ap_publishers_search_path %>">
+	  		<input type="text" name="search" placeholder="Search" />
+	  		<button class="btn success">Search</button>
+			</form>
+	</div>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th rel="popover" data-content="content" data-original-title="title">Name</th>
+      <th>Email</th>
+      <th>posts</th>
+      <th>places</th>
+      <th>clicks</th>
+      <th>CTR</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= link_to publisher.name, admin_publisher_path(publisher) %></td>
+        <td><%= publisher.email %></td>
+        <td><%= publisher.posts_count %></td>
+        <td><%= publisher.places_count %></td>
+        <td><%= publisher.clicks_count %></td>
+        <td><%= publisher.click_through %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="kaminari_paginator">
+	<%= paginate @publishers %>
+</div>

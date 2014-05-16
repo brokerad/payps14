@@ -1,0 +1,49 @@
+<div class="campaign-report">
+	<ul class="breadcrumb">
+	  <li><%= link_to t("commons.reports"), publisher_campaigns_path %> <span class="divider">/</span></li>
+	  <li><%= @campaign.name %></li>
+	</ul>
+	
+	<div class="row">
+		<div class="pull-left detail">
+			<%= render "application/campaign_detail_publisher" %>
+		</div>
+		<div class="pull-right balance">
+			<%= render "balance" %>
+		</div>
+	</div>
+	
+	<div class="page-header"><h2>Ads</h2></div>
+	<table class="zebra-striped">
+	  <thead>
+	    <tr>
+	      <th><%= t("activerecord.attributes.ad.title") %></th>
+	      <th><%= t("activerecord.attributes.ad.clicks") %></th>
+	      <th><%= t("activerecord.attributes.ad.likes") %></th>
+	      <th><%= t("activerecord.attributes.ad.comments") %></th>
+	      <th><%= t("common.posts") %></th>
+	      <th><%= t("common.amount") %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @campaign.ads.each do |ad| %>
+	    	<%if current_publisher.published?(@campaign.ads, ad) %>
+		      <tr>
+		        <td>
+              <%= ad.link_name %><br />
+		        	[<em><%=l ad.start_date, :format => t("date.formats.default")%> - <%=l ad.end_date, :format => t("date.formats.default") %></em>]
+		       	</td>
+		        <td><%= current_publisher.unique_clicks_by_ad ad %></td>
+		        <td><%= ad.likes %></td>
+		        <td><%= ad.comments %></td>
+		        <td><%= current_publisher.posts_qty_per_ad(ad) %></td>
+		        <%#TODO 6.4.12 (Fabio to Jonas) It seems that pending_amount_per_ad doesnt consider the net click value. Should we create an helper here? Cause maybe this method is used in other portion of code (maybe in admin too) %>
+		        <td><span class="btn success"><%= currency_format current_publisher.pending_amount_per_ad(ad) %></span></td>
+		      </tr>
+	      <% end %>
+	    <% end %>
+	  </tbody>
+	</table>
+	
+	<%= render "application/campaign_progress_chart" %>
+</div>

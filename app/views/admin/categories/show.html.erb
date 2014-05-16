@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>Caregory details</h1>
+</div>
+<div>
+  <h3>ENG</h3>
+  <%=simple_format @category.name_en %>
+</div>
+
+<div>
+  <h3>ITA</h3>
+  <%=simple_format @category.name_it %>
+</div>
+
+<div>
+  <h3>POR</h3>
+  <%=simple_format @category.name_pt_BR %>
+</div>
+
+<div class="actions">
+  <%= link_to t("commons.edit"), edit_admin_category_path(@term), :class => "btn info" %> or <%= link_to t("common.back"), admin_categories_path, :class => "btn" %>
+</div>

@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h1>Admin Variables</h1>
+</div>
+
+<div class="clear"></div><br/>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th class="text_center">Action</th>
+  </tr>
+
+<% @admin_variables.each do |admin_variable| %>
+  <tr>
+    <td><%= admin_variable.key %></td>
+    <td><%= admin_variable.value %></td>
+    <td class="text_center"><%= link_to 'Edit', edit_admin_variable_path(admin_variable), :class => "btn" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

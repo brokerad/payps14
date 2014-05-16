@@ -1,0 +1,102 @@
+<script src="/javascripts/highcharts.js" type="text/javascript"></script>
+
+<section class="charts">
+  <article>
+    <div class="page-header"><h2>Stats</h2></div>
+    <div id="clicks"></div>
+    <div id="amount"></div>
+  </article>
+</section>
+
+<script type="text/javascript">
+  function get_dates(data){
+    return data.horizontal.dates
+  }
+
+  function get_series(data, field){
+    field = typeof(field) != 'undefined' ? field : "clicks";
+    var new_series = new Array();
+    for (var index in data.vertical[field]){
+      var new_serie = new Object;
+      if(field == "amount"){
+        new_serie.type = "column";
+      }else{
+        new_serie.type = "spline";
+      }
+      if(index == "_total"){
+        new_serie.name = index.substr(1);
+      }else{
+        new_serie.name = index;
+      }
+      new_serie.data = data.vertical[field][index];
+      new_series.push(new_serie);
+    }
+    return new_series;
+  }
+
+  // http://www.highcharts.com/demo/spline-plot-bands
+  $(document).ready(function() {
+    var chart1, chart2;
+    var data = <%= @chart_data.html_safe %>;
+
+    var dates = get_dates(data);
+
+    var options_chart = {
+        chart: {
+           renderTo: 'div_id',
+           defaultSeriesType: 'line',
+           marginRight: 130,
+           marginBottom: 25
+        },
+        title: {
+           text: 'Title',
+        },
+        xAxis: {
+           categories: dates
+        },
+        yAxis: {
+           title: {
+              text: 'Title'
+           },
+           plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+           }]
+        },
+        legend: {
+           layout: 'vertical',
+           align: 'right',
+           verticalAlign: 'top',
+           x: -10,
+           y: 100,
+           borderWidth: 0
+        },
+        tooltip: {
+           formatter: function() {
+              return this.series.name + this.x + this.y;
+           }
+        }
+    };
+
+    //  CHART 1
+    options_chart.chart.renderTo = "clicks";
+    options_chart.title.text = "Daily Clicks Report";
+    options_chart.yAxis.title.text = "Clicks";
+    options_chart.tooltip.formatter = function() {
+      return '[<b>'+ this.series.name + '</b> - '+ this.x +'] <b>'+ this.y +' clicks</b>';
+    };
+    options_chart.series = get_series(data, "clicks");
+    chart1 = new Highcharts.Chart(options_chart);
+
+    //  CHART 2
+    options_chart.chart.renderTo = "amount";
+    options_chart.title.text = "Daily Amount Report";
+    options_chart.yAxis.title.text = "Amount";
+    options_chart.tooltip.formatter = function() {
+      return '[<b>'+ this.series.name + '</b> - '+ this.x +'] <b>'+ this.y +' $</b>';
+    };
+    options_chart.series = get_series(data, "amount");
+    chart2 = new Highcharts.Chart(options_chart );
+});
+</script>

@@ -1,0 +1,21 @@
+<div class="your_campaigns">
+  <div class="page-header">
+    <h2><%= t("publisher.your_campaigns") %></h2>
+  </div>
+  <table class="zebra-striped">
+    <thead>
+      <tr>
+        <th><%= t("common.campaign") %></th>
+        <th width="66"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @campaigns_owned.each do |campaign| %>
+        <tr>
+          <td><%= campaign.name %></td>
+          <td><%= link_to t("commons.reports"), publisher_campaign_reports_path(campaign), :class => "btn info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

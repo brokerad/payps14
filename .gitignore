@@ -1,0 +1,11 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.project
+.DS_Store
+/db/schema.rb
+/Gemfile.lock
+/public/uploads/
+.rvmrc
+public/stylesheets/bootstrap.publisher.css

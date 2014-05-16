@@ -1,0 +1,33 @@
+<div class="page-header">
+<h1>Ads reports</h1>
+</div>
+<ul class="breadcrumb">
+  <li><%= link_to t("menu.commons.advertiser_reports"), admin_advertiser_reports_path %> <span class="divider">/</span></li>
+  <li><%= link_to @advertiser.company_name, admin_advertiser_campaign_reports_path(@advertiser) %> <span class="divider">/</span></li>
+  <li><%= @campaign.name %></li>
+</ul>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Ad Title</th>
+      <th>VR</th>
+      <th>Publishers</th>
+      <th>Clicks</th>
+      <th>Posts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaign.ads.each do |ad| %>
+      <tr>
+        <td><%= ad.id %></td>
+        <td><%= ad.message %></td>
+        <td><%= ad.visibilityrating %></td>
+        <td align="right"><%= link_to ad.unique_publishers.count, admin_advertiser_campaign_post_reports_path(@advertiser, @campaign, ad) %></td>
+        <td align="right"><%= ad.clicks_count %></td>
+        <td align="right"><%= ad.posts_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

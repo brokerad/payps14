@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h1>Advertisers <small><%= link_to 'New', new_admin_advertiser_path %></small></h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t("activerecord.attributes.advertiser.email") %></th>
+      <th><%= t("activerecord.attributes.advertiser.company_name") %></th>
+      <th><%= t("activerecord.attributes.advertiser.address") %></th>
+      <th><%= t("activerecord.attributes.advertiser.city") %></th>
+      <th><%= t("activerecord.attributes.advertiser.country") %></th>
+      <th><%= t("activerecord.attributes.advertiser.zip_code") %></th>
+      <th><%= t("activerecord.attributes.advertiser.phone") %></th>
+      <th><%= t("activerecord.attributes.advertiser.fax") %></th>
+      <th><%= t("activerecord.attributes.advertiser.site") %></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @advertisers.each do |advertiser| %>
+      <tr>
+        <td><%= advertiser.id %></td>
+        <td><%= advertiser.user.email %></td>
+        <td><%= advertiser.company_name %></td>
+        <td><%= advertiser.address %></td>
+        <td><%= advertiser.city %></td>
+        <td><%= advertiser.country %></td>
+        <td><%= advertiser.zip_code %></td>
+        <td><%= advertiser.phone %></td>
+        <td><%= advertiser.fax %></td>
+        <td><%= link_to advertiser.site, advertiser.site, :target => "_blank" %></td>
+        <td><%= link_to t("commons.edit"), edit_admin_advertiser_path(advertiser) %></td>
+        <td><%= enable_button(advertiser) %></td>
+        <td>
+        	<% if advertiser.user.enabled %>
+        		<%= link_to(t("commons.buttons.login"), admin_advertiser_login_as_advertiser_path(advertiser),
+        			:confirm => 'Are you sure?',:class => "btn info") %>
+        	<% else %>
+        		<span class="btn"><%= t("commons.buttons.login") %></span>
+        	<% end %>
+        </td>
+        <td>
+        	<% if advertiser.has_history %>
+        		<span class="btn"><%= t("commons.buttons.destroy") %></span>
+        	<% else %>
+        		<%= link_to(t("commons.buttons.destroy"), admin_advertiser_remove_advertiser_path(advertiser),
+        			:confirm => 'Are you sure?', :class => "btn danger") %>
+        	<% end %>
+        </td>
+        <!-- <td><%# = link_to t("commons.show"), [:advertiser, advertiser] %></td> -->
+        <!-- <td><%# = link_to t("commons.destroy"), [:advertiser, advertiser], :confirm => 'Are you sure?', :method => :delete %></td> -->
+      </tr>
+    <% end %>
+  </tbody> 
+</table>

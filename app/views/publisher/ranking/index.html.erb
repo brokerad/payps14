@@ -1,0 +1,54 @@
+<div class="page-header"><h1>Publisher's Ranking</h1></div>
+<div class="row">
+	<div class="span8">
+		<h2>Top 10 by Clicks</h2>
+		<table class="zebra-striped">
+			<tbody>
+				<% @publishers_by_clicks.each do |publisher| %>
+		      <tr>
+		        <td><%= publisher["first_name"] %></td>
+		        <td><%= publisher["clicks"] %></td>
+		      </tr>
+		    <% end %>
+			</tbody>
+		</table>
+  </div>
+  <div class="span8">
+		<h2>Top 10 by Posts</h2>
+		<table class="zebra-striped">
+			<tbody>
+				<% @publishers_by_posts.each do |publisher| %>
+		      <tr>
+		        <td><%= publisher["first_name"] %></td>
+		        <td><%= publisher["posts_qty"] %></td>
+		      </tr>
+		    <% end %>
+			</tbody>
+		</table>
+  </div>
+  <div class="span8">
+		<h2>Top 10 by CTR</h2>
+		<table class="zebra-striped">
+			<tbody>
+				<% @publishers_by_ctr.each do |publisher| %>
+		      <tr>
+		        <td><%= publisher["first_name"] %></td>
+		        <td><%= publisher["ctr"] %></td>
+		      </tr>
+		    <% end %>
+			</tbody>
+		</table>
+  </div>
+</div>
+<div class="row">
+	<div class="span8">
+		You have <b><%=@current_data["clicks"]||0 %></b> clicks
+	</div>
+	<div class="span8">
+		You have <b><%=@current_data["posts"]||0 %></b> posts
+	</div>
+	<div class="span8">
+		Your CTR is <b><%=@current_data["ctr"]||0 %></b>
+	</div>
+</div>
+		

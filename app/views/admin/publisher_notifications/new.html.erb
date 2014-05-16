@@ -1,0 +1,15 @@
+<h1>New Notification</h1>
+
+<%= simple_form_for([:admin, @notification], :wrapper => "inline") do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :title %>
+  <%= f.input :notification_text %>
+  <%= f.input :uids, :label => "Publisher ID", :hint => "Comma separated list of publisher id: 23,56,77" %>
+  
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to t("commons.back"), admin_publisher_notifications_path %>

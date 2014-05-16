@@ -1,0 +1,30 @@
+<h1>Banner List <small><%= link_to 'New Banner', new_admin_banner_path %></small></h1>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Language</th>
+      <th>Page</th>
+      <th>URL</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @banners.each do |banner| %>
+      <tr>
+        <td><%= banner.id %></td>
+        <td><%= banner.name %></td>
+        <td><%= banner.language.name %></td>
+        <td><%= Banner::PAGES[banner.page] %></td>
+        <td><%= banner.target_url %></td>
+        <td>
+          <%= link_to 'Show', [:admin, banner], :class => "btn" %>
+          <%= link_to 'Edit', edit_admin_banner_path(banner), :class => "btn"  %>
+          <%= link_to 'Destroy', [:admin, banner], :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"  %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

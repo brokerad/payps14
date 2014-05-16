@@ -1,0 +1,26 @@
+<h1>Traffic Manager list</h1>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Publishers</th>
+      <th>Ads</th>
+      <th>Posts</th>
+      <th>Clicks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @traffic_managers.each do |manager| %>
+      <tr>
+        <td><%= manager.id %></td>
+        <td><%= manager.email %></td>
+        <td><%= link_to(manager.managed_publishers_count, "#{admin_publishers_filter_path}?filter_traffic_manager=#{manager.id}")  %></td>
+        <td><%= link_to(manager.active_ads_count, "#{admin_ads_reports_filter_manager_path}?filter_traffic_manager=#{manager.id}") %></td>
+        <td><%= manager.active_posts_count %></td>
+        <td><%= manager.active_posts_with_payable_clicks_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

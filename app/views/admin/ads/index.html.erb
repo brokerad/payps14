@@ -1,0 +1,83 @@
+<div class="page-header">
+  <h1><%= t("ad.list") %> </h1>
+
+  <form  action="<%= admin_ads_path %>">
+    <%= select_tag "filter_state", options_for_select(["Pending", "Approved", "Rejected"], params[:filter_state]), :include_blank => true %>
+    <button class="btn success">Filter</button>
+  </form>
+</div>
+
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th><%= sortable "message",           t("activerecord.attributes.ad.message") %></th>
+      <th><%= sortable "link",              t("activerecord.attributes.ad.link") %></th>
+      <th><%= sortable "campaign",          t("activerecord.attributes.ad.campaign") %></th>
+      <th><%= sortable "clicks",            t("ad.clicks") %></th>
+      <th><%= sortable "impressions",       t("ad.impressions")%></th>
+      <th><%= sortable "visibility",        t("activerecord.attributes.ad.visibilityrating") %></th>
+      <th><%=                               t("activerecord.attributes.ad.picture") %></th>
+      <th><%= sortable "start_date",       	t("activerecord.attributes.as.start_date") %></th>
+      <th><%= sortable "end_date",          t("activerecord.attributes.ad.end_date") %></th>
+      <th>Publisher Dashboard</th>      
+      <th>State</th>
+      <th>Comment</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.link_name %></td>
+        <td style="max-width: 200px;"><%= link_to ad.link_caption, ad.link %></td>
+        <td><%= ad.campaign.name %></td>
+        <td><%= ad["payable_clicks"] || @pb_clicks[ad.id] || 0 %></td>
+        <td><%= ad["impressions"] || @impressions[ad.id] || 0 %></td>
+        <td><%= ad.visibilityrating %></td>
+        <td><%= link_to image_tag(ad.picture_link, :class => "thumb90", :height => "30", :border => "0"), ad.picture_link %></td>
+        <td class="text_in_line"><%= l(ad.start_date, :format => default_time_format) %></td>
+        <td class="text_in_line"><%= l(ad.end_date, :format => default_time_format) %></td>
+        <td class="text_in_line"><%= ad.show_homepage ? 'Yes' : 'No' %></td>
+
+        <% if ad.ad_state.state == AdState::PENDING %>
+          <td class="text_in_line">
+            <%= link_to "Approve", approve_admin_ad_path(ad), :method => :post, :class => "btn success" %>
+            <%= link_to "Reject", "#", :class => "btn danger reject_btn", :id => ad.id %>
+          </td>
+        <% else %>
+          <td class="text_in_line"><%= ad.ad_state.state.capitalize %></td>
+        <% end %>
+
+        <td>
+          <%= ad.ad_state.message %>
+        </td>
+        <td class="text_in_line">
+          <%= link_to t("commons.edit"), edit_admin_ad_path(ad), :class => 'btn' %>
+          <%= link_to t("commons.destroy"), [:admin, ad], :method => :delete, :confirm =>'Are you sure?', :class => 'btn danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="kaminari_paginator">
+	<%= paginate @ads %>
+</div>
+
+<div id="reject_modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Reject Ad</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= text_area_tag :ad_state, nil, :placeholder => "Optional message" %> </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn success" id="reject_ad">Reject Ad</a>
+  </div>
+</div>
+
+<%= javascript_include_tag 'admin_ads-index' %>
+
+

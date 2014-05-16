@@ -1,0 +1,77 @@
+<div id="terms_pps_baner"><%= banner_for_page Banner::ENGAGE_LEFT %></div>
+
+<div style="float: left; width: 66%; width: 745px; margin-left:5px;">
+    <%= simple_form_for(current_publisher, :url => url, :wrapper => "prepend") do |f| %>
+    <div class="row">
+        <div class="page-header">
+          <h2><%= t("commons.fill_your_mandatory_data")%></h2>
+        </div>
+        <div class="form-stacked">
+            <input type="hidden" name="mandatory_data" value="1">
+            <%= render 'commons/error_notification', :f => f %>
+            <div class="span7">
+                <div class="row">
+                    <div class="span5">
+                        <%= f.association :language, :as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+                    </div>
+                    <div class="span2">
+                        <%= f.association :market, :as => :radio_buttons, :wrapper => "checkboxes", :item_wrapper_tag => "li" %>
+                    </div>
+                </div>
+              
+                <div class="timezonea row">
+                    <%= f.input :country %>
+                    <label>Your Time/Zone</label>
+                    <%= f.time_zone_select :time_zone, nil, :include_blank => true %>
+                </div>
+            </div>
+            <div class="span7" style="width: 185px;">
+                <% unless current_publisher.coupon %>
+                    <div class="coupon well" style="width: 145px;">
+                        <p style="font-size: 16px;"><b><%= t('publisher.terms.promo_code') %></b></p>
+                        <p><%= t('publisher.terms.engage_msg') %></p>
+                        <label>Coupon</label>
+                        <%= text_field_tag "coupon[code]", params[:coupon] ? params[:coupon][:code] : '', :style => 'width: 135px;' %>
+                    </div>
+                <% end %>
+            </div>
+            <div id="terms_pps_baner_2"><%= banner_for_page Banner::ENGAGE_RIGHT %></div>
+        </div>
+    </div>
+    <div class="row">
+        <hr />
+        <script>
+          $(document).ready(function() {
+            $(".terms .term").hide();
+            $(".terms .eng").show();
+            $("input[name='publisher[language_id]']").change(function() {
+              $(".terms .term").hide();
+              if(this.value == 1) { $(".terms .eng").show(); } 
+              else {
+                if(this.value == 2) { $(".terms .ita").show(); } 
+                else { $(".terms .por").show(); }
+              }
+            });
+          });
+        </script>
+        <div class="terms">
+            <div class="term eng">
+                <%= simple_format @term.content_eng %>
+            </div>
+            <div class="term ita">
+                <%= simple_format @term.content_ita %>
+            </div>
+            <div class="term por">
+                <%= simple_format @term.content_por %>
+            </div>
+            <input type="checkbox" name="confirm">
+            <%= t("publisher.engagement.term.accept") %>
+        </div>
+        
+        <div class="pull-right">
+            <%= f.button :submit, :class => "large success", :value => "Complete your Sign Up >>" %>
+        </div>
+    </div>
+    <div class="clear clearfix"></div>
+    <% end %>
+</div>

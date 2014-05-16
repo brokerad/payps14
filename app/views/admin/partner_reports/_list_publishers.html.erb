@@ -1,0 +1,69 @@
+<%= simple_form_for @publisher_criteria, :url => admin_partner_reports_publishers_path(@partner), :html => {:method => :get} do |f| %>
+  <%= f.input :created_at, :as => :date, :include_blank => true %>
+  <%= f.input :updated_at, :as => :date, :include_blank => true %>
+  <%= f.submit :value => t("commons.search"), :class => "btn" %>
+<% end %>
+
+<% 
+  total_confirmed_publishers = 0
+  total_confirmed_publishers_with_connections = 0
+  total_facebook_engaged = 0
+  @publishers.each do |publisher| 
+    total_confirmed_publishers += 1 if publisher.accepted_term == @current_enabled_term
+    total_confirmed_publishers_with_connections += 1 if publisher.accepted_term == @current_enabled_term && publisher.connections >= 1 
+    total_facebook_engaged += 1 if publisher.engaged?
+  end
+%>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Total confirmed publishers</th>
+      <th>Total confirmed publishers with almost 1 connection</th>
+      <th>Total Facebook engaged</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+	      <td><%= total_confirmed_publishers %></td>
+	      <td><%= total_confirmed_publishers_with_connections %></td>
+	      <td><%= total_facebook_engaged %></td>
+      </tr>
+  </tbody>
+</table>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t("activerecord.attributes.publisher.name") %></th>
+      <th><%= t("activerecord.attributes.publisher.email") %></th>
+      <th>T&C</th>
+      <th><%= t("activerecord.attributes.publisher.type") %></th>
+      <th><%= t("activerecord.attributes.publisher.partner") %></th>
+      <th><%= t("common.connections") %></th>
+      <th>FB-E</th>
+      <th><%= t("common.facebook_account_url") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= publisher.id %></td>
+        <td><%= link_to publisher.name, admin_publisher_path(publisher) %></td>
+        <td><%= publisher.email %></td>
+        <td><%= "X" if publisher.accepted_term == @current_enabled_term %></td>
+        <td><%= @publisher_types[publisher.publisher_type_id].name %></td>
+        <td><%= link_to publisher.partner.name, edit_admin_partner_path(publisher.partner) if publisher.partner%></td>
+        <td><%= publisher.connections %></td>
+        <td><%= "X" if publisher.engaged? %></td>
+	    <td><%= extract_facebook_link_if publisher %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4"><%= t("commons.total") %></td>
+      <td><%=@publishers.size%></td>
+    </tr>
+  </tfoot>
+</table>

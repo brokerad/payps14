@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1>Tracking Urls</h1>
+</div>
+
+<div class="clear clearfix"></div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Tracking URL</th>
+      <th class="text_center">Active</th>
+      <th class="text_center">Accepted Terms<br/>Publishers</th>
+      <th class="text_center">Engaged<br/>Publishers</th>
+      <th class="text_center">Active<br/>Publishers</th>
+      <th class="text_center">RS</th>
+      <th class="text_center">Coupon</th>
+      <th class="text_center">Payable<br/>Clicks</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      <% @tracking_urls.each do |tracking_url| %>
+      <tr>
+        <td><%= tracking_url.id %></td>
+        <td><%= tracking_url.name %></td>
+        <td>
+            <%= t('partner.engage_web') %>
+            <%= Paypersocial::Constants::TRACKING_URL_WEB.sub('[PARTNERCODE]', tracking_url.tracking_code) %><br/>
+            
+            <%= t('partner.engage_fb') %>
+            <%= Paypersocial::Constants::TRACKING_URL_FB.sub('[PARTNERCODE]', tracking_url.tracking_code) %><br/>
+        </td>
+        <td class="text_center"><%= disabled_checkbox(tracking_url.active) %></td>
+        <td class="text_center"><%= tracking_url.publishers.completed.count %></td>
+        <td class="text_center"><%= tracking_url.engaged_publishers_count %></td>
+        <td class="text_center"><%= tracking_url.active_publishers_count %></td>
+        <td class="text_center"><%= disabled_checkbox(tracking_url.revenue_share) %></td>
+        <td class="text_center"><%= tracking_url.coupons.size %></td>
+        <td class="text_center"><%= tracking_url.payable_clicks_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

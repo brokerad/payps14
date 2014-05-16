@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Advertisers</h1>
+</div>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th><%= t("activerecord.attributes.advertiser.name") %></th>
+      <th><%= t("commons.campaigns") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @advertisers.each do |advertiser| %>
+      <tr>
+        <td><%= advertiser.company_name %></td>
+        <td align="right"><%= link_to advertiser.campaigns.size, admin_advertiser_campaign_reports_path(advertiser) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
