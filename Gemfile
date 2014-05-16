@@ -47,3 +47,5 @@ end
 group :production do
   gem 'newrelic_rpm'
 end
+
+gem 'rails_12factor', group: :production
